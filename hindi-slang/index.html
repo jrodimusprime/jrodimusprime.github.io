@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Desi Office Slang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Hind:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: compact masthead + key, sticky filter bar, then a dense wrapping grid of phrase cards colour-coded by mood */
+:root {
+  --bg: #F3F4EC;
+  --surface: #FFFFFF;
+  --ink: #1D1A2B;
+  --muted: #5C586B;
+  --line: #DAD9CE;
+  --turmeric: #E3A600;
+  --turmeric-ink: #7A5500;
+  --office: #2C6AA3;
+  --cool: #2A8452;
+  --funny: #A84D86;
+  --wrong: #C23F27;
+  --chip-bg: #E7E8DE;
+  --f-display: "Yatra One", "Hind", system-ui, sans-serif;
+  --f-body: "Hind", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14121D; --surface: #1E1B2A; --ink: #EEEBF6; --muted: #A8A3B9; --line: #332F46;
+    --turmeric: #F2BA2C; --turmeric-ink: #F2BA2C;
+    --office: #72AAE0; --cool: #5DC189; --funny: #E28CC0; --wrong: #F17C61;
+    --chip-bg: #29253A; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14121D; --surface: #1E1B2A; --ink: #EEEBF6; --muted: #A8A3B9; --line: #332F46;
+  --turmeric: #F2BA2C; --turmeric-ink: #F2BA2C;
+  --office: #72AAE0; --cool: #5DC189; --funny: #E28CC0; --wrong: #F17C61;
+  --chip-bg: #29253A; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; } [hidden] { display: none !important; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 15px;
+  line-height: 1.4;
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg);
+}
+.wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* Masthead */
+header.mast { padding-block: 24px 12px; }
+.mast-grid { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: end; }
+.eyebrow { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--turmeric-ink); font-weight: 600; margin: 0 0 4px; }
+h1 { font-family: var(--f-display); font-weight: 400; font-size: clamp(32px, 5vw, 48px); line-height: 1; margin: 0; text-wrap: balance; }
+h1 .hl { background: linear-gradient(transparent 62%, var(--turmeric) 62%, var(--turmeric) 92%, transparent 92%); padding: 0 .05em; }
+.lede { max-width: 64ch; color: var(--muted); margin: 8px 0 0; font-size: 15px; }
+.mood-meter { display: flex; flex-direction: column; gap: 6px; min-width: 0; font-size: 12px; color: var(--muted); }
+.meter-bar { display: flex; height: 8px; width: 240px; max-width: 100%; border-radius: 4px; overflow: hidden; }
+.meter-bar span { display: block; height: 100%; }
+.meter-legend { display: flex; flex-wrap: wrap; gap: 2px 12px; max-width: 260px; }
+.meter-legend i { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 5px; vertical-align: 0; }
+
+/* Pronunciation key */
+.key {
+  margin-top: 14px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px;
+  display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 13px; color: var(--muted);
+}
+.key h2 { margin: 0; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); align-self: center; }
+.key b { font-family: var(--f-mono); font-weight: 500; color: var(--ink); }
+
+/* Controls */
+.controls { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+.controls .wrap { padding-block: 10px; display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+.search { flex: 1 1 200px; min-width: 0; }
+.search input {
+  width: 100%; font: inherit; font-size: 14px; padding: 7px 10px; border-radius: 7px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+}
+.search input:focus-visible { outline: 2px solid var(--turmeric); outline-offset: 1px; }
+.chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.chip {
+  font: inherit; font-size: 13px; font-weight: 500; border: 1px solid transparent; cursor: pointer;
+  padding: 4px 10px; border-radius: 999px; background: var(--chip-bg); color: var(--ink);
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--ink)); }
+.chip .n { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 12px; }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.chip[aria-pressed="true"] .n { color: var(--bg); opacity: .75; }
+.chip:focus-visible, .ibtn:focus-visible, .card:focus-visible { outline: 2px solid var(--turmeric); outline-offset: 2px; }
+.toggles { display: flex; gap: 14px; flex-wrap: wrap; }
+.tgl { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); cursor: pointer; user-select: none; }
+.tgl input { width: 15px; height: 15px; margin: 0; accent-color: var(--turmeric); }
+
+/* Grid */
+main { padding-block: 16px 40px; }
+.count { font-size: 12px; color: var(--muted); margin: 0 0 10px; font-variant-numeric: tabular-nums; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+.card {
+  --c: var(--office);
+  background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--c); border-radius: 8px;
+  padding: 9px 11px 10px; display: flex; flex-direction: column; gap: 2px; min-width: 0;
+}
+.card[data-cat="cool"] { --c: var(--cool); }
+.card[data-cat="funny"] { --c: var(--funny); }
+.card[data-cat="wrong"] { --c: var(--wrong); }
+.head { display: flex; align-items: flex-start; gap: 6px; }
+.roman { font-size: 16.5px; font-weight: 700; margin: 0; line-height: 1.25; flex: 1; min-width: 0; }
+.rude { font-size: 10px; font-weight: 600; color: var(--wrong); border: 1px solid currentColor; border-radius: 3px; padding: 0 4px; margin-left: 4px; vertical-align: 2px; white-space: nowrap; }
+.acts { display: flex; gap: 2px; flex: none; margin: -2px -4px 0 0; }
+.ibtn {
+  width: 26px; height: 26px; display: inline-grid; place-items: center; cursor: pointer;
+  background: transparent; color: var(--muted); border: 0; border-radius: 6px; padding: 0;
+}
+.ibtn:hover { color: var(--c); background: var(--chip-bg); }
+.ibtn svg { width: 12px; height: 12px; fill: currentColor; }
+.ibtn.done { color: var(--cool); }
+.say { font-family: var(--f-mono); font-size: 12.5px; color: var(--turmeric-ink); margin: 0; }
+.deva { font-family: var(--f-display); font-size: 21px; line-height: 1.3; margin: 2px 0 0; overflow-wrap: anywhere; display: none; }
+body.show-deva .deva { display: block; }
+.def { margin: 3px 0 0; font-weight: 500; font-size: 14px; }
+.lit { color: var(--muted); font-weight: 400; font-size: 12.5px; }
+.ex { margin: 4px 0 0; font-size: 13px; line-height: 1.35; }
+.ex .hi { font-style: italic; }
+.ex .tr { color: var(--muted); display: block; }
+.empty { color: var(--muted); padding: 40px 0; text-align: center; }
+
+/* Quiz mode */
+body.quiz .card .def, body.quiz .card .ex .tr { filter: blur(5px); user-select: none; transition: filter .2s; }
+body.quiz .card { cursor: pointer; }
+body.quiz .card.revealed .def, body.quiz .card.revealed .ex .tr { filter: none; user-select: auto; }
+
+footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 12.5px; }
+footer .wrap { padding-block: 16px 28px; }
+
+@media (max-width: 640px) {
+  .mast-grid { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="wrap">
+    <div class="mast-grid">
+      <div>
+        <p class="eyebrow">Hinglish cheat sheet</p>
+        <h1>Desi Office <span class="hl">Slang</span></h1>
+        <p class="lede">100 phrases you'll actually hear in an Indian office, on a team call, or over chai when the deploy just broke.</p>
+      </div>
+      <div class="mood-meter" aria-label="Mix of phrases by mood">
+        <div class="meter-bar" id="meter"></div>
+        <div class="meter-legend" id="meterLegend"></div>
+      </div>
+    </div>
+
+    <section class="key" aria-label="How to read the pronunciation">
+      <h2>Say it</h2>
+      <span><b>CAPS</b> stressed</span>
+      <span><b>aa</b> f<u>a</u>ther</span>
+      <span><b>u</b> b<u>u</u>t</span>
+      <span><b>ee</b> s<u>ee</u></span>
+      <span><b>oo</b> f<u>oo</u>d</span>
+      <span><b>kh gh bh dh th</b> add a puff of air</span>
+      <span><b>t d</b> tongue on back of teeth</span>
+      <span><b>r</b> in jugaa<b>d</b>, tho<b>r</b>a = quick flick</span>
+    </section>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="wrap">
+    <div class="search">
+      <input id="q" type="search" placeholder="Search Hindi or English…" autocomplete="off" aria-label="Search phrases">
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Filter by mood"></div>
+    <div class="toggles">
+      <label class="tgl" for="deva"><input type="checkbox" id="deva"> Show Devanagari</label>
+      <label class="tgl" for="quiz"><input type="checkbox" id="quiz"> Quiz mode</label>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <p class="count" id="count"></p>
+    <div class="grid" id="grid"></div>
+    <p class="empty" id="empty" hidden>No phrases match that. Try another word.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Phrases marked <span class="rude">mildly rude</span> are fine with work friends, not with your skip-level. Quiz mode blurs the meanings; tap a card to check yourself. The play button uses your device's Hindi voice when it has one.
+  </div>
+</footer>
+
+<script>
+const CATS = {
+  office: { label: "Office talk", color: "var(--office)" },
+  cool:   { label: "Hype & vibes", color: "var(--cool)" },
+  funny:  { label: "Funny ones",  color: "var(--funny)" },
+  wrong:  { label: "When it goes wrong", color: "var(--wrong)" }
+};
+
+// [cat, devanagari, roman, pronunciation, literal, meaning, example, translation, rude?]
+const RAW = [
+  // ---------- Office talk (30) ----------
+  ["office","जुगाड़","Jugaad","joo-GAAD","a makeshift fix","A clever hack or workaround with whatever you've got.","Budget nahi hai, koi jugaad karte hain.","No budget, let's hack something together."],
+  ["office","चलता है","Chalta hai","CHUL-taa hai","it walks","It'll do. Good enough.","Font thoda off hai, but chalta hai.","Font's a bit off, but it'll do."],
+  ["office","हो जाएगा","Ho jayega","ho jaa-YAY-gaa","it will happen","It'll get done. Relax.","Deadline Friday hai? Ho jayega.","Deadline's Friday? It'll get done."],
+  ["office","सीन क्या है?","Scene kya hai?","seen KYAA hai","what's the scene?","What's the situation / the plan?","Client call ka scene kya hai?","What's the deal with the client call?"],
+  ["office","कल तक पक्का","Kal tak pakka","kul tuk PUK-kaa","by tomorrow, firm","Definitely by tomorrow. (Trust accordingly.)","Deck kal tak pakka bhej dunga.","I'll definitely send the deck by tomorrow."],
+  ["office","थोड़ा एडजस्ट कर लो","Thoda adjust kar lo","THO-ra ad-JUST kur lo","adjust a little","Make room, compromise, roll with it.","Meeting 4 baje shift ho gayi, thoda adjust kar lo.","Meeting moved to 4, just roll with it."],
+  ["office","सब सेट है","Sab set hai","sub SET hai","all is set","Everything's sorted and ready.","Demo ke liye sab set hai?","Are we all set for the demo?"],
+  ["office","काम चालू है","Kaam chalu hai","kaam CHAA-loo hai","work is running","Work in progress. Don't ask for an ETA.","Report? Kaam chalu hai.","The report? It's in progress."],
+  ["office","दो मिनट","Do minute","doh MI-nut","two minutes","Any length of time from two minutes to forever.","Bas do minute, aa raha hoon.","Just two minutes, I'm coming."],
+  ["office","चाय पे चलें?","Chai pe chalein?","chaay pay chu-LAYN","shall we go on tea?","Chai break? Also code for 'let's talk privately'.","Bahut ho gaya, chai pe chalein?","That's enough, chai break?"],
+  ["office","टेंशन मत ले","Tension mat le","TEN-shun mut lay","don't take tension","Don't stress about it.","Tension mat le, main dekh lunga.","Don't stress, I'll handle it."],
+  ["office","फ़ालतू","Faltu","FAAL-too","surplus, extra","Pointless, useless, a waste.","Yeh meeting bilkul faltu thi.","That meeting was completely pointless."],
+  ["office","काम हो गया","Kaam ho gaya","kaam ho GA-yaa","the work happened","Done. Sorted. Shipped.","Bug fix? Kaam ho gaya.","The bug fix? Done."],
+  ["office","थोड़ा टाइम दो","Thoda time do","THO-ra time doh","give a little time","Give me a bit more time.","Numbers check kar raha hoon, thoda time do.","Checking the numbers, give me a bit."],
+  ["office","मैं देख लेता हूँ","Main dekh leta hoon","main DEKH lay-taa hoon","I'll take a look","I'll look into it. (May mean never.)","Access issue? Main dekh leta hoon.","Access issue? I'll look into it."],
+  ["office","एक काम कर","Ek kaam kar","ek KAAM kur","do one work","Here's what you do… (opener for an instruction)","Ek kaam kar, client ko seedha call kar.","Here's what you do: call the client directly."],
+  ["office","चलो, निकलते हैं","Chalo, nikalte hain","CHA-lo, ni-KUL-tay hain","come on, let's exit","Right, I'm heading off.","Saat baj gaye, chalo nikalte hain.","It's seven, I'm off."],
+  ["office","डेडलाइन सर पे है","Deadline sar pe hai","DED-line sur pay hai","deadline is on my head","The deadline is looming.","Abhi nahi yaar, deadline sar pe hai.","Not now, the deadline's breathing down my neck."],
+  ["office","बस, फ़ाइनल है","Bas, final hai","bus, FAI-nul hai","enough, it's final","That's locked in. No more changes.","Design ab bas final hai.","The design is locked now."],
+  ["office","कितना टाइम लगेगा?","Kitna time lagega?","KIT-naa time lu-GAY-gaa","how much time will it take?","What's the ETA?","Deployment mein kitna time lagega?","How long will the deploy take?"],
+  ["office","पक्का?","Pakka?","PUK-kaa","ripe / firm?","For sure? Promise?","Kal live hoga, pakka?","Going live tomorrow, for sure?"],
+  ["office","हाँ जी","Haan ji","HAAN jee","yes, respected one","Yes (polite). The default reply on every call.","Haan ji, sun raha hoon.","Yes, I'm listening."],
+  ["office","आप म्यूट पे हो","Aap mute pe ho","aap MYOOT pay ho","you are on mute","You're on mute. The most-said phrase since 2020.","Sharma ji, aap mute pe ho!","Sharma ji, you're on mute!"],
+  ["office","कर लेंगे","Kar lenge","kur LEN-gay","we'll do it","We'll get to it… at some point.","Documentation? Haan, kar lenge.","Docs? Yeah, we'll get to it."],
+  ["office","देखते हैं","Dekhte hain","DEKH-tay hain","let's see","We'll see. (Often a polite no.)","Budget badhega? Dekhte hain.","More budget? We'll see."],
+  ["office","अपने काम से काम रख","Apne kaam se kaam rakh","AP-nay kaam say kaam rukh","keep to your own work","Mind your own business.","Office politics chhod, apne kaam se kaam rakh.","Skip the politics, mind your own business."],
+  ["office","हाथ बटा दो","Haath bata do","haath bu-TAA doh","share the hand","Lend a hand.","Release mein thoda haath bata do.","Give me a hand with the release."],
+  ["office","छुट्टी","Chhutti","CHHUT-tee","release, holiday","Day off, leave.","Kal chhutti pe hoon, ping mat karna.","I'm on leave tomorrow, don't ping me."],
+  ["office","सीधा पॉइंट पे आ","Seedha point pe aa","SEE-dhaa point pay aa","come straight to the point","Get to the point.","Bhai, seedha point pe aa.","Mate, get to the point."],
+  ["office","एक बार चेक कर लो","Ek baar check kar lo","ek baar CHECK kur lo","check once","Just double-check it.","Send karne se pehle ek baar check kar lo.","Double-check it before sending."],
+
+  // ---------- Hype & vibes (20) ----------
+  ["cool","एकदम मस्त","Ekdum mast","EK-dum must","totally intoxicating","Absolutely great.","Presentation ekdum mast thi!","The presentation was brilliant!"],
+  ["cool","झकास","Jhakaas","jhu-KAAS","Mumbai slang","Awesome, top-notch.","Naya office jhakaas hai.","The new office is awesome."],
+  ["cool","बिंदास","Bindaas","bin-DAAS","carefree","Chill, fearless. Also: go ahead freely.","Bindaas bol, koi problem nahi.","Just say it, no problem."],
+  ["cool","क्या बात है!","Kya baat hai!","kyaa BAAT hai","what a thing!","Wow, nicely done!","Pehli try mein fix? Kya baat hai!","Fixed on the first try? Nice!"],
+  ["cool","पैसा वसूल","Paisa vasool","PAI-saa wa-SOOL","money recovered","Totally worth it.","Offsite ekdum paisa vasool tha.","The offsite was totally worth it."],
+  ["cool","अरे यार","Arre yaar","uh-RAY yaar","hey, friend","Oh man / come on. Works happy or annoyed.","Arre yaar, kya idea hai!","Oh man, what an idea!"],
+  ["cool","बोले तो","Bole toh","BO-lay toh","if it's said","Basically / I mean. Mumbai-style filler.","Bole toh, project done hai.","Basically, the project's done."],
+  ["cool","फ़िकर नॉट","Fikar not","FI-kur not","worry not","No worries. Peak Hinglish.","Fikar not, backup hai.","No worries, we've got a backup."],
+  ["cool","ज़बरदस्त","Zabardast","zu-bur-DUST","forceful","Fantastic, outstanding.","Q3 numbers zabardast aaye hain.","Q3 numbers came in fantastic."],
+  ["cool","कमाल है","Kamaal hai","ku-MAAL hai","it's a marvel","Amazing. (Or sarcastic: 'Wow, unbelievable.')","Ek raat mein poora redesign? Kamaal hai!","Full redesign overnight? Amazing!"],
+  ["cool","एक नंबर","Ek number","ek NUM-bur","number one","Top-notch, first class.","Tera code review ek number tha.","Your code review was top-notch."],
+  ["cool","सॉलिड","Solid","SO-lid","solid","Great, strong, impressive.","Kya solid pitch thi!","What a strong pitch!"],
+  ["cool","धमाल","Dhamaal","dhu-MAAL","uproar","A blast, great fun.","Team dinner mein dhamaal ho gaya.","The team dinner was a blast."],
+  ["cool","फटाफट","Fatafat","FU-taa-fut","snap-snap","Super quick, in a flash.","Fatafat approve kar do, please.","Approve it quickly, please."],
+  ["cool","बढ़िया","Badhiya","BUD-hee-yaa","excellent","Great, nice one.","Badhiya kaam kiya sabne.","Great work, everyone."],
+  ["cool","शानदार","Shaandaar","shaan-DAAR","full of grandeur","Splendid, brilliant.","Launch shaandaar raha.","The launch was brilliant."],
+  ["cool","भाई लोग","Bhai log","BHAI log","brother people","Guys / folks. Team-chat opener.","Bhai log, standup shuru karein?","Folks, shall we start standup?"],
+  ["cool","फुल सपोर्ट","Full support","full su-PORT","full support","Totally backing you.","Idea accha hai, full support.","Good idea, I'm fully behind it."],
+  ["cool","दिल ख़ुश कर दिया","Dil khush kar diya","dil KHUSH kur DI-yaa","made the heart happy","You made my day.","Bonus dekh ke dil khush kar diya.","Seeing the bonus made my day."],
+  ["cool","सही है","Sahi hai","su-HEE hai","it's correct","Nice / right on / sounds good.","Friday WFH? Sahi hai.","Working from home Friday? Nice."],
+
+  // ---------- Funny ones (25) ----------
+  ["funny","दिमाग़ मत खा","Dimaag mat kha","di-MAAG mut khaa","don't eat my brain","Stop pestering me.","Abhi dimaag mat kha, deadline hai.","Don't bug me now, I've got a deadline."],
+  ["funny","पकाऊ","Pakau","pu-KAA-oo","one who cooks (you)","Boring, draining. Person or thing.","Woh webinar bahut pakau tha.","That webinar was so boring."],
+  ["funny","ढक्कन","Dhakkan","DHUK-kun","a lid","Airhead, idiot (affectionate-ish).","Kaunse dhakkan ne prod pe push kiya?","Which genius pushed to prod?",1],
+  ["funny","चमचा","Chamcha","CHUM-chaa","spoon","The boss's suck-up.","Woh toh boss ka chamcha hai.","He's the boss's yes-man."],
+  ["funny","उल्लू का पट्ठा","Ullu ka pattha","UL-loo kaa PUT-thaa","owl's offspring","Fool, numpty.","Ullu ka pattha phir se reply-all kar gaya.","That numpty hit reply-all again.",1],
+  ["funny","घंटा","Ghanta","GHUN-taa","a bell","My foot! / Yeah, right. Means 'nothing'.","Bonus milega? Ghanta!","We'll get a bonus? Yeah, right!",1],
+  ["funny","सेंटी मत हो","Senti mat ho","SEN-tee mut ho","don't be senti(mental)","Don't get all emotional.","Farewell pe senti mat ho yaar.","Don't get all mushy at the farewell."],
+  ["funny","कुछ भी!","Kuch bhi!","KUCH bhee","anything!","That's absurd / says who?","Ek din mein poora app? Kuch bhi!","A whole app in one day? Get real!"],
+  ["funny","पतली गली से निकल ले","Patli gali se nikal le","PUT-lee GU-lee say ni-KUL lay","exit by the narrow lane","Slip out quietly before anyone notices.","Meeting lambi ho rahi hai, patli gali se nikal le.","Meeting's dragging, sneak out."],
+  ["funny","टाइमपास","Timepass","TIME-paas","time pass","Killing time; nothing serious.","Yeh call bas timepass hai.","This call is just killing time."],
+  ["funny","ओवर-स्मार्ट मत बन","Over-smart mat ban","O-vur smart mut bun","don't become over-smart","Don't be a smart-aleck.","Over-smart mat ban, spec padh pehle.","Don't be a smart-aleck, read the spec first."],
+  ["funny","कामचोर","Kaamchor","KAAM-chor","work thief","Slacker, shirker.","Woh kaamchor har sprint mein gayab.","That slacker vanishes every sprint."],
+  ["funny","भेजा फ्राई","Bheja fry","BHAY-jaa fry","brain fry","Something (or someone) that fries your brain.","Uski baatein sun ke bheja fry ho gaya.","Listening to him fried my brain."],
+  ["funny","फेंक मत","Phenk mat","PHENK mut","don't throw","Stop exaggerating / stop bluffing.","Phenk mat, tune sach mein CEO se baat ki?","Don't bluff, you really spoke to the CEO?"],
+  ["funny","जुगाड़ू","Jugaadu","joo-GAA-roo","jugaad person","The colleague who can hack anything together.","Printer theek karna hai? Jugaadu ko bulao.","Printer broken? Call the fixer."],
+  ["funny","ज्ञान मत दे","Gyaan mat de","GYAAN mut day","don't give knowledge","Spare me the lecture.","Gyaan mat de, bas solution bata.","Spare me the lecture, just give me the fix."],
+  ["funny","लल्लू","Lallu","LUL-loo","simpleton","Clueless, naive person.","Lallu ne password sticky note pe likh diya.","The doofus wrote his password on a sticky note.",1],
+  ["funny","भाव खा रहा है","Bhaav kha raha hai","BHAAV khaa ru-HAA hai","eating price","Playing hard to get, acting important.","Vendor bahut bhaav kha raha hai.","The vendor's really playing hard to get."],
+  ["funny","चिपकू","Chipku","CHIP-koo","sticky one","Clingy person who won't leave you alone.","Woh chipku phir se meri desk pe hai.","That clingy guy is at my desk again."],
+  ["funny","हवा में बातें","Hawa mein baatein","hu-WAA mein BAA-tain","talk in the air","All talk, no plan.","Strategy? Sab hawa mein baatein hain.","The strategy? All talk, no plan."],
+  ["funny","बकर","Bakar","BUK-ur","chatter","Idle chit-chat, gossip session.","Lunch pe bas bakar chal rahi thi.","At lunch we were just shooting the breeze."],
+  ["funny","मेरा लेना एक न देना दो","Mera lena ek na dena do","MAY-raa LAY-naa ek na DAY-naa doh","take none, give none","Not my business, nothing to do with me.","Is lafde se mera lena ek na dena do.","This mess has nothing to do with me."],
+  ["funny","नाटक मत कर","Naatak mat kar","NAA-tuk mut kur","don't do drama","Stop the drama.","Naatak mat kar, sirf ek bug hai.","Stop the drama, it's one bug."],
+  ["funny","सरकारी बाबू","Sarkari babu","sur-KAA-ree BAA-boo","government clerk","Slow, rule-bound bureaucrat type.","Approval mein teen hafte? Pura sarkari babu hai.","Three weeks for approval? Total bureaucrat."],
+  ["funny","ट्यूबलाइट","Tubelight","TUBE-light","fluorescent tube","Slow on the uptake (takes a while to switch on).","Joke ab samjha? Tubelight!","Just got the joke? Slow on the uptake!"],
+
+  // ---------- When it goes wrong (25) ----------
+  ["wrong","वाट लग गई","Waat lag gayi","vaat lug GA-yee","Marathi-Mumbai slang","We're screwed.","Server crash ho gaya, waat lag gayi.","The server crashed, we're screwed."],
+  ["wrong","बैंड बज गया","Band baj gaya","band buj GA-yaa","the band got played","Totally wrecked, everything fell apart.","Launch ke din band baj gaya.","Everything fell apart on launch day."],
+  ["wrong","लफड़ा","Lafda","LUF-ra","a tangle","A mess, drama, a messy fight.","Finance ke saath kuch lafda ho gaya.","There's some drama with finance."],
+  ["wrong","गया काम से","Gaya kaam se","GA-yaa KAAM say","gone from work","I'm done for.","Boss ne email padh liya. Main gaya kaam se.","The boss read the email. I'm done for."],
+  ["wrong","पुंगी बज गई","Pungi baj gayi","POONG-ee buj GA-yee","snake-charmer's flute got played","Got thoroughly owned.","Audit mein hamari pungi baj gayi.","The audit absolutely wrecked us."],
+  ["wrong","हवा टाइट","Hawa tight","hu-WAA tight","air is tight","Nervous, scared stiff.","Review se pehle sabki hawa tight hai.","Everyone's nervous before the review."],
+  ["wrong","खिचड़ी बन गई","Khichdi ban gayi","KHICH-ree bun GA-yee","it's become rice-lentil mash","It's a jumbled mess.","Requirements ki khichdi ban gayi.","The requirements are a total mess."],
+  ["wrong","सब गोलमाल है","Sab golmaal hai","sub gol-MAAL hai","it's all round-about","Something's fishy here.","Numbers match nahi ho rahe, sab golmaal hai.","The numbers don't add up, something's fishy."],
+  ["wrong","बकवास","Bakwaas","BUK-waas","babble","Rubbish, nonsense.","Yeh naya process bakwaas hai.","This new process is rubbish."],
+  ["wrong","दिमाग़ का दही","Dimaag ka dahi","di-MAAG kaa DU-hee","brain turned to yogurt","Completely fried, mentally exhausted.","Teen ghante ki call, dimaag ka dahi ho gaya.","Three-hour call, my brain is fried."],
+  ["wrong","उल्टा-पुल्टा हो गया","Ulta-pulta ho gaya","UL-taa PUL-taa ho GA-yaa","upside-down happened","Everything's gone haywire.","Migration ke baad sab ulta-pulta ho gaya.","After the migration everything went haywire."],
+  ["wrong","झोल है","Jhol hai","JHOL hai","there's a sag","Something's dodgy or off.","Is invoice mein kuch jhol hai.","Something's dodgy about this invoice."],
+  ["wrong","गड़बड़","Gadbad","GUD-bud","disorder","A glitch, something's wrong.","Dashboard mein kuch gadbad hai.","Something's wrong with the dashboard."],
+  ["wrong","फँस गए","Phas gaye","PHUS GA-ye","got trapped","We're stuck / caught out.","Client ne demo maang liya, phas gaye.","Client asked for a demo, we're stuck."],
+  ["wrong","पंगा मत ले","Panga mat le","PUN-gaa mut lay","don't take trouble","Don't pick a fight / don't mess with them.","Legal team se panga mat le.","Don't pick a fight with legal."],
+  ["wrong","भाड़ में जाए","Bhaad mein jaaye","BHAAR mein JAA-ye","may it go into the furnace","To hell with it.","Bhaad mein jaaye yeh report, main ghar ja raha hoon.","To hell with this report, I'm going home.",1],
+  ["wrong","सत्यानाश","Satyanaash","sut-yaa-NAASH","utter destruction","Total ruin.","Ek typo ne pure campaign ka satyanaash kar diya.","One typo ruined the whole campaign."],
+  ["wrong","दिमाग़ ख़राब","Dimaag kharab","di-MAAG khu-RAAB","mind gone bad","I'm fuming / you're driving me nuts.","Dimaag kharab mat kar, abhi nahi.","Don't wind me up, not now."],
+  ["wrong","पानी सर से ऊपर","Paani sar se upar","PAA-nee sur say OO-pur","water over the head","This has gone way too far.","Teesri baar deadline shift? Paani sar se upar ho gaya.","Third deadline shift? This has gone too far."],
+  ["wrong","हालत ख़राब","Haalat kharab","HAA-lut khu-RAAB","condition bad","I'm wrecked / in a bad way.","Quarter-end pe sabki haalat kharab hai.","Everyone's wrecked at quarter-end."],
+  ["wrong","घोटाला","Ghotala","gho-TAA-laa","scam","A scam, a dodgy deal.","Yeh expense claim pura ghotala hai.","This expense claim is a total scam."],
+  ["wrong","कांड हो गया","Kaand ho gaya","KAAND ho GA-yaa","an episode happened","Something major (and bad) just went down.","Prod database delete? Kaand ho gaya!","Prod database deleted? Disaster!"],
+  ["wrong","भसड़","Bhasad","BHU-sud","Delhi slang","Total chaos, mayhem.","Release day pe office mein bhasad thi.","The office was chaos on release day.",1],
+  ["wrong","हाथ खड़े कर दिए","Haath khade kar diye","haath KHA-ray kur DI-ye","raised the hands","Gave up, threw in the towel.","Vendor ne haath khade kar diye.","The vendor just gave up."],
+  ["wrong","अब क्या करें?","Ab kya karein?","ub KYAA ku-RAIN","now what to do?","Now what?","Backup bhi corrupt hai. Ab kya karein?","The backup's corrupt too. Now what?"]
+];
+
+const PHRASES = RAW.map(([cat, deva, roman, say, lit, def, ex, tr, rude]) => ({ cat, deva, roman, say, lit, def, ex, tr, rude: !!rude }));
+
+const grid = document.getElementById("grid");
+const chipsEl = document.getElementById("chips");
+const q = document.getElementById("q");
+const quiz = document.getElementById("quiz");
+const devaT = document.getElementById("deva");
+const empty = document.getElementById("empty");
+const countEl = document.getElementById("count");
+let active = "all";
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+const canSpeak = "speechSynthesis" in window;
+const ICON_PLAY = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>';
+const ICON_COPY = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 1h8a2 2 0 0 1 2 2v8h-2V3H5zM2 5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/></svg>';
+const ICON_TICK = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.2 11.6 2.6 8l-1.2 1.2 4.8 4.8L15 5.2 13.8 4z"/></svg>';
+
+const counts = { all: PHRASES.length };
+PHRASES.forEach(p => counts[p.cat] = (counts[p.cat] || 0) + 1);
+
+(function meter() {
+  const bar = document.getElementById("meter"), leg = document.getElementById("meterLegend");
+  Object.entries(CATS).forEach(([k, c]) => {
+    const pct = Math.round(counts[k] / PHRASES.length * 100);
+    bar.insertAdjacentHTML("beforeend", `<span style="width:${pct}%;background:${c.color}" title="${c.label}: ${pct}%"></span>`);
+    leg.insertAdjacentHTML("beforeend", `<span><i style="background:${c.color}"></i>${pct}% ${c.label.toLowerCase()}</span>`);
+  });
+})();
+
+function renderChips() {
+  const entries = [["all", { label: "All", color: "var(--ink)" }], ...Object.entries(CATS)];
+  chipsEl.innerHTML = entries.map(([k, c]) =>
+    `<button class="chip" type="button" data-cat="${k}" aria-pressed="${k === active}" style="--c:${c.color}">` +
+    (k === "all" ? "" : `<span class="dot"></span>`) + `${esc(c.label)} <span class="n">${counts[k]}</span></button>`
+  ).join("");
+}
+
+function card(p, i) {
+  return `<article class="card" data-cat="${p.cat}">
+    <div class="head">
+      <h3 class="roman">${esc(p.roman)}${p.rude ? '<span class="rude">mildly rude</span>' : ""}</h3>
+      <div class="acts">
+        ${canSpeak ? `<button class="ibtn" type="button" data-act="listen" data-i="${i}" aria-label="Listen to ${esc(p.roman)}" title="Listen">${ICON_PLAY}</button>` : ""}
+        <button class="ibtn" type="button" data-act="copy" data-i="${i}" aria-label="Copy ${esc(p.roman)}" title="Copy">${ICON_COPY}</button>
+      </div>
+    </div>
+    <p class="say">${esc(p.say)}</p>
+    <p class="deva" lang="hi">${esc(p.deva)}</p>
+    <p class="def">${esc(p.def)} <span class="lit">(lit. ${esc(p.lit)})</span></p>
+    <p class="ex"><span class="hi">"${esc(p.ex)}"</span> <span class="tr">${esc(p.tr)}</span></p>
+  </article>`;
+}
+
+function render() {
+  const term = q.value.trim().toLowerCase();
+  const list = PHRASES.map((p, i) => [p, i]).filter(([p]) =>
+    (active === "all" || p.cat === active) &&
+    (!term || [p.deva, p.roman, p.def, p.lit, p.ex, p.tr, p.say].join(" ").toLowerCase().includes(term))
+  );
+  grid.innerHTML = list.map(([p, i]) => card(p, i)).join("");
+  empty.hidden = list.length > 0;
+  countEl.textContent = `Showing ${list.length} of ${PHRASES.length}`;
+}
+
+chipsEl.addEventListener("click", e => {
+  const b = e.target.closest(".chip"); if (!b) return;
+  active = b.dataset.cat; renderChips(); render();
+});
+q.addEventListener("input", render);
+quiz.addEventListener("change", () => {
+  document.body.classList.toggle("quiz", quiz.checked);
+  grid.querySelectorAll(".revealed").forEach(c => c.classList.remove("revealed"));
+});
+devaT.addEventListener("change", () => {
+  document.body.classList.toggle("show-deva", devaT.checked);
+  try { localStorage.setItem("showDeva", devaT.checked ? "1" : "0"); } catch (e) {}
+});
+try { if (localStorage.getItem("showDeva") === "1") { devaT.checked = true; document.body.classList.add("show-deva"); } } catch (e) {}
+
+let hiVoice = null;
+function pickVoice() { try { hiVoice = speechSynthesis.getVoices().find(v => /^hi/i.test(v.lang)) || null; } catch (e) {} }
+if (canSpeak) { pickVoice(); try { speechSynthesis.onvoiceschanged = pickVoice; } catch (e) {} }
+
+grid.addEventListener("click", async e => {
+  const btn = e.target.closest("[data-act]");
+  if (btn) {
+    const p = PHRASES[+btn.dataset.i];
+    if (btn.dataset.act === "listen") {
+      try {
+        speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance(p.deva);
+        u.lang = "hi-IN"; u.rate = 0.85; if (hiVoice) u.voice = hiVoice;
+        speechSynthesis.speak(u);
+      } catch (err) {}
+    } else {
+      const text = `${p.roman} (${p.deva}) — ${p.say} — ${p.def}`;
+      try { await navigator.clipboard.writeText(text); }
+      catch (err) {
+        const r = document.createRange(); r.selectNodeContents(btn.closest(".card").querySelector(".roman"));
+        const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      }
+      btn.innerHTML = ICON_TICK; btn.classList.add("done");
+      setTimeout(() => { btn.innerHTML = ICON_COPY; btn.classList.remove("done"); }, 1300);
+    }
+    return;
+  }
+  const c = e.target.closest(".card");
+  if (c && document.body.classList.contains("quiz")) c.classList.toggle("revealed");
+});
+
+renderChips();
+render();
+</script>
+</body>
+</html>
