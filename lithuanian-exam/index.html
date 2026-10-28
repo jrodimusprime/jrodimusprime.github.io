@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Lithuanian A1 and A2 practice exam: reading, listening, grammar, writing and speaking.">
+<meta name="description" content="Lithuanian A1 and A2 practice exam with a question bank: reading, listening, grammar, writing and speaking.">
 <style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Lithuanian A1–A2 Exam</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +38,6 @@ h1,h2,h3{text-wrap:balance;margin:0}
 .muted{color:var(--muted)}
 i.en,.en{color:var(--muted);font-style:italic;font-weight:400}
 
-/* top strip */
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
 .top .wrap{padding-block:.7rem .55rem;display:flex;flex-direction:column;gap:.6rem}
 .row1{display:flex;align-items:center;gap:.75rem 1rem;flex-wrap:wrap}
@@ -59,9 +58,7 @@ i.en,.en{color:var(--muted);font-style:italic;font-weight:400}
 .part .rn{font:500 .7rem var(--f-mono);letter-spacing:.04em}
 .part[aria-current="step"]{color:var(--ink);background:var(--surface);border-bottom-color:var(--accent)}
 .part .dot{width:.4rem;height:.4rem;border-radius:50%;background:var(--accent);align-self:center}
-.badge{font:500 .7rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;padding:.15rem .45rem;border-radius:4px;background:var(--ok-bg);color:var(--ok)}
 
-/* section */
 main .wrap{padding-block:1.75rem 4rem}
 .sec-head{display:flex;flex-direction:column;gap:.35rem;padding-bottom:1.25rem;border-bottom:1px solid var(--line)}
 .eyebrow{margin:0;font:500 .74rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
@@ -80,8 +77,8 @@ main .wrap{padding-block:1.75rem 4rem}
 .passage{font:400 1.06rem/1.68 var(--f-display);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:1.1rem 1.3rem;max-width:66ch}
 .passage p{margin:0 0 .75rem}.passage p:last-child{margin-bottom:0}
 .passage .sig{text-align:right;font-style:italic}
+.notice-h{font-weight:700}
 
-/* questions */
 .qs{display:flex;flex-direction:column}
 .q{padding:.95rem 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:.55rem}
 .qs .q:first-child{border-top:0;padding-top:.2rem}
@@ -103,7 +100,6 @@ main .wrap{padding-block:1.75rem 4rem}
 .opt.is-wrong{border-color:var(--bad);background:var(--bad-bg)}
 .opt.is-wrong input:checked + .bub{background:var(--bad);border-color:var(--bad)}
 
-/* menu */
 .menu{font-family:var(--f-display);max-width:30rem}
 .menu-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;border-bottom:1.5px solid var(--ink);padding-bottom:.4rem;margin-bottom:.6rem}
 .menu-head b{font-size:1.35rem}
@@ -113,8 +109,8 @@ main .wrap{padding-block:1.75rem 4rem}
 .menu .li{display:flex;align-items:baseline;gap:.4rem;margin:0}
 .menu .li i{flex:1;border-bottom:1px dotted var(--muted);transform:translateY(-.25rem)}
 .menu .li span:last-child{font-variant-numeric:tabular-nums}
+.menu .foot{margin-top:.8rem;font-style:italic;font-size:.95rem}
 
-/* match */
 .ads{display:grid;grid-template-columns:repeat(auto-fill,minmax(13.5rem,1fr));gap:.6rem}
 .ad{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:.75rem .9rem;display:flex;gap:.7rem;min-width:0}
 .ad-k{font:700 1.45rem/1 var(--f-display);color:var(--accent)}
@@ -129,7 +125,6 @@ select.ok,input.ok{border-color:var(--ok);background:var(--ok-bg)}
 select.bad,input.bad{border-color:var(--bad);background:var(--bad-bg)}
 .fix{font:500 .82rem var(--f-mono);color:var(--ok);font-style:normal;white-space:nowrap}
 
-/* cloze */
 .bank{display:flex;flex-wrap:wrap;gap:.35rem}
 .bank span{font:500 .85rem var(--f-mono);padding:.2rem .55rem;border:1px dashed var(--muted);border-radius:4px}
 .cloze{line-height:2.2}
@@ -138,7 +133,6 @@ select.bad,input.bad{border-color:var(--bad);background:var(--bad-bg)}
 .gap select{font-family:var(--f-display);font-size:.98rem;padding:.12rem .3rem}
 .gap .fix{margin-left:.3rem}
 
-/* form */
 .form-card{background:var(--surface);border:1.5px solid var(--ink);border-radius:4px;padding:1rem 1.15rem 1.2rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(13rem,1fr));gap:.9rem 1.4rem}
 .form-title{grid-column:1/-1;margin:0;font:500 .78rem var(--f-mono);letter-spacing:.18em}
 .field{display:flex;flex-direction:column;gap:.15rem;min-width:0}
@@ -146,7 +140,6 @@ select.bad,input.bad{border-color:var(--bad);background:var(--bad-bg)}
 .field input{font:inherit;font-size:1rem;border:0;border-bottom:1.5px solid var(--muted);background:transparent;color:var(--ink);padding:.25rem .15rem;border-radius:0;width:100%}
 .field input.ok{border-bottom-color:var(--ok)}.field input.bad{border-bottom-color:var(--bad)}
 
-/* writing */
 .prompt{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:.9rem 1.1rem}
 .prompt p{margin:0 0 .4rem}.prompt ul{margin:.2rem 0 0;padding-left:1.2rem}
 .write{display:flex;flex-direction:column;gap:.45rem}
@@ -166,8 +159,7 @@ details.model summary{padding:.6rem .9rem;cursor:pointer;font-weight:500}
 details.model>div,details.model>p{padding:0 1.1rem 1rem;margin:0}
 .model-text{font:1rem/1.65 var(--f-display);white-space:pre-line}
 
-/* speaking */
-.prompts{margin:0;padding:0;list-style:none;counter-reset:p;display:flex;flex-direction:column}
+.prompts{margin:0;padding:0;list-style:none;display:flex;flex-direction:column}
 .prompts li{display:flex;gap:.8rem;align-items:flex-start;justify-content:space-between;padding:.8rem 0;border-top:1px solid var(--line);flex-wrap:wrap}
 .prompts li:first-child{border-top:0}
 .prompts li p{margin:0;flex:1 1 18rem;min-width:0}
@@ -176,7 +168,6 @@ details.model>div,details.model>p{padding:0 1.1rem 1rem;margin:0}
 .stimer.run{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .phrases ul{margin:.2rem 0 0;padding-left:1.2rem;font-family:var(--f-display);font-size:1.02rem}
 
-/* listening */
 .listen-bar{margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:.6rem 1rem;align-items:center}
 .voice-note{margin:0;font-size:.84rem;color:var(--muted);flex:1 1 16rem}
 .player{display:flex;align-items:center;gap:.5rem .7rem;flex-wrap:wrap}
@@ -186,12 +177,11 @@ details.model>div,details.model>p{padding:0 1.1rem 1rem;margin:0}
 .transcript{font:italic .98rem/1.6 var(--f-display);background:var(--surface);border-left:2px solid var(--line);padding:.5rem .9rem}
 .transcript p{margin:0}
 
-/* results + nav */
 .next{margin-top:2.5rem;display:flex;justify-content:flex-end}
 .btn{border:1px solid var(--ink);background:var(--surface);border-radius:6px;padding:.55rem 1.05rem;font-weight:500}
 .btn.primary{background:var(--ink);color:var(--paper)}
 .btn.warn{border-color:var(--bad);color:var(--bad)}
-.btn.primary.confirm{background:var(--bad);border-color:var(--bad)}
+.btn.confirm{background:var(--bad);border-color:var(--bad);color:#fff}
 .res-top{display:flex;align-items:flex-end;gap:1rem 2rem;flex-wrap:wrap;padding-block:1.5rem 1rem}
 .score{font:600 4.2rem/1 var(--f-display);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
 .score small{font-size:1.4rem;color:var(--muted);margin-left:.15rem}
@@ -211,6 +201,9 @@ details.model>div,details.model>p{padding:0 1.1rem 1rem;margin:0}
 .todo{list-style:none;margin:1rem 0 0;padding:0;border-top:1px solid var(--line)}
 .todo li{display:flex;justify-content:space-between;gap:1rem;padding:.6rem 0;border-bottom:1px solid var(--line)}
 .todo li span:last-child{font:500 .85rem var(--f-mono);font-variant-numeric:tabular-nums;color:var(--muted)}
+.hist{margin-top:2rem}
+.hist h3{font:600 1.05rem var(--f-display);margin-bottom:.4rem}
+.hist .todo li span:first-child{font-variant-numeric:tabular-nums}
 
 @media (max-width:520px){
   .sec-head h1{font-size:1.75rem}
@@ -230,7 +223,7 @@ details.model>div,details.model>p{padding:0 1.1rem 1rem;margin:0}
 <header class="top">
   <div class="wrap">
     <div class="row1">
-      <div class="brand"><b>Lietuvių kalbos egzaminas</b><span>Praktinis variantas · Practice paper</span></div>
+      <div class="brand"><b>Lietuvių kalbos egzaminas</b><span id="brandSub">Praktinis variantas · Practice paper</span></div>
       <div class="seg levels" role="group" aria-label="Lygis">
         <button type="button" data-level="A1" aria-pressed="true">A1</button>
         <button type="button" data-level="A2" aria-pressed="false">A2</button>
@@ -246,31 +239,60 @@ details.model>div,details.model>p{padding:0 1.1rem 1rem;margin:0}
 <main id="main"><div class="wrap" id="paper"></div></main>
 
 <script>
-/* ---------- exam content ---------- */
+/* ---------- helpers used by content ---------- */
+function norm(v){return String(v||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").trim().replace(/\s+/g," ")}
+function digits(v){return String(v||"").replace(/\D/g,"")}
+function person(o){
+  return {source:o.source, fields:[
+    {label:"Vardas",show:o.first,check:v=>norm(v)===norm(o.first)},
+    {label:"Pavardė",show:o.last,check:v=>norm(v)===norm(o.last)},
+    {label:"Gimimo data",show:`${o.y}-${o.m}-${o.d}`,check:v=>{const d=digits(v),n=norm(v);return d===o.y+o.m+o.d||d===o.y+(+o.m)+(+o.d)||(d===o.y+(+o.d)&&n.includes(o.mon))}},
+    {label:"Gimimo vieta (miestas)",show:o.place[0],check:v=>o.place.some(p=>norm(p)===norm(v))},
+    {label:"Profesija",show:o.job[0],check:v=>o.job.some(p=>norm(p)===norm(v))},
+    {label:"Telefonas",show:o.phone,check:v=>digits(v).endsWith(digits(o.phone).slice(-8))}
+  ]};
+}
+
+/* ---------- question bank ----------
+   variants: one is chosen per attempt, rotating so each appears before any repeats
+   pool + draw: items are dealt from a per-person shuffled deck, no repeats until the pool runs out
+   first option is always the correct one; options are shuffled on screen */
 const EXAM = {
 A1:{ name:"Pradmenų lygis", minutes:75, sections:[
  { id:"skaitymas", name:"Skaitymas", en:"Reading", min:20,
    intro:'Perskaitykite užrašus ir tekstus. Pasirinkite teisingą atsakymą. <i class="en">Read the signs and texts and choose the correct answer.</i>',
    tasks:[
-   { kind:"mc", title:"Ką reiškia užrašas?", en:"What does the sign mean?", items:[
+   { kind:"mc", title:"Ką reiškia užrašas?", en:"What does the sign mean?", draw:5, pool:[
      {sign:"Nerūkyti", opts:["Čia negalima rūkyti.","Čia galima rūkyti.","Čia parduodamos cigaretės."]},
      {sign:"Išėjimas", opts:["Pro čia galima išeiti.","Pro čia galima įeiti.","Čia galima pavalgyti."]},
      {sign:"Kasa Nr. 3 nedirba", opts:["Trečioji kasa dabar uždaryta.","Trečiojoje kasoje galima mokėti tik kortele.","Čia dirba trys kasininkai."]},
      {sign:"Dirbame kasdien 9–21 val.", opts:["Parduotuvė atidaryta ir sekmadienį.","Sekmadienį parduotuvė nedirba.","Parduotuvė dirba tik vakare."]},
-     {sign:"Atsargiai! Slidu", opts:["Čia galima paslysti.","Čia reikia bėgti.","Čia negalima stovėti."]}
+     {sign:"Atsargiai! Slidu", opts:["Čia galima paslysti.","Čia reikia bėgti.","Čia negalima stovėti."]},
+     {sign:"Įėjimas tik darbuotojams", opts:["Čia gali įeiti tik tie, kurie čia dirba.","Čia gali įeiti visi pirkėjai.","Čia ieško naujų darbuotojų."]},
+     {sign:"Stumti", opts:["Duris reikia stumti.","Duris reikia traukti.","Durys neveikia."]},
+     {sign:"Traukti", opts:["Duris reikia traukti.","Duris reikia stumti.","Durys visada atidarytos."]},
+     {sign:"Išpardavimas −50 %", opts:["Prekės kainuoja perpus pigiau.","Prekės kainuoja dvigubai brangiau.","Parduotuvėje yra 50 prekių."]},
+     {sign:"Tualetai – 2 aukšte", opts:["Tualetai yra antrame aukšte.","Tualetai neveikia.","Antrame aukšte yra du tualetai."]},
+     {sign:"Mokama automobilių stovėjimo aikštelė", opts:["Už automobilio stovėjimą čia reikia mokėti.","Automobilį čia galima pastatyti nemokamai.","Čia parduodami automobiliai."]},
+     {sign:"Pertrauka 13.00–14.00", opts:["Nuo 13 iki 14 valandos čia niekas nedirba.","Čia dirbama tik nuo 13 iki 14 valandos.","Valgykla atidaryta nuo 13 valandos."]},
+     {sign:"Su šunimis įeiti draudžiama", opts:["Čia negalima įeiti su šunimi.","Čia galima įeiti su šunimi.","Čia parduodami šunys."]},
+     {sign:"Prašome nusiauti batus", opts:["Čia reikia nusiauti batus.","Čia parduodami batai.","Čia taisomi batai."]},
+     {sign:"Vaistinė dirba visą parą", opts:["Vaistinė dirba dieną ir naktį.","Vaistinė dirba tik naktį.","Vaistinė šiandien uždaryta."]}
    ]},
-   { kind:"mc", title:"Rūta pasakoja apie save", en:"Read the text. Is the sentence true (Taip) or false (Ne)?",
-     passage:`<p>Labas! Mano vardas Rūta. Aš esu iš Kauno, bet dabar gyvenu Vilniuje. Man dvidešimt penkeri metai. Aš dirbu mokykloje – esu anglų kalbos mokytoja.</p><p>Mano vyras Tomas yra gydytojas. Mes turime vieną dukterį. Jai treji metai, ją vadina Ema.</p><p>Savaitgaliais mes mėgstame vaikščioti parke ir važiuoti pas mano tėvus į Kauną. Mano mama labai skaniai gamina cepelinus!</p>`,
-     items:[
-     {q:"Rūta gyvena Kaune.", tf:false},
-     {q:"Rūta yra mokytoja.", tf:true},
-     {q:"Rūtos vyras dirba mokykloje.", tf:false},
-     {q:"Ema yra Rūtos duktė.", tf:true},
-     {q:"Savaitgaliais šeima važiuoja į Kauną.", tf:true},
-     {q:"Rūtos tėvai gyvena Vilniuje.", tf:false}
+   { kind:"mc", en:"Read the text. Is the sentence true (Taip) or false (Ne)?", variants:[
+     { title:"Rūta pasakoja apie save",
+       passage:`<p>Labas! Mano vardas Rūta. Aš esu iš Kauno, bet dabar gyvenu Vilniuje. Man dvidešimt penkeri metai. Aš dirbu mokykloje – esu anglų kalbos mokytoja.</p><p>Mano vyras Tomas yra gydytojas. Mes turime vieną dukterį. Jai treji metai, ją vadina Ema.</p><p>Savaitgaliais mes mėgstame vaikščioti parke ir važiuoti pas mano tėvus į Kauną. Mano mama labai skaniai gamina cepelinus!</p>`,
+       items:[{q:"Rūta gyvena Kaune.",tf:false},{q:"Rūta yra mokytoja.",tf:true},{q:"Rūtos vyras dirba mokykloje.",tf:false},{q:"Ema yra Rūtos duktė.",tf:true},{q:"Savaitgaliais šeima važiuoja į Kauną.",tf:true},{q:"Rūtos tėvai gyvena Vilniuje.",tf:false}]},
+     { title:"Pedro Lietuvoje",
+       passage:`<p>Sveiki! Aš esu Pedro. Esu iš Ispanijos, iš Valensijos. Lietuvoje gyvenu jau vienerius metus. Gyvenu Kaune su drauge Agne. Ji yra lietuvė.</p><p>Aš dirbu restorane – esu virėjas. Mano darbas prasideda vienuoliktą valandą ir baigiasi vakare. Lietuvių kalbos mokausi antradieniais ir ketvirtadieniais. Lietuvių kalba sunki, bet labai graži.</p><p>Lietuvoje man patinka ežerai ir miškai, bet žiemą man per šalta.</p>`,
+       items:[{q:"Pedro yra iš Ispanijos.",tf:true},{q:"Pedro gyvena Lietuvoje dvejus metus.",tf:false},{q:"Agnė yra lietuvė.",tf:true},{q:"Pedro dirba mokykloje.",tf:false},{q:"Pedro mokosi lietuvių kalbos du kartus per savaitę.",tf:true},{q:"Pedro mėgsta Lietuvos žiemą.",tf:false}]},
+     { title:"Jono šeima",
+       passage:`<p>Čia mano šeima. Mano vardas Jonas, man keturiasdešimt metų. Mano žmona vardu Inga. Ji dirba banke.</p><p>Mes turime du vaikus: sūnų Luką ir dukterį Gabiją. Lukui dvylika metų, Gabijai – aštuoneri. Gyvename name netoli Šiaulių. Turime šunį ir dvi kates.</p><p>Vasarą važiuojame prie jūros, į Palangą. Žiemą vaikai mėgsta čiuožti ant ledo.</p>`,
+       items:[{q:"Jonui keturiasdešimt metų.",tf:true},{q:"Inga dirba mokykloje.",tf:false},{q:"Jonas ir Inga turi tris vaikus.",tf:false},{q:"Gabija jaunesnė už Luką.",tf:true},{q:"Šeima gyvena Šiaulių centre.",tf:false},{q:"Vasarą šeima važiuoja į Palangą.",tf:true}]}
    ]},
-   { kind:"mc", title:"Kavinės meniu", en:"Read the menu and answer the questions.",
-     passage:`<div class="menu"><div class="menu-head"><b>Kavinė „Liepa“</b><span>Pirmadieniais nedirbame</span></div>
+   { kind:"mc", en:"Read the text and answer the questions.", variants:[
+     { title:"Kavinės meniu",
+       passage:`<div class="menu"><div class="menu-head"><b>Kavinė „Liepa“</b><span>Pirmadieniais nedirbame</span></div>
        <h4>Pusryčiai <small>8.00–11.00</small></h4>
        <p class="li"><span>Blynai su varške</span><i></i><span>4,50 €</span></p>
        <p class="li"><span>Kiaušinienė su duona</span><i></i><span>3,80 €</span></p>
@@ -282,38 +304,59 @@ A1:{ name:"Pradmenų lygis", minutes:75, sections:[
        <p class="li"><span>Kava</span><i></i><span>2,20 €</span></p>
        <p class="li"><span>Arbata</span><i></i><span>1,80 €</span></p>
        <p class="li"><span>Obuolių sultys</span><i></i><span>2,00 €</span></p></div>`,
-     items:[
-     {q:"Kiek kainuoja arbata?", opts:["1,80 €","2,20 €","2,00 €"]},
-     {q:"Kada galima užsisakyti pusryčius?", opts:["Nuo 8 iki 11 valandos.","Visą dieną.","Tik vakare."]},
-     {q:"Kuri sriuba yra šalta?", opts:["Šaltibarščiai.","Žirnių sriuba.","Abi sriubos."]},
-     {q:"Kurią dieną kavinė nedirba?", opts:["Pirmadienį.","Sekmadienį.","Šeštadienį."]}
+       items:[{q:"Kiek kainuoja arbata?",opts:["1,80 €","2,20 €","2,00 €"]},{q:"Kada galima užsisakyti pusryčius?",opts:["Nuo 8 iki 11 valandos.","Visą dieną.","Tik vakare."]},{q:"Kuri sriuba yra šalta?",opts:["Šaltibarščiai.","Žirnių sriuba.","Abi sriubos."]},{q:"Kurią dieną kavinė nedirba?",opts:["Pirmadienį.","Sekmadienį.","Šeštadienį."]}]},
+     { title:"Autobusų tvarkaraštis",
+       passage:`<div class="menu"><div class="menu-head"><b>Vilnius – Trakai</b><span>Autobusų tvarkaraštis</span></div>
+       <h4>Išvyksta iš Vilniaus autobusų stoties</h4>
+       <p class="li"><span>Rytas</span><i></i><span>7.15 · 9.40</span></p>
+       <p class="li"><span>Diena</span><i></i><span>12.00 · 15.30</span></p>
+       <p class="li"><span>Vakaras</span><i></i><span>18.45</span></p>
+       <h4>Bilietai</h4>
+       <p class="li"><span>Suaugusiesiems</span><i></i><span>2,50 €</span></p>
+       <p class="li"><span>Studentams ir senjorams</span><i></i><span>1,25 €</span></p>
+       <p class="foot">Kelionė trunka apie 40 min. Sekmadieniais 7.15 autobusas nevažiuoja.</p></div>`,
+       items:[{q:"Kada išvyksta paskutinis autobusas?",opts:["18.45","15.30","7.15"]},{q:"Kiek laiko trunka kelionė?",opts:["Apie 40 minučių.","Apie valandą.","Apie dvi valandas."]},{q:"Kiek už bilietą moka studentas?",opts:["1,25 €","2,50 €","Nieko nemoka."]},{q:"Kuris autobusas nevažiuoja sekmadienį?",opts:["7.15","12.00","18.45"]}]},
+     { title:"Skelbimas name",
+       passage:`<p class="notice-h">Gerbiami gyventojai!</p><p>Ketvirtadienį, spalio 16 d., nuo 9 iki 15 val. name nebus karšto vandens. Rūsyje bus remontuojami vamzdžiai.</p><p>Klausimų turite? Skambinkite administratorei tel. 8 600 12345 darbo dienomis nuo 8 iki 17 val.</p><p>Atsiprašome už nepatogumus.</p><p class="sig">Namo administracija</p>`,
+       items:[{q:"Ko nebus ketvirtadienį?",opts:["Karšto vandens.","Elektros.","Šalto vandens."]},{q:"Kiek valandų nebus vandens?",opts:["Šešias valandas.","Visą dieną.","Dvi valandas."]},{q:"Kur bus remontas?",opts:["Rūsyje.","Butuose.","Ant stogo."]},{q:"Kada galima paskambinti administratorei?",opts:["Darbo dienomis nuo 8 iki 17 val.","Bet kada.","Tik savaitgaliais."]}]}
    ]}
  ]},
  { id:"klausymas", name:"Klausymas", en:"Listening", min:15,
    intro:'Kiekvieną įrašą galite išklausyti du kartus, kaip per egzaminą. <i class="en">You can play each recording twice, as in the real exam.</i>',
    tasks:[
-   { kind:"mc", title:"Trumpi pokalbiai", en:"Listen to each short recording and choose the correct answer.", items:[
+   { kind:"mc", title:"Trumpi pokalbiai", en:"Listen to each short recording and choose the correct answer.", draw:5, pool:[
      {clip:[["A","Atsiprašau, kiek dabar valandų?"],["B","Dabar pusė trijų."]], q:"Kiek dabar valandų?", opts:["2.30","3.30","3.00"]},
      {clip:[["A","Laba diena. Kiek kainuoja obuoliai?"],["B","Vienas kilogramas – du eurai dvidešimt centų."]], q:"Kiek kainuoja kilogramas obuolių?", opts:["2,20 €","2,12 €","12,20 €"]},
      {clip:[["N","Dėmesio! Traukinys į Klaipėdą išvyksta iš antrojo perono."]], q:"Iš kurio perono išvyksta traukinys į Klaipėdą?", opts:["Iš 2 perono.","Iš 4 perono.","Iš 3 perono."]},
      {clip:[["A","Jonai, ką veiki rytoj?"],["B","Rytoj ryte einu į baseiną, o vakare būsiu namie."]], q:"Ką Jonas veiks rytoj ryte?", opts:["Plauks baseine.","Žiūrės filmą.","Dirbs biure."]},
-     {clip:[["A","Laba diena, štai jūsų raktas. Jūsų kambario numeris – trisdešimt septyni."]], q:"Koks kambario numeris?", opts:["37","73","27"]}
+     {clip:[["A","Laba diena, štai jūsų raktas. Jūsų kambario numeris – trisdešimt septyni."]], q:"Koks kambario numeris?", opts:["37","73","27"]},
+     {clip:[["A","Laba diena. Norėčiau bilieto į Kauną."],["B","Pirmyn ir atgal?"],["A","Ne, tik į vieną pusę."]], q:"Kokio bilieto nori keleivis?", opts:["Į Kauną, į vieną pusę.","Į Kauną, pirmyn ir atgal.","Dviejų bilietų į Kauną."]},
+     {clip:[["A","Atsiprašau, kur yra vaistinė?"],["B","Eikite tiesiai, paskui sukite į kairę. Vaistinė yra šalia banko."]], q:"Kur yra vaistinė?", opts:["Šalia banko.","Priešais mokyklą.","Banke."]},
+     {clip:[["A","Kada tavo gimtadienis?"],["B","Gegužės dvyliktą."]], q:"Kada gimtadienis?", opts:["Gegužės 12 d.","Gegužės 20 d.","Kovo 12 d."]},
+     {clip:[["N","Gerbiami pirkėjai, parduotuvė užsidaro po dešimties minučių. Prašome eiti prie kasų."]], q:"Ką turi daryti pirkėjai?", opts:["Eiti prie kasų.","Ateiti po valandos.","Ateiti rytoj."]},
+     {clip:[["A","Ko norėsite gerti?"],["B","Prašyčiau arbatos su citrina, be cukraus."]], q:"Ko nori klientas?", opts:["Arbatos su citrina.","Kavos su cukrumi.","Arbatos su cukrumi."]},
+     {clip:[["A","Kiek tau metų?"],["B","Man dvidešimt devyneri."]], q:"Kiek jam metų?", opts:["29","19","92"]},
+     {clip:[["A","Koks šiandien oras?"],["B","Šalta ir sninga. Apsirenk šiltai!"]], q:"Koks šiandien oras?", opts:["Šalta, sninga.","Šilta, šviečia saulė.","Lyja."]},
+     {clip:[["A","Kur dirba tavo sesuo?"],["B","Ji dirba ligoninėje, ji yra slaugytoja."]], q:"Kur dirba sesuo?", opts:["Ligoninėje.","Mokykloje.","Parduotuvėje."]},
+     {clip:[["A","Ar galiu mokėti kortele?"],["B","Atsiprašau, terminalas neveikia. Galima mokėti tik grynaisiais."]], q:"Kaip galima sumokėti?", opts:["Tik grynaisiais pinigais.","Tik kortele.","Kortele arba grynaisiais."]},
+     {clip:[["A","Kada susitinkame?"],["B","Rytoj, šeštą valandą vakaro, prie kino teatro."]], q:"Kur jie susitiks?", opts:["Prie kino teatro.","Kavinėje.","Namie."]}
    ]},
-   { kind:"mc", title:"Mariaus diena", en:"Listen to Marius. Is the sentence true (Taip) or false (Ne)?",
-     clip:[["A","Sveiki! Aš esu Marius. Gyvenu Klaipėdoje, prie jūros. Kiekvieną rytą keliuosi septintą valandą. Pusryčiams valgau sumuštinį ir geriu kavą. Į darbą važiuoju autobusu, nes neturiu automobilio. Dirbu banke nuo devynių iki penkių. Vakare mėgstu skaityti knygas arba susitikti su draugais. Penktadienio vakarą mes einame į kiną."]],
-     items:[
-     {q:"Marius gyvena prie jūros.", tf:true},
-     {q:"Marius keliasi aštuntą valandą.", tf:false},
-     {q:"Pusryčiams Marius geria arbatą.", tf:false},
-     {q:"Marius neturi automobilio.", tf:true},
-     {q:"Marius dirba parduotuvėje.", tf:false},
-     {q:"Penktadienio vakarą Marius eina į kiną.", tf:true}
+   { kind:"mc", en:"Listen. Is the sentence true (Taip) or false (Ne)?", variants:[
+     { title:"Mariaus diena",
+       clip:[["A","Sveiki! Aš esu Marius. Gyvenu Klaipėdoje, prie jūros. Kiekvieną rytą keliuosi septintą valandą. Pusryčiams valgau sumuštinį ir geriu kavą. Į darbą važiuoju autobusu, nes neturiu automobilio. Dirbu banke nuo devynių iki penkių. Vakare mėgstu skaityti knygas arba susitikti su draugais. Penktadienio vakarą mes einame į kiną."]],
+       items:[{q:"Marius gyvena prie jūros.",tf:true},{q:"Marius keliasi aštuntą valandą.",tf:false},{q:"Pusryčiams Marius geria arbatą.",tf:false},{q:"Marius neturi automobilio.",tf:true},{q:"Marius dirba parduotuvėje.",tf:false},{q:"Penktadienio vakarą Marius eina į kiną.",tf:true}]},
+     { title:"Laura studentė",
+       clip:[["A","Labas! Mano vardas Laura. Esu studentė, studijuoju mediciną Vilniuje. Gyvenu bendrabutyje su draugėmis. Kiekvieną dieną į universitetą einu pėsčiomis – tai tik dešimt minučių. Paskaitos prasideda devintą valandą. Po paskaitų dirbu kavinėje, nes man reikia pinigų. Savaitgalį važiuoju namo pas tėvus į Alytų. Mama visada manęs labai laukia."]],
+       items:[{q:"Laura studijuoja mediciną.",tf:true},{q:"Laura gyvena su tėvais.",tf:false},{q:"Į universitetą Laura važiuoja autobusu.",tf:false},{q:"Paskaitos prasideda devintą valandą.",tf:true},{q:"Po paskaitų Laura dirba.",tf:true},{q:"Lauros tėvai gyvena Vilniuje.",tf:false}]},
+     { title:"Petras kaime",
+       clip:[["A","Sveiki, aš esu Petras. Esu pensininkas, man šešiasdešimt aštuoneri metai. Gyvenu kaime prie ežero. Turiu didelį sodą: auginu obuolius, braškes ir pomidorus. Rytais einu žvejoti. Kartą per savaitę važiuoju į miestą, į turgų. Ten parduodu obuolius ir perku duonos. Vakare skambinu anūkams. Jie gyvena Airijoje."]],
+       items:[{q:"Petras gyvena mieste.",tf:false},{q:"Petras turi sodą.",tf:true},{q:"Rytais Petras žvejoja.",tf:true},{q:"Petras važiuoja į turgų kiekvieną dieną.",tf:false},{q:"Turguje Petras parduoda obuolius.",tf:true},{q:"Petro anūkai gyvena Lietuvoje.",tf:false}]}
    ]}
  ]},
  { id:"vartojimas", name:"Kalbos vartojimas", en:"Grammar & vocabulary", min:15,
    intro:'Pasirinkite tinkamą žodį ar formą. <i class="en">Choose the right word or form.</i>',
    tasks:[
-   { kind:"mc", title:"Įrašykite tinkamą formą", en:"Choose the word that completes the sentence.", items:[
+   { kind:"mc", title:"Pasirinkite tinkamą formą", en:"Choose the word that completes the sentence.", draw:10, pool:[
      {q:"Aš ___ studentas.", opts:["esu","yra","esi"]},
      {q:"Mes gyvename ___.", opts:["Vilniuje","Vilnius","Vilniaus"]},
      {q:"Ar tu turi ___?", opts:["brolį","brolis","broliui"]},
@@ -323,41 +366,83 @@ A1:{ name:"Pradmenų lygis", minutes:75, sections:[
      {q:"Vakare aš ___ televizorių.", opts:["žiūriu","žiūri","žiūrime"]},
      {q:"Tai ___ knyga, ne tavo.", opts:["mano","manęs","man"]},
      {q:"Dabar aš einu ___ parduotuvę.", opts:["į","iš","prie"]},
-     {q:"Kambaryje yra du ___.", opts:["stalai","stalas","stalų"]}
+     {q:"Kambaryje yra du ___.", opts:["stalai","stalas","stalų"]},
+     {q:"Mano draugas yra ___.", opts:["ispanas","ispanė","ispanai"]},
+     {q:"Mes ___ lietuvių kalbos.", opts:["mokomės","mokosi","mokausi"]},
+     {q:"Ji gyvena ___ mieste.", opts:["dideliame","didelis","didelį"]},
+     {q:"Ar jūs ___ arbatos?", opts:["norite","noriu","nori"]},
+     {q:"Aš turiu tris ___.", opts:["seseris","sesuo","seserų"]},
+     {q:"Šiandien labai ___ oras.", opts:["gražus","gražiai","gražų"]},
+     {q:"Ryte aš geriu kavą ___ pienu.", opts:["su","be","iš"]},
+     {q:"Mano brolis neturi ___.", opts:["automobilio","automobilis","automobilį"]},
+     {q:"___ tu gyveni?", opts:["Kur","Kas","Kodėl"]},
+     {q:"Mano mama dirba ___.", opts:["mokykloje","mokykla","mokyklą"]},
+     {q:"Šis obuolys yra ___.", opts:["raudonas","raudona","raudoni"]},
+     {q:"Aš ___ valgyti.", opts:["noriu","nori","norime"]},
+     {q:"Šeštadienį mes einame ___ kiną.", opts:["į","ant","su"]},
+     {q:"Kiek kainuoja ši ___?", opts:["knyga","knygą","knygos"]},
+     {q:"Ši knyga ___ labai įdomi.", opts:["yra","esu","esame"]},
+     {q:"Mano tėvai gyvena ___ Klaipėdos.", opts:["netoli","į","per"]},
+     {q:"Aš atvažiavau ___ Vokietijos.", opts:["iš","į","ant"]},
+     {q:"Jie ___ futbolą.", opts:["žaidžia","žaidžiu","žaidi"]},
+     {q:"Mano vardas Tomas. O ___ jūsų vardas?", opts:["koks","kokia","kokie"]},
+     {q:"Vakare mes ___ vakarienę.", opts:["valgome","valgote","valgo"]}
    ]},
-   { kind:"mc", title:"Kuris žodis netinka?", en:"Which word does not belong with the others?", items:[
+   { kind:"mc", title:"Kuris žodis netinka?", en:"Which word does not belong with the others?", draw:5, pool:[
      {q:"", opts:["autobusas","obuolys","kriaušė","bananas"]},
      {q:"", opts:["virtuvė","mama","tėtis","sesuo"]},
      {q:"", opts:["sriuba","žalias","raudonas","geltonas"]},
      {q:"", opts:["vakar","stalas","kėdė","lova"]},
-     {q:"", opts:["namas","bėgti","plaukti","šokti"]}
+     {q:"", opts:["namas","bėgti","plaukti","šokti"]},
+     {q:"", opts:["sausis","pirmadienis","antradienis","šeštadienis"]},
+     {q:"", opts:["gydytojas","pienas","sūris","sviestas"]},
+     {q:"", opts:["lova","traukinys","lėktuvas","autobusas"]},
+     {q:"", opts:["kėdė","galva","ranka","koja"]},
+     {q:"", opts:["šuo","marškiniai","kelnės","suknelė"]},
+     {q:"", opts:["miestas","dešimt","penki","du"]},
+     {q:"", opts:["virėjas","vasara","žiema","pavasaris"]}
    ]}
  ]},
  { id:"rasymas", name:"Rašymas", en:"Writing", min:25,
-   intro:'Užpildykite anketą ir parašykite trumpą laišką. <i class="en">Fill in the form and write a short message.</i>',
+   intro:'Užpildykite anketą ir parašykite trumpą žinutę. <i class="en">Fill in the form and write a short message.</i>',
    tasks:[
-   { kind:"form", title:"Užpildykite anketą", en:"Read about Jonas and fill in his form. Use the dictionary form (nominative) of words.",
-     source:`<p>Mano vardas – Jonas Petrauskas. Gimiau 1994 m. kovo 15 d. Kaune. Dabar gyvenu Vilniuje. Esu inžinierius, dirbu statybų įmonėje. Mano telefono numeris: +370 612 45678. Kalbu lietuviškai, angliškai ir šiek tiek vokiškai.</p>`,
-     fields:[
-       {label:"Vardas", show:"Jonas", check:v=>norm(v)==="jonas"},
-       {label:"Pavardė", show:"Petrauskas", check:v=>norm(v)==="petrauskas"},
-       {label:"Gimimo data", show:"1994-03-15", check:v=>{const d=digits(v); return d==="19940315"||(d==="199415"&&norm(v).includes("kovo"));}},
-       {label:"Gimimo vieta (miestas)", show:"Kaunas", check:v=>norm(v)==="kaunas"},
-       {label:"Profesija", show:"inžinierius", check:v=>norm(v)==="inzinierius"},
-       {label:"Telefonas", show:"+370 612 45678", check:v=>digits(v).endsWith("61245678")}
-     ]},
-   { kind:"write", title:"Laiškas draugui", en:"Write a short message to your friend Tomas (25–35 words).", min:25, max:35,
-     prompt:`<p>Parašykite trumpą laišką draugui Tomui (25–35 žodžiai). Parašykite:</p><ul><li>kur gyvenate;</li><li>ką dirbate arba studijuojate;</li><li>ką mėgstate veikti laisvalaikiu.</li></ul>`,
-     model:"Labas, Tomai!\nAš gyvenu Vilniuje, senamiestyje. Mano butas nedidelis, bet šviesus. Dirbu IT įmonėje, o vakarais mokausi lietuvių kalbos. Laisvalaikiu mėgstu skaityti, gaminti valgį ir vaikščioti prie upės. O kaip tu?\nIki!\nAna",
-     criteria:["Parašiau 25–35 žodžius.","Parašiau, kur gyvenu.","Parašiau, ką dirbu arba studijuoju.","Parašiau, ką mėgstu veikti laisvalaikiu.","Laiškas turi kreipinį (Labas, Tomai!) ir pabaigą (Iki!)."]}
+   { kind:"form", title:"Užpildykite anketą", en:"Read the text and fill in the form. Write words in their dictionary form (nominative).", variants:[
+     person({source:`<p>Mano vardas – Jonas Petrauskas. Gimiau 1994 m. kovo 15 d. Kaune. Dabar gyvenu Vilniuje. Esu inžinierius, dirbu statybų įmonėje. Mano telefono numeris: +370 612 45678. Kalbu lietuviškai, angliškai ir šiek tiek vokiškai.</p>`,
+       first:"Jonas",last:"Petrauskas",y:"1994",m:"03",d:"15",mon:"kovo",place:["Kaunas"],job:["inžinierius"],phone:"+370 612 45678"}),
+     person({source:`<p>Sveiki, aš – Olena Kovalenko. Esu iš Ukrainos. Gimiau 1988 m. rugsėjo 3 d. Lvove. Dabar gyvenu Klaipėdoje ir dirbu vaistinėje – esu vaistininkė. Mano telefono numeris: +370 655 98731.</p>`,
+       first:"Olena",last:"Kovalenko",y:"1988",m:"09",d:"03",mon:"rugsejo",place:["Lvovas","Lviv","Lvivas"],job:["vaistininkė"],phone:"+370 655 98731"}),
+     person({source:`<p>Mano vardas Maria Rossi. Esu italė. Gimiau 1999 m. gruodžio 21 d. Romoje. Lietuvoje gyvenu dvejus metus ir studijuoju architektūrą Kaune – esu studentė. Mano telefono numeris: +370 677 20415.</p>`,
+       first:"Maria",last:"Rossi",y:"1999",m:"12",d:"21",mon:"gruodzio",place:["Roma"],job:["studentė"],phone:"+370 677 20415"})
+   ]},
+   { kind:"write", min:25, max:35, variants:[
+     { title:"Laiškas draugui", en:"Write a short message to your friend Tomas (25–35 words).",
+       prompt:`<p>Parašykite trumpą laišką draugui Tomui (25–35 žodžiai). Parašykite:</p><ul><li>kur gyvenate;</li><li>ką dirbate arba studijuojate;</li><li>ką mėgstate veikti laisvalaikiu.</li></ul>`,
+       model:"Labas, Tomai!\nAš gyvenu Vilniuje, senamiestyje. Mano butas nedidelis, bet šviesus. Dirbu IT įmonėje, o vakarais mokausi lietuvių kalbos. Laisvalaikiu mėgstu skaityti, gaminti valgį ir vaikščioti prie upės. O kaip tu?\nIki!\nAna",
+       criteria:["Parašiau 25–35 žodžius.","Parašiau, kur gyvenu.","Parašiau, ką dirbu arba studijuoju.","Parašiau, ką mėgstu veikti laisvalaikiu.","Laiškas turi kreipinį (Labas, Tomai!) ir pabaigą (Iki!)."]},
+     { title:"Atsakymas į kvietimą", en:"Your friend Rasa has invited you to her birthday. You can't come. Write her a message (25–35 words).",
+       prompt:`<p>Draugė Rasa kviečia jus į gimtadienį šeštadienį, bet jūs negalite ateiti. Parašykite jai žinutę (25–35 žodžiai):</p><ul><li>padėkokite už kvietimą;</li><li>parašykite, kodėl negalite ateiti;</li><li>pasiūlykite susitikti kitą dieną.</li></ul>`,
+       model:"Labas, Rasa!\nAčiū už kvietimą! Labai gaila, bet šeštadienį negaliu ateiti, nes dirbu iki vėlaus vakaro. Gal galime susitikti sekmadienį? Kartu išgersime kavos, o aš atnešiu tau dovaną.\nIki!\nMarta",
+       criteria:["Parašiau 25–35 žodžius.","Padėkojau už kvietimą.","Parašiau, kodėl negaliu ateiti.","Pasiūliau susitikti kitą dieną.","Žinutė turi kreipinį ir pabaigą."]},
+     { title:"Žinutė iš kelionės", en:"You are visiting a new city. Write a message to a friend (25–35 words).",
+       prompt:`<p>Jūs esate kitame mieste. Parašykite draugui Andriui žinutę (25–35 žodžiai). Parašykite:</p><ul><li>kuriame mieste esate;</li><li>koks ten oras;</li><li>ką šiandien veikiate.</li></ul>`,
+       model:"Labas, Andriau!\nAš dabar esu Klaipėdoje. Čia labai gražu, bet šiandien vėjuota ir šalta. Ryte vaikščiojau prie jūros, o dabar sėdžiu kavinėje ir geriu karštą šokoladą. Rytoj važiuosiu į Palangą.\nIki!\nEma",
+       criteria:["Parašiau 25–35 žodžius.","Parašiau, kuriame mieste esu.","Parašiau, koks oras.","Parašiau, ką šiandien veikiu.","Žinutė turi kreipinį ir pabaigą."]}
+   ]}
  ]},
  { id:"kalbejimas", name:"Kalbėjimas", en:"Speaking", min:8,
    intro:'Atsakykite garsiai. Kiekvienai temai skirkite apie minutę. Paskui įsivertinkite. <i class="en">Answer aloud, about a minute per prompt, then assess yourself.</i>',
    tasks:[
    { kind:"speak", title:"Pokalbis su egzaminuotoju", en:"Speak about each topic, then do the role play.",
-     prompts:["Prisistatykite: koks jūsų vardas, iš kur esate, kur gyvenate, ką dirbate?","Papasakokite apie savo šeimą.","Ką jūs paprastai veikiate savaitgalį?","Situacija. Jūs esate kavinėje. Užsisakykite kavos ir pyrago. Paklauskite, kiek tai kainuoja."],
-     phrases:["Prašyčiau vienos kavos su pienu.","Ar turite obuolių pyrago?","Kiek tai kainuoja?","Ar galiu mokėti kortele?","Ačiū, viso gero!"],
-     criteria:["Pasakiau savo vardą, šalį ir miestą.","Pasakiau bent tris sakinius apie šeimą.","Papasakojau apie savaitgalį (bent trys veiksmai).","Kavinėje užsisakiau ir paklausiau kainos.","Kalbėjau sakiniais, ne pavieniais žodžiais."]}
+     fixed:["Prisistatykite: koks jūsų vardas, iš kur esate, kur gyvenate, ką dirbate?"],
+     ntopics:2,
+     topics:["Papasakokite apie savo šeimą.","Ką jūs paprastai veikiate savaitgalį?","Ką valgote pusryčiams, pietums ir vakarienei?","Apibūdinkite savo butą arba namą.","Koks jūsų mėgstamiausias metų laikas? Kodėl?","Papasakokite apie savo darbo arba mokymosi dieną."],
+     situations:[
+       {p:"Situacija. Jūs esate kavinėje. Užsisakykite kavos ir pyrago. Paklauskite, kiek tai kainuoja.", phrases:["Prašyčiau vienos kavos su pienu.","Ar turite obuolių pyrago?","Kiek tai kainuoja?","Ar galiu mokėti kortele?","Ačiū, viso gero!"]},
+       {p:"Situacija. Jūs esate parduotuvėje. Norite nusipirkti duonos, pieno ir obuolių. Paklauskite, kur jie yra ir kiek kainuoja.", phrases:["Atsiprašau, kur yra duona?","Prašyčiau kilogramo obuolių.","Kiek kainuoja pienas?","Ar turite maišelį?","Ačiū, viso gero!"]},
+       {p:"Situacija. Jūs esate gatvėje ir ieškote traukinių stoties. Paklauskite praeivio kelio.", phrases:["Atsiprašau, kur yra traukinių stotis?","Ar toli eiti?","Ar galima nueiti pėsčiomis?","Kokiu autobusu galima nuvažiuoti?","Labai ačiū!"]},
+       {p:"Situacija. Skambinate į kirpyklą ir norite užsiregistruoti. Pasakykite, kada galite ateiti.", phrases:["Laba diena, norėčiau užsiregistruoti kirpimui.","Ar galima rytoj po pietų?","Man tinka penktadienį.","Kiek kainuoja kirpimas?","Ačiū, iki pasimatymo!"]}
+     ],
+     criteria:["Pasakiau savo vardą, šalį ir miestą.","Apie kiekvieną temą pasakiau bent tris sakinius.","Situacijoje pasakiau, ko noriu, ir uždaviau klausimą.","Kalbėjau sakiniais, ne pavieniais žodžiais.","Kalbėjau be ilgų pauzių."]}
  ]}
 ]},
 
@@ -365,57 +450,95 @@ A2:{ name:"Bendravimo lygis", minutes:100, sections:[
  { id:"skaitymas", name:"Skaitymas", en:"Reading", min:30,
    intro:'Perskaitykite skelbimus ir tekstą. Atlikite užduotis. <i class="en">Read the adverts and the text, then complete the tasks.</i>',
    tasks:[
-   { kind:"match", title:"Kuris skelbimas tinka?", en:"Match each person to the most suitable advert. One advert is extra.",
-     ads:[
-       {k:"A", t:"Anglų kalbos kursai vaikams nuo 7 metų. Pamokos šeštadieniais, 10–12 val."},
-       {k:"B", t:"Parduodamas naudotas dviratis. Būklė gera, kaina 120 €."},
-       {k:"C", t:"Išnuomojamas vieno kambario butas senamiestyje. Su baldais, galima gyventi su gyvūnais."},
-       {k:"D", t:"Sporto klubas „Jėga“ kviečia į jogos užsiėmimus vakarais. Pirmas užsiėmimas nemokamas."},
-       {k:"E", t:"Ieškome padavėjo arba padavėjos vasarai. Darbas savaitgaliais, tinka studentams."},
-       {k:"F", t:"Kompiuterių taisymas jūsų namuose. Atvykstame per dvi valandas."}
-     ],
-     items:[
-       {q:"Gintarė studijuoja universitete. Vasarą ji nori užsidirbti pinigų, bet darbo dienomis lanko kursus.", a:"E"},
-       {q:"Andrius turi šunį ir ieško, kur gyventi miesto centre.", a:"C"},
-       {q:"Laima nori, kad jos aštuonerių metų sūnus mokytųsi užsienio kalbos.", a:"A"},
-       {q:"Po darbo Vytautui skauda nugarą. Jis nori pradėti sportuoti, bet nenori iš karto mokėti.", a:"D"},
-       {q:"Ievos nešiojamasis kompiuteris neveikia, o ji neturi laiko važiuoti į servisą.", a:"F"}
-     ]},
-   { kind:"mc", title:"Savaitgalis Druskininkuose", en:"Read the text and choose the correct answer.",
-     passage:`<p>Praėjusią vasarą mes su draugais nusprendėme savaitgalį praleisti Druskininkuose. Iš Vilniaus važiavome autobusu – kelionė truko maždaug dvi valandas. Gyvenome nedideliame svečių name netoli Nemuno. Kambarys buvo jaukus ir nebrangus, o pusryčius šeimininkė gamino pati.</p><p>Šeštadienio rytą lijo, todėl nuėjome į vandens parką. Ten praleidome visą dieną: plaukiojome, sėdėjome pirtyje ir ilsėjomės. Po pietų lietus baigėsi, ir vakare dar spėjome pasivaikščioti po miesto parką.</p><p>Sekmadienį išsinuomojome dviračius ir nuvažiavome iki Grūto parko. Ten pamatėme daug sovietinių skulptūrų – buvo įdomu, bet šiek tiek liūdna. Grįžome namo vėlai vakare, pavargę, bet labai patenkinti. Kitais metais būtinai ten grįšime, tik žiemą: norime išbandyti slidinėjimo areną.</p>`,
-     items:[
-     {q:"Kaip draugai keliavo į Druskininkus?", opts:["Autobusu.","Traukiniu.","Automobiliu."]},
-     {q:"Kur jie gyveno?", opts:["Svečių name prie upės.","Viešbutyje miesto centre.","Pas draugus."]},
-     {q:"Kodėl šeštadienį jie nuėjo į vandens parką?", opts:["Nes lijo.","Nes buvo labai karšta.","Nes ten dirbo jų draugas."]},
-     {q:"Ką jie veikė sekmadienį?", opts:["Važinėjo dviračiais.","Slidinėjo.","Plaukė Nemunu."]},
-     {q:"Kaip autorius jautėsi Grūto parke?", opts:["Buvo įdomu, bet kiek liūdna.","Buvo labai nuobodu.","Jis išsigando."]},
-     {q:"Kada jie nori vėl važiuoti į Druskininkus?", opts:["Žiemą.","Kitą vasarą.","Kitą savaitgalį."]}
+   { kind:"match", title:"Kuris skelbimas tinka?", en:"Match each person to the most suitable advert. One advert is extra.", variants:[
+     { ads:[
+       {k:"A",t:"Anglų kalbos kursai vaikams nuo 7 metų. Pamokos šeštadieniais, 10–12 val."},
+       {k:"B",t:"Parduodamas naudotas dviratis. Būklė gera, kaina 120 €."},
+       {k:"C",t:"Išnuomojamas vieno kambario butas senamiestyje. Su baldais, galima gyventi su gyvūnais."},
+       {k:"D",t:"Sporto klubas „Jėga“ kviečia į jogos užsiėmimus vakarais. Pirmas užsiėmimas nemokamas."},
+       {k:"E",t:"Ieškome padavėjo arba padavėjos vasarai. Darbas savaitgaliais, tinka studentams."},
+       {k:"F",t:"Kompiuterių taisymas jūsų namuose. Atvykstame per dvi valandas."}],
+       items:[
+       {q:"Gintarė studijuoja universitete. Vasarą ji nori užsidirbti pinigų, bet darbo dienomis lanko kursus.",a:"E"},
+       {q:"Andrius turi šunį ir ieško, kur gyventi miesto centre.",a:"C"},
+       {q:"Laima nori, kad jos aštuonerių metų sūnus mokytųsi užsienio kalbos.",a:"A"},
+       {q:"Po darbo Vytautui skauda nugarą. Jis nori pradėti sportuoti, bet nenori iš karto mokėti.",a:"D"},
+       {q:"Ievos nešiojamasis kompiuteris neveikia, o ji neturi laiko važiuoti į servisą.",a:"F"}]},
+     { ads:[
+       {k:"A",t:"Ieškoma auklė dvejų metų berniukui. Darbas darbo dienomis nuo 8 iki 13 val."},
+       {k:"B",t:"Šokių studija kviečia į porų šokių pamokas. Pamokos vyksta penktadieniais vakare."},
+       {k:"C",t:"Parduodamas šaldytuvas. Naudotas tik metus, atvežame į namus."},
+       {k:"D",t:"Vairavimo kursai. Teorijos pamokos internetu, praktika – jums patogiu laiku."},
+       {k:"E",t:"Išnuomojamas namas prie ežero savaitgaliams. Yra pirtis ir valtis."},
+       {k:"F",t:"Lietuvių kalbos pamokos užsieniečiams. Mažos grupės, pamokos vakarais."}],
+       items:[
+       {q:"Tomas ir Eglė nori kartu išmokti ko nors naujo. Jie abu mėgsta muziką ir judėti.",a:"B"},
+       {q:"Ahmedas atvyko dirbti į Lietuvą. Dieną jis dirba, o vakarais nori išmokti susikalbėti su kaimynais.",a:"F"},
+       {q:"Jurgita nori laikyti vairavimo egzaminą, bet dirba pamainomis ir neturi pastovaus laiko.",a:"D"},
+       {q:"Draugai nori praleisti savaitgalį gamtoje, maudytis ir plaukioti.",a:"E"},
+       {q:"Pensininkė Aldona nori dirbti kelias valandas per dieną. Ji labai mėgsta vaikus.",a:"A"}]},
+     { ads:[
+       {k:"A",t:"Sporto salė atidaryta nuo 6 val. ryto. Mėnesio abonementas – 30 €."},
+       {k:"B",t:"Ekskursija po Vilniaus senamiestį anglų kalba. Kiekvieną sekmadienį 11 val."},
+       {k:"C",t:"Kepykla priima užsakymus: tortai gimtadieniams ir vestuvėms."},
+       {k:"D",t:"Veterinarijos klinika. Dirbame ir savaitgaliais."},
+       {k:"E",t:"Dviračių nuoma prie Kuršių marių. Valanda – 4 €, diena – 15 €."},
+       {k:"F",t:"Ieškome savanorių, kurie šeštadienį padėtų sutvarkyti miesto parką."}],
+       items:[
+       {q:"Rimas nori sportuoti prieš darbą, labai anksti ryte.",a:"A"},
+       {q:"Svečiai iš Anglijos nori sužinoti apie Vilniaus istoriją, bet nekalba lietuviškai.",a:"B"},
+       {q:"Šeštadienį susirgo Ingos katė.",a:"D"},
+       {q:"Danutė ruošia dukters gimtadienį, bet neturi laiko pati kepti.",a:"C"},
+       {q:"Studentai nori nemokamai padėti savo miestui.",a:"F"}]}
+   ]},
+   { kind:"mc", en:"Read the text and choose the correct answer.", variants:[
+     { title:"Savaitgalis Druskininkuose",
+       passage:`<p>Praėjusią vasarą mes su draugais nusprendėme savaitgalį praleisti Druskininkuose. Iš Vilniaus važiavome autobusu – kelionė truko maždaug dvi valandas. Gyvenome nedideliame svečių name netoli Nemuno. Kambarys buvo jaukus ir nebrangus, o pusryčius šeimininkė gamino pati.</p><p>Šeštadienio rytą lijo, todėl nuėjome į vandens parką. Ten praleidome visą dieną: plaukiojome, sėdėjome pirtyje ir ilsėjomės. Po pietų lietus baigėsi, ir vakare dar spėjome pasivaikščioti po miesto parką.</p><p>Sekmadienį išsinuomojome dviračius ir nuvažiavome iki Grūto parko. Ten pamatėme daug sovietinių skulptūrų – buvo įdomu, bet šiek tiek liūdna. Grįžome namo vėlai vakare, pavargę, bet labai patenkinti. Kitais metais būtinai ten grįšime, tik žiemą: norime išbandyti slidinėjimo areną.</p>`,
+       items:[{q:"Kaip draugai keliavo į Druskininkus?",opts:["Autobusu.","Traukiniu.","Automobiliu."]},{q:"Kur jie gyveno?",opts:["Svečių name prie upės.","Viešbutyje miesto centre.","Pas draugus."]},{q:"Kodėl šeštadienį jie nuėjo į vandens parką?",opts:["Nes lijo.","Nes buvo labai karšta.","Nes ten dirbo jų draugas."]},{q:"Ką jie veikė sekmadienį?",opts:["Važinėjo dviračiais.","Slidinėjo.","Plaukė Nemunu."]},{q:"Kaip autorius jautėsi Grūto parke?",opts:["Buvo įdomu, bet kiek liūdna.","Buvo labai nuobodu.","Jis išsigando."]},{q:"Kada jie nori vėl važiuoti į Druskininkus?",opts:["Žiemą.","Kitą vasarą.","Kitą savaitgalį."]}]},
+     { title:"Naujas darbas",
+       passage:`<p>Prieš pusę metų pradėjau dirbti naujoje įmonėje. Anksčiau dirbau banke, bet ten darbas buvo nuobodus, o atlyginimas – nedidelis. Dabar esu projektų vadovė IT įmonėje. Mano biuras yra pačiame Vilniaus centre, todėl į darbą važiuoju dviračiu arba einu pėsčiomis.</p><p>Pirmos savaitės buvo sunkios: daug naujų žmonių, naujų programų ir anglų kalbos terminų. Laimei, kolegos labai draugiški ir visada padeda. Kiekvieną penktadienį visa komanda kartu pietauja, o kartą per mėnesį einame į boulingą.</p><p>Šiame darbe man patinka tai, kad du kartus per savaitę galiu dirbti iš namų. Tada turiu daugiau laiko šeimai. Vienintelis minusas – kartais tenka dirbti vakarais, kai klientai iš Amerikos nori susitikti internetu.</p>`,
+       items:[{q:"Kodėl autorė išėjo iš banko?",opts:["Darbas buvo nuobodus, o atlyginimas mažas.","Bankas užsidarė.","Ji persikraustė į kitą miestą."]},{q:"Kaip ji keliauja į darbą?",opts:["Dviračiu arba pėsčiomis.","Automobiliu.","Autobusu."]},{q:"Kas buvo sunku pirmomis savaitėmis?",opts:["Nauji žmonės, programos ir terminai.","Ilga kelionė į darbą.","Nedraugiški kolegos."]},{q:"Ką komanda daro kiekvieną penktadienį?",opts:["Kartu pietauja.","Eina į boulingą.","Dirba iš namų."]},{q:"Kiek dienų per savaitę ji gali dirbti iš namų?",opts:["Dvi.","Vieną.","Penkias."]},{q:"Kas jai šiame darbe nepatinka?",opts:["Kartais tenka dirbti vakarais.","Biuras toli nuo namų.","Kolegos nepadeda."]}]},
+     { title:"Kūčios",
+       passage:`<p>Gruodžio 24-osios vakarą lietuviai švenčia Kūčias. Tai viena svarbiausių švenčių metuose. Tą vakarą visa šeima susirenka prie vieno stalo. Ant stalo paprastai būna dvylika patiekalų, bet juose nėra mėsos. Valgoma žuvis, grybai, kūčiukai su aguonų pienu, spanguolių kisielius ir daržovės.</p><p>Prieš vakarienę šeima dalijasi kalėdaičiais – plonais baltais papločiais. Ant stalo dažnai padedama lėkštė ir tiems šeimos nariams, kurie mirė per metus. Po vakarienės žmonės mėgsta burti ateitį: pavyzdžiui, traukia šiaudą iš po staltiesės. Ilgas šiaudas reiškia ilgą gyvenimą.</p><p>Šiandien daug jaunų žmonių gyvena užsienyje, bet per Kūčias dažnai grįžta namo. Kitą dieną, gruodžio 25-ąją, švenčiamos Kalėdos, ir tada jau galima valgyti mėsą.</p>`,
+       items:[{q:"Kada švenčiamos Kūčios?",opts:["Gruodžio 24-osios vakarą.","Gruodžio 25-ąją.","Sausio 1-ąją."]},{q:"Kiek patiekalų paprastai būna ant stalo?",opts:["Dvylika.","Dešimt.","Dvidešimt keturi."]},{q:"Ko per Kūčias nevalgoma?",opts:["Mėsos.","Žuvies.","Grybų."]},{q:"Kas yra kalėdaičiai?",opts:["Ploni balti papločiai.","Saldainiai vaikams.","Dovanos šeimai."]},{q:"Ką reiškia ilgas šiaudas?",opts:["Ilgą gyvenimą.","Daug pinigų.","Greitas vestuves."]},{q:"Ką per Kūčias dažnai daro užsienyje gyvenantys jaunuoliai?",opts:["Grįžta namo.","Švenčia su draugais užsienyje.","Siunčia dovanas paštu."]}]}
    ]}
  ]},
  { id:"klausymas", name:"Klausymas", en:"Listening", min:20,
    intro:'Kiekvieną įrašą galite išklausyti du kartus, kaip per egzaminą. <i class="en">You can play each recording twice, as in the real exam.</i>',
    tasks:[
-   { kind:"mc", title:"Penki trumpi įrašai", en:"Listen to each recording and choose the correct answer.", items:[
+   { kind:"mc", title:"Penki trumpi įrašai", en:"Listen to each recording and choose the correct answer.", draw:5, pool:[
      {clip:[["A","Laba diena, norėčiau užsiregistruoti pas gydytoją."],["B","Ar tinka ketvirtadienį, dešimtą valandą?"],["A","Deja, ketvirtadienį dirbu. Gal galima penktadienį?"],["B","Penktadienį galiu pasiūlyti tik po pietų, antrą valandą."],["A","Puiku, tinka."]], q:"Kada pacientas eis pas gydytoją?", opts:["Penktadienį, 14 val.","Ketvirtadienį, 10 val.","Penktadienį, 10 val."]},
      {clip:[["A","Koks gražus megztinis! Kur pirkai?"],["B","Prekybos centre, per išpardavimą. Kainavo ne keturiasdešimt, o tik dvidešimt eurų."]], q:"Kiek kainavo megztinis?", opts:["20 €","40 €","24 €"]},
      {clip:[["N","Gerbiami keleiviai, dėl remonto darbų trečiasis troleibusas šiandien nevažiuoja. Prašome naudotis septintuoju autobusu."]], q:"Kuo siūloma važiuoti šiandien?", opts:["7 autobusu.","3 troleibusu.","Taksi."]},
      {clip:[["A","Ar eisi šeštadienį į Linos gimtadienį?"],["B","Labai norėčiau, bet šeštadienį iš Panevėžio atvažiuoja mano tėvai."],["A","Gaila. Gal tada susitiksime sekmadienį?"]], q:"Kodėl jis neis į gimtadienį?", opts:["Atvažiuoja jo tėvai.","Jis serga.","Jis turi dirbti."]},
-     {clip:[["N","Rytoj Lietuvoje bus debesuota, vietomis palis. Dieną temperatūra – nuo dvylikos iki penkiolikos laipsnių šilumos."]], q:"Koks oras bus rytoj?", opts:["Debesuota, vietomis lietus, 12–15 °C.","Saulėta, apie 25 °C.","Snigs, apie 0 °C."]}
+     {clip:[["N","Rytoj Lietuvoje bus debesuota, vietomis palis. Dieną temperatūra – nuo dvylikos iki penkiolikos laipsnių šilumos."]], q:"Koks oras bus rytoj?", opts:["Debesuota, vietomis lietus, 12–15 °C.","Saulėta, apie 25 °C.","Snigs, apie 0 °C."]},
+     {clip:[["A","Laba diena, ar šį vakarą dar yra laisvų staliukų?"],["B","Septintą valandą viskas užimta, bet aštuntą yra laisvas staliukas dviem asmenims."],["A","Puiku, rezervuokite, prašau."]], q:"Kada jie vakarieniaus?", opts:["8 val. vakaro.","7 val. vakaro.","Rytoj 8 val."]},
+     {clip:[["N","Dėmesio! Reisas į Londoną vėluoja keturiasdešimt minučių. Keleiviai kviečiami prie dvylikto išėjimo."]], q:"Kas atsitiko su reisu į Londoną?", opts:["Jis vėluoja 40 minučių.","Jis atšauktas.","Jis išskrenda anksčiau."]},
+     {clip:[["A","Kaip sekėsi egzaminas?"],["B","Rašymas buvo lengvas, bet per kalbėjimą labai jaudinausi."]], q:"Kuri egzamino dalis buvo sunkesnė?", opts:["Kalbėjimas.","Rašymas.","Abi buvo lengvos."]},
+     {clip:[["A","Ar galėtum rytoj paimti vaikus iš darželio?"],["B","Rytoj negaliu, turiu susirinkimą iki šešių. Gal paprašyk mamos?"]], q:"Ką siūlo antrasis žmogus?", opts:["Paprašyti mamos.","Paimti vaikus po šešių.","Palikti vaikus darželyje."]},
+     {clip:[["A","Norėčiau grąžinti šiuos batus. Jie per maži."],["B","Ar turite čekį?"],["A","Taip, štai."],["B","Gerai. Galiu pasiūlyti didesnį dydį arba grąžinti pinigus."]], q:"Kodėl klientė grąžina batus?", opts:["Jie per maži.","Jie sugedo.","Jai nepatinka spalva."]},
+     {clip:[["N","Muziejus dirba nuo antradienio iki sekmadienio, nuo dešimtos iki aštuonioliktos valandos. Paskutinį mėnesio trečiadienį įėjimas nemokamas."]], q:"Kada muziejų galima aplankyti nemokamai?", opts:["Paskutinį mėnesio trečiadienį.","Kiekvieną pirmadienį.","Sekmadieniais."]},
+     {clip:[["A","Ką veiksi per atostogas?"],["B","Pirmą savaitę dažysiu butą, o paskui važiuosime į kalnus, į Italiją."]], q:"Ką jis veiks pirmą atostogų savaitę?", opts:["Dažys butą.","Ilsėsis kalnuose.","Važiuos prie jūros."]},
+     {clip:[["A","Alio, ar čia taksi?"],["B","Taip. Kur atvažiuoti?"],["A","Į Gedimino prospektą dvidešimt, prie viešbučio. Važiuosiu į oro uostą."]], q:"Kur nori nuvažiuoti klientas?", opts:["Į oro uostą.","Į Gedimino prospektą.","Į viešbutį."]},
+     {clip:[["A","Kodėl vakar nebuvai darbe?"],["B","Skaudėjo galvą ir turėjau temperatūros, todėl likau namie."]], q:"Kodėl jis nebuvo darbe?", opts:["Jis sirgo.","Jis atostogavo.","Jis pavėlavo į autobusą."]},
+     {clip:[["A","Kiek kainuoja mėnesinis bilietas?"],["B","Suaugusiesiems – trisdešimt eurų, o moksleiviams – šeši eurai."]], q:"Kiek už mėnesinį bilietą moka moksleivis?", opts:["6 €","30 €","16 €"]}
    ]},
-   { kind:"mc", title:"Žinutė balso pašte", en:"Listen to Simona's voicemail and answer the questions.",
-     clip:[["A","Labas, čia Simona. Skambinu dėl mūsų susitikimo. Deja, rytoj, trečiadienį, negalėsiu ateiti, nes turiu svarbų susirinkimą darbe. Gal galėtume susitikti ketvirtadienį? Būsiu laisva nuo šeštos valandos vakaro. Siūlau susitikti kavinėje prie Katedros aikštės – ten labai skanus pyragas. Jei tau netinka, parašyk man žinutę. Iki!"]],
-     items:[
-     {q:"Kodėl Simona negali susitikti trečiadienį?", opts:["Ji turi susirinkimą darbe.","Ji serga.","Ji išvyksta į kitą miestą."]},
-     {q:"Kada Simona siūlo susitikti?", opts:["Ketvirtadienį vakare.","Trečiadienį ryte.","Penktadienį vakare."]},
-     {q:"Nuo kelintos valandos ji bus laisva?", opts:["Nuo 18 val.","Nuo 16 val.","Nuo 19 val."]},
-     {q:"Kur ji siūlo susitikti?", opts:["Kavinėje prie Katedros aikštės.","Restorane senamiestyje.","Pas ją namie."]},
-     {q:"Ką reikia padaryti, jei laikas netinka?", opts:["Parašyti jai žinutę.","Jai paskambinti.","Vis tiek ateiti."]}
+   { kind:"mc", en:"Listen to the message and answer the questions.", variants:[
+     { title:"Žinutė balso pašte",
+       clip:[["A","Labas, čia Simona. Skambinu dėl mūsų susitikimo. Deja, rytoj, trečiadienį, negalėsiu ateiti, nes turiu svarbų susirinkimą darbe. Gal galėtume susitikti ketvirtadienį? Būsiu laisva nuo šeštos valandos vakaro. Siūlau susitikti kavinėje prie Katedros aikštės – ten labai skanus pyragas. Jei tau netinka, parašyk man žinutę. Iki!"]],
+       items:[{q:"Kodėl Simona negali susitikti trečiadienį?",opts:["Ji turi susirinkimą darbe.","Ji serga.","Ji išvyksta į kitą miestą."]},{q:"Kada Simona siūlo susitikti?",opts:["Ketvirtadienį vakare.","Trečiadienį ryte.","Penktadienį vakare."]},{q:"Nuo kelintos valandos ji bus laisva?",opts:["Nuo 18 val.","Nuo 16 val.","Nuo 19 val."]},{q:"Kur ji siūlo susitikti?",opts:["Kavinėje prie Katedros aikštės.","Restorane senamiestyje.","Pas ją namie."]},{q:"Ką reikia padaryti, jei laikas netinka?",opts:["Parašyti jai žinutę.","Jai paskambinti.","Vis tiek ateiti."]}]},
+     { title:"Priminimas iš klinikos",
+       clip:[["A","Laba diena, skambiname iš odontologijos klinikos „Šypsena“. Primename, kad jūsų vizitas – rytoj, penktadienį, penkiolika trisdešimt. Prašome atvykti dešimt minučių anksčiau ir atsinešti asmens dokumentą. Jei negalite atvykti, paskambinkite mums iki šiandien septynioliktos valandos. Atkreipkite dėmesį: pasikeitė mūsų adresas. Dabar esame Savanorių prospekte keturiasdešimt. Ačiū ir iki pasimatymo."]],
+       items:[{q:"Kas skambina?",opts:["Odontologijos klinika.","Bankas.","Kirpykla."]},{q:"Kada vizitas?",opts:["Penktadienį, 15.30.","Penktadienį, 17.00.","Šiandien, 15.30."]},{q:"Ką reikia atsinešti?",opts:["Asmens dokumentą.","Grynųjų pinigų.","Gydytojo siuntimą."]},{q:"Iki kada reikia paskambinti, jei negalite atvykti?",opts:["Iki šiandien 17 val.","Iki rytojaus ryto.","Iki penktadienio."]},{q:"Kas pasikeitė?",opts:["Klinikos adresas.","Vizito laikas.","Gydytojas."]}]},
+     { title:"Kvietimas į žygį",
+       clip:[["A","Labas, Dariau, čia Rokas. Klausyk, šį šeštadienį planuojame plaukti baidarėmis Merkiu. Išvažiuojame aštuntą ryto nuo mano namų, važiuosime dviem automobiliais. Baidares jau išsinuomojau, todėl tau reikia pasiimti tik maisto ir sausų drabužių. Nakvosime palapinėse, grįšime sekmadienio vakarą. Jei turi miegmaišį, pasiimk, nes aš turiu tik vieną. Paskambink man iki ketvirtadienio, ar važiuosi."]],
+       items:[{q:"Ką draugai veiks šeštadienį?",opts:["Plauks baidarėmis.","Važiuos į kalnus.","Žvejos ežere."]},{q:"Kada jie išvažiuoja?",opts:["Šeštadienį 8 val. ryto.","Sekmadienį vakare.","Penktadienį vakare."]},{q:"Ką Darius turi pasiimti?",opts:["Maisto ir sausų drabužių.","Baidarę.","Palapinę."]},{q:"Kur jie nakvos?",opts:["Palapinėse.","Viešbutyje.","Pas draugus."]},{q:"Iki kada Darius turi atsakyti?",opts:["Iki ketvirtadienio.","Iki šeštadienio.","Iki sekmadienio."]}]}
    ]}
  ]},
  { id:"vartojimas", name:"Kalbos vartojimas", en:"Grammar & vocabulary", min:20,
    intro:'Pasirinkite tinkamą formą ir užpildykite laiško spragas. <i class="en">Choose the correct form and fill the gaps in the letter.</i>',
    tasks:[
-   { kind:"mc", title:"Pasirinkite tinkamą formą", en:"Choose the word that completes the sentence.", items:[
+   { kind:"mc", title:"Pasirinkite tinkamą formą", en:"Choose the word that completes the sentence.", draw:14, pool:[
      {q:"Vakar mes ___ į teatrą.", opts:["ėjome","einame","eisime"]},
      {q:"Rytoj aš ___ močiutei.", opts:["paskambinsiu","paskambinau","paskambinęs"]},
      {q:"Kai buvau vaikas, vasarą dažnai ___ pas senelius.", opts:["važiuodavau","važiuosiu","važiuoju"]},
@@ -429,28 +552,76 @@ A2:{ name:"Bendravimo lygis", minutes:100, sections:[
      {q:"Ar tu kada nors ___ buvęs Paryžiuje?", opts:["esi","yra","būtų"]},
      {q:"Penktadienį susitinku ___ draugais.", opts:["su","be","prie"]},
      {q:"Turguje nupirkau penkis ___.", opts:["obuolius","obuoliai","obuolių"]},
-     {q:"Mano brolis dirba ___.", opts:["gydytoju","gydytojas","gydytoją"]}
+     {q:"Mano brolis dirba ___.", opts:["gydytoju","gydytojas","gydytoją"]},
+     {q:"Pernai mes ___ Ispanijoje.", opts:["atostogavome","atostogaujame","atostogausime"]},
+     {q:"Šiandien šilčiau ___ vakar.", opts:["negu","už","nei kaip"]},
+     {q:"Tai pats ___ restoranas mieste.", opts:["geriausias","geresnis","gerai"]},
+     {q:"Ar galėtumėte man ___, kur yra paštas?", opts:["pasakyti","pasakykite","pasakė"]},
+     {q:"Aš nežinau, ___ jis ateis.", opts:["ar","kuris","kodėl gi"]},
+     {q:"Kai baigsiu darbą, ___ tau.", opts:["paskambinsiu","paskambinau","skambindavau"]},
+     {q:"Mano sesuo domisi ___.", opts:["menu","menas","meną"]},
+     {q:"Aš rūpinuosi savo ___.", opts:["sveikata","sveikatą","sveikatos"]},
+     {q:"Prieš valgį reikia ___ rankas.", opts:["nusiplauti","nusiplauna","nusiploviau"]},
+     {q:"Mums reikia ___ duonos.", opts:["nupirkti","nupirkome","nuperka"]},
+     {q:"Ši suknelė man labai ___.", opts:["patinka","patinku","patikti"]},
+     {q:"Jam ___ galvą.", opts:["skauda","skaudus","skaudėti"]},
+     {q:"Aš esu labai ___ už pagalbą.", opts:["dėkingas","dėkoju","dėka"]},
+     {q:"Važiuosime į pajūrį, ___ bus gražus oras.", opts:["jeigu","todėl","nors"]},
+     {q:"Neturiu laiko, ___ negaliu ateiti.", opts:["todėl","nes","jeigu"]},
+     {q:"Jis neatėjo, ___ sirgo.", opts:["nes","todėl","jeigu"]},
+     {q:"Kuriame ___ gyveni?", opts:["aukšte","aukštas","aukštą"]},
+     {q:"Susitiksime ___ savaitę.", opts:["kitą","kita","kitos"]},
+     {q:"Lauke šalta, ___ šiltą striukę!", opts:["apsivilk","apsivilko","apsivilkti"]},
+     {q:"Mes kalbėjomės telefonu ___ valandą.", opts:["visą","visa","visos"]},
+     {q:"Studentams bilietas kainuoja ___ kainos.", opts:["pusę","pusė","pusei"]},
+     {q:"Mano draugė dar niekada ___ buvusi Lietuvoje.", opts:["nėra","nebuvo","nebus"]}
    ]},
-   { kind:"cloze", title:"Ugnės laiškas", en:"Fill each gap with a word from the box. Two words are extra.",
-     bank:["laišką","persikraustėme","trečiame","didelis","darbo","atvažiuotum","vakar","virtuvė"],
-     answers:["laišką","persikraustėme","trečiame","didelis","darbo","atvažiuotum"],
-     text:`<p>Sveika, Agne!</p><p>Ačiū už {0}. Pas mus viskas gerai. Praėjusią savaitę {1} į naują butą. Jis yra {2} aukšte, todėl pro langą matyti parkas. Butas nėra labai {3}, bet jaukus. Dabar ieškau {4} netoli namų, nes į senąjį darbą važiuoti per toli. Gal {5} pas mus kitą mėnesį?</p><p>Lauksiu atsakymo!</p><p class="sig">Ugnė</p>`}
+   { kind:"cloze", en:"Fill each gap with a word from the box. Two words are extra.", variants:[
+     { title:"Ugnės laiškas",
+       bank:["laišką","persikraustėme","trečiame","didelis","darbo","atvažiuotum","vakar","virtuvė"],
+       answers:["laišką","persikraustėme","trečiame","didelis","darbo","atvažiuotum"],
+       text:`<p>Sveika, Agne!</p><p>Ačiū už {0}. Pas mus viskas gerai. Praėjusią savaitę {1} į naują butą. Jis yra {2} aukšte, todėl pro langą matyti parkas. Butas nėra labai {3}, bet jaukus. Dabar ieškau {4} netoli namų, nes į senąjį darbą važiuoti per toli. Gal {5} pas mus kitą mėnesį?</p><p>Lauksiu atsakymo!</p><p class="sig">Ugnė</p>`},
+     { title:"Klausimas apie kursus",
+       bank:["Perskaičiau","užsiregistruoti","gyvenu","auditorijoje","kainuoja","atsakymą","rytoj","gražiai"],
+       answers:["Perskaičiau","užsiregistruoti","gyvenu","auditorijoje","kainuoja","atsakymą"],
+       text:`<p>Laba diena,</p><p>{0} jūsų skelbimą apie lietuvių kalbos kursus. Norėčiau {1} į vakarinę grupę. Lietuvoje {2} jau metus, bet kalbu dar nelabai gerai. Ar pamokos vyksta {3}, ar internetu? Taip pat norėčiau sužinoti, kiek {4} visas kursas. Būsiu dėkinga už greitą {5}.</p><p class="sig">Pagarbiai<br>Natalija</p>`},
+     { title:"Atvirukas iš Palangos",
+       bank:["esame","puikus","paplūdimyje","valgome","nuvažiavome","šeštadienį","sniegas","dirbome"],
+       answers:["esame","puikus","paplūdimyje","valgome","nuvažiavome","šeštadienį"],
+       text:`<p>Labas, Rokai!</p><p>Sveikinu iš Palangos! Čia {0} jau penktą dieną. Oras {1}: kasdien šviečia saulė, todėl daug laiko praleidžiame {2}. Vakarais vaikštome Basanavičiaus gatve ir {3} ledus. Vakar {4} į Nidą – ten labai gražios kopos. Namo grįšime {5}.</p><p class="sig">Iki greito!<br>Gabija</p>`}
+   ]}
  ]},
  { id:"rasymas", name:"Rašymas", en:"Writing", min:30,
    intro:'Parašykite elektroninį laišką. <i class="en">Write an email.</i>',
    tasks:[
-   { kind:"write", title:"Laiškas po atostogų", en:"You have just come back from holiday. Write an email to a friend (60–80 words).", min:60, max:80,
-     prompt:`<p>Jūs ką tik grįžote iš atostogų. Parašykite draugui elektroninį laišką (60–80 žodžių). Parašykite:</p><ul><li>kur ir su kuo buvote;</li><li>ką ten veikėte;</li><li>kas jums patiko ir kas nepatiko;</li><li>pakvieskite draugą susitikti ir pažiūrėti nuotraukų.</li></ul>`,
-     model:"Labas, Lukai!\nVakar grįžau iš atostogų. Savaitę su sese buvome Nidoje. Gyvenome mažame name visai prie marių. Kiekvieną dieną maudėmės jūroje, važinėjome dviračiais, o vieną vakarą užlipome ant Parnidžio kopos pažiūrėti saulėlydžio. Labai patiko rūkyta žuvis! Tik vieną dieną buvo labai vėjuota ir šalta, todėl sėdėjome namie ir žaidėme stalo žaidimus. Padariau daug gražių nuotraukų. Gal susitinkame šeštadienį kavinėje? Galėsiu tau jas parodyti.\nIki!\nDovilė",
-     criteria:["Parašiau 60–80 žodžių.","Parašiau, kur ir su kuo buvau.","Papasakojau, ką veikiau, vartodamas (-a) būtąjį laiką.","Parašiau, kas patiko ir kas nepatiko.","Pakviečiau susitikti; laiškas turi kreipinį ir pabaigą."]}
+   { kind:"write", min:60, max:80, variants:[
+     { title:"Laiškas po atostogų", en:"You have just come back from holiday. Write an email to a friend (60–80 words).",
+       prompt:`<p>Jūs ką tik grįžote iš atostogų. Parašykite draugui elektroninį laišką (60–80 žodžių). Parašykite:</p><ul><li>kur ir su kuo buvote;</li><li>ką ten veikėte;</li><li>kas jums patiko ir kas nepatiko;</li><li>pakvieskite draugą susitikti ir pažiūrėti nuotraukų.</li></ul>`,
+       model:"Labas, Lukai!\nVakar grįžau iš atostogų. Savaitę su sese buvome Nidoje. Gyvenome mažame name visai prie marių. Kiekvieną dieną maudėmės jūroje, važinėjome dviračiais, o vieną vakarą užlipome ant Parnidžio kopos pažiūrėti saulėlydžio. Labai patiko rūkyta žuvis! Tik vieną dieną buvo labai vėjuota ir šalta, todėl sėdėjome namie ir žaidėme stalo žaidimus. Padariau daug gražių nuotraukų. Gal susitinkame šeštadienį kavinėje? Galėsiu tau jas parodyti.\nIki!\nDovilė",
+       criteria:["Parašiau 60–80 žodžių.","Parašiau, kur ir su kuo buvau.","Papasakojau, ką veikiau, vartodamas (-a) būtąjį laiką.","Parašiau, kas patiko ir kas nepatiko.","Pakviečiau susitikti; laiškas turi kreipinį ir pabaigą."]},
+     { title:"Laiškas buto savininkui", en:"You want to rent a flat. Write to the owner (60–80 words).",
+       prompt:`<p>Norite išsinuomoti butą. Parašykite buto savininkui elektroninį laišką (60–80 žodžių):</p><ul><li>prisistatykite;</li><li>parašykite, kokio buto ieškote ir nuo kada;</li><li>paklauskite apie kainą ir mokesčius;</li><li>paprašykite parodyti butą.</li></ul>`,
+       model:"Laba diena,\nmano vardas Lukas Novak, esu iš Čekijos. Lietuvoje dirbu jau dvejus metus. Perskaičiau jūsų skelbimą ir labai susidomėjau. Nuo gruodžio pirmosios ieškau dviejų kambarių buto su baldais netoli centro. Gyvensiu vienas, gyvūnų neturiu. Norėčiau sužinoti, kiek kainuoja nuoma per mėnesį ir ar į kainą įskaičiuoti komunaliniai mokesčiai. Ar galėčiau apžiūrėti butą šią savaitę po darbo?\nPagarbiai\nLukas Novak",
+       criteria:["Parašiau 60–80 žodžių.","Prisistačiau.","Parašiau, kokio buto ieškau ir nuo kada.","Paklausiau apie kainą ir mokesčius.","Paprašiau parodyti butą; laiškas turi oficialų kreipinį ir pabaigą."]},
+     { title:"Draugas atvažiuoja į svečius", en:"A friend is coming to visit your city for the weekend. Write to him (60–80 words).",
+       prompt:`<p>Jūsų draugas Mantas savaitgaliui atvažiuoja į jūsų miestą. Parašykite jam laišką (60–80 žodžių):</p><ul><li>parašykite, kad džiaugiatės;</li><li>pasiūlykite, ką galėtumėte kartu veikti;</li><li>paaiškinkite, kaip atvažiuoti iki jūsų namų;</li><li>paklauskite, ko jis nevalgo.</li></ul>`,
+       model:"Labas, Mantai!\nLabai džiaugiuosi, kad atvažiuosi! Šeštadienį galime pasivaikščioti po senamiestį ir užlipti į Gedimino pilies bokštą. Vakare siūlau nueiti į koncertą, o sekmadienį nuvažiuoti į Trakus. Nuo autobusų stoties iki mano namų važiuok trečiuoju autobusu iki stotelės „Parkas“. Ten tave pasitiksiu. Ar yra patiekalų, kurių nevalgai? Noriu iškepti kugelį.\nIki šeštadienio!\nIeva",
+       criteria:["Parašiau 60–80 žodžių.","Parašiau, kad džiaugiuosi.","Pasiūliau, ką kartu veikti.","Paaiškinau, kaip atvažiuoti.","Paklausiau, ko draugas nevalgo; laiškas turi kreipinį ir pabaigą."]}
+   ]}
  ]},
  { id:"kalbejimas", name:"Kalbėjimas", en:"Speaking", min:10,
    intro:'Atsakykite garsiai. Kiekvienai temai skirkite apie minutę. Paskui įsivertinkite. <i class="en">Answer aloud, about a minute per prompt, then assess yourself.</i>',
    tasks:[
    { kind:"speak", title:"Pokalbis ir situacija", en:"Speak about each topic, then do the role play.",
-     prompts:["Papasakokite apie savo darbą arba studijas. Kas jums patinka, o kas ne?","Apibūdinkite miestą ar kaimą, kuriame gyvenate. Ką ten galima veikti?","Ką veikėte praėjusį savaitgalį?","Situacija. Skambinate į viešbutį. Norite užsisakyti kambarį dviem asmenims dviem naktims. Paklauskite kainos ir ar pusryčiai įskaičiuoti."],
-     phrases:["Norėčiau užsisakyti kambarį dviem asmenims.","Atvyksime penktadienį, išvyksime sekmadienį.","Kiek kainuoja viena naktis?","Ar pusryčiai įskaičiuoti į kainą?","Ar galima pasistatyti automobilį?"],
-     criteria:["Atsakiau į visus klausimus.","Apie kiekvieną temą kalbėjau maždaug minutę.","Kalbėdamas (-a) apie savaitgalį vartojau būtąjį laiką.","Jungiau sakinius žodžiais nes, todėl, bet, kai.","Situacijoje gavau visą reikiamą informaciją."]}
+     ntopics:3,
+     topics:["Papasakokite apie savo darbą arba studijas. Kas jums patinka, o kas ne?","Apibūdinkite miestą ar kaimą, kuriame gyvenate. Ką ten galima veikti?","Ką veikėte praėjusį savaitgalį?","Papasakokite apie savo mėgstamiausią šventę. Kaip ją švenčiate?","Kokį sportą ar laisvalaikio užsiėmimą mėgstate? Kodėl?","Papasakokite apie įsimintiniausią savo kelionę.","Kuo skiriasi gyvenimas Lietuvoje ir jūsų šalyje?","Kur norėtumėte gyventi po dešimties metų? Kodėl?"],
+     situations:[
+       {p:"Situacija. Skambinate į viešbutį. Norite užsisakyti kambarį dviem asmenims dviem naktims. Paklauskite kainos ir ar pusryčiai įskaičiuoti.", phrases:["Norėčiau užsisakyti kambarį dviem asmenims.","Atvyksime penktadienį, išvyksime sekmadienį.","Kiek kainuoja viena naktis?","Ar pusryčiai įskaičiuoti į kainą?","Ar galima pasistatyti automobilį?"]},
+       {p:"Situacija. Nusipirkote naują telefoną, bet jis neveikia. Nuėjote į parduotuvę. Paaiškinkite problemą ir paprašykite pakeisti telefoną arba grąžinti pinigus.", phrases:["Prieš savaitę pirkau šį telefoną.","Jis neįsijungia ir greitai išsikrauna.","Štai čekis.","Ar galite jį pakeisti nauju?","Norėčiau atgauti pinigus."]},
+       {p:"Situacija. Skambinate į polikliniką. Jau tris dienas blogai jaučiatės. Paaiškinkite, kas skauda, ir užsiregistruokite pas šeimos gydytoją.", phrases:["Norėčiau užsiregistruoti pas šeimos gydytoją.","Jau tris dienas man skauda gerklę.","Turiu temperatūros.","Ar galima šiandien ar rytoj?","Man tinka po pietų."]},
+       {p:"Situacija. Su draugu planuojate dovaną bendram draugui. Susitarkite, ką nupirkti, kiek pinigų išleisti ir kada dovaną įteikti.", phrases:["Gal nupirkime jam knygą?","Kiek galime išleisti?","Man atrodo, kad tai per brangu.","Sutinku!","Įteikime dovaną penktadienį per pietus."]}
+     ],
+     criteria:["Atsakiau į visus klausimus.","Apie kiekvieną temą kalbėjau maždaug minutę.","Vartojau ne tik esamąjį, bet ir būtąjį arba būsimąjį laiką.","Jungiau sakinius žodžiais nes, todėl, bet, kai.","Situacijoje gavau visą reikiamą informaciją."]}
  ]}
 ]}
 };
@@ -458,22 +629,47 @@ A2:{ name:"Bendravimo lygis", minutes:100, sections:[
 /* ---------- helpers ---------- */
 const ROMAN=["I","II","III","IV","V"];
 const $=s=>document.querySelector(s);
-function norm(v){return String(v||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").trim().replace(/\s+/g," ")}
-function digits(v){return String(v||"").replace(/\D/g,"")}
 function esc(s){return String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
 function cid(id){return "q-"+id.replace(/\./g,"-")}
 function tasku(n){const t=n%10,h=n%100;if(t===1&&h!==11)return n+" taškas";if(t>=2&&t<=9&&!(h>=12&&h<=19))return n+" taškai";return n+" taškų"}
 function hash(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
-function order(n,id){const a=[...Array(n).keys()];let h=hash(id)||1;for(let i=n-1;i>0;i--){h^=h<<13;h^=h>>>17;h^=h<<5;h>>>=0;const j=h%(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
+function order(n,seed){const a=[...Array(n).keys()];let h=hash(seed)||1;for(let i=n-1;i>0;i--){h^=h<<13;h^=h>>>17;h^=h<<5;h>>>=0;const j=h%(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
 function words(t){const m=String(t||"").trim().match(/[^\s.,!?;:–—"„“()]+/g);return m?m.length:0}
 function fmt(sec){sec=Math.max(0,Math.round(sec));return Math.floor(sec/60)+":"+String(sec%60).padStart(2,"0")}
 
 /* ---------- state ---------- */
-const LS="lt-exam-v1";
-const S={level:"A1",sec:{A1:0,A2:0},ans:{},chk:{},plays:{},done:{A1:false,A2:false},timer:{},slow:false};
+const LS="lt-exam-v2";
+const S={level:"A1",sec:{A1:0,A2:0},ans:{},chk:{},plays:{},done:{A1:false,A2:false},timer:{},slow:false,attempt:{A1:0,A2:0},deck:{},history:{A1:[],A2:[]}};
 try{const r=JSON.parse(localStorage.getItem(LS)||"null");if(r)for(const k in S)if(r[k]!==undefined)S[k]=r[k]}catch(e){}
-for(const L of ["A1","A2"]) if(!S.timer[L]) S.timer[L]={left:EXAM[L].minutes*60,running:false};
+for(const L of ["A1","A2"]){
+  if(!S.timer[L])S.timer[L]={left:EXAM[L].minutes*60,running:false};
+  if(!S.deck[L])S.deck[L]=String(Math.floor(Math.random()*1e9));
+  if(!S.history[L])S.history[L]=[];
+  if(S.attempt[L]==null)S.attempt[L]=0;
+}
 function save(){try{localStorage.setItem(LS,JSON.stringify(S))}catch(e){}}
+
+/* ---------- attempt builder ---------- */
+const cache={};
+function vIdx(L,key,n){return (S.attempt[L]+hash(S.deck[L]+"|v|"+key))%n}
+function drawFrom(L,key,pool,k){const o=order(pool.length,S.deck[L]+"|p|"+key),a=S.attempt[L],out=[];for(let j=0;j<k;j++)out.push(pool[o[(a*k+j)%pool.length]]);return out}
+function mat(L,key,t){
+  let r={...t};
+  if(t.variants){r={...t,...t.variants[vIdx(L,key,t.variants.length)]};delete r.variants}
+  if(r.pool){r.items=drawFrom(L,key,r.pool,r.draw);delete r.pool}
+  if(r.kind==="speak"){
+    const sit=r.situations[vIdx(L,key+"s",r.situations.length)];
+    r.prompts=[...(r.fixed||[]),...drawFrom(L,key+"t",r.topics,r.ntopics),sit.p];r.phrases=sit.phrases;
+  }
+  return r;
+}
+function build(L){
+  const k=L+"|"+S.attempt[L]+"|"+S.deck[L];
+  if(cache[k])return cache[k];
+  const ex=EXAM[L];
+  return cache[k]={name:ex.name,minutes:ex.minutes,sections:ex.sections.map((sec,s)=>({...sec,tasks:sec.tasks.map((t,ti)=>mat(L,s+"."+ti,t))}))};
+}
+const baseId=(L,s,ti)=>`${L}.${S.attempt[L]}.${s}.${ti}`;
 
 /* ---------- scoring ---------- */
 function taskMax(t){
@@ -484,7 +680,7 @@ function taskMax(t){
 }
 function mcCorrect(it){return it.tf!==undefined?(it.tf?0:1):0}
 function gradeTask(L,s,ti,t){
-  const base=`${L}.${s}.${ti}`;let sc=0,auto=0,answered=0;
+  const base=baseId(L,s,ti);let sc=0,auto=0,answered=0;
   const a=id=>{const v=S.ans[id];if(v!==undefined&&v!=="")answered++;return v};
   if(t.kind==="mc")t.items.forEach((it,i)=>{auto++;if(a(`${base}.${i}`)===mcCorrect(it))sc++});
   else if(t.kind==="match")t.items.forEach((it,i)=>{auto++;if(a(`${base}.${i}`)===it.a)sc++});
@@ -494,12 +690,13 @@ function gradeTask(L,s,ti,t){
   return {sc,mx:taskMax(t),auto,answered,self:t.kind==="write"||t.kind==="speak"};
 }
 function gradeLevel(L){
-  return EXAM[L].sections.map((sec,s)=>{
+  return build(L).sections.map((sec,s)=>{
     const r={name:sec.name,en:sec.en,sc:0,mx:0,auto:0,answered:0,self:false};
     sec.tasks.forEach((t,ti)=>{const g=gradeTask(L,s,ti,t);r.sc+=g.sc;r.mx+=g.mx;r.auto+=g.auto;r.answered+=g.answered;r.self=r.self||g.self});
     return r;
   });
 }
+function overallOf(g){const pc=g.map(r=>r.mx?r.sc/r.mx:0);return {pc,overall:pc.reduce((a,b)=>a+b,0)/pc.length}}
 
 /* ---------- listening (speech synthesis) ---------- */
 const CLIPS={};
@@ -511,10 +708,10 @@ function pickVoice(){
   updatePlayers();
 }
 if(ttsOK){pickVoice();try{speechSynthesis.addEventListener("voiceschanged",pickVoice)}catch(e){speechSynthesis.onvoiceschanged=pickVoice}setTimeout(()=>{voicesKnown=true;pickVoice()},1200)}
-
+function stopAudio(){if(playing&&ttsOK){speechSynthesis.cancel()}playing=null}
 function playClip(id){
   if(!ttsOK)return;
-  if(playing===id){speechSynthesis.cancel();playing=null;updatePlayers();return}
+  if(playing===id){stopAudio();updatePlayers();return}
   const used=S.plays[id]||0;
   if(used>=2&&!S.done[S.level])return;
   speechSynthesis.cancel();
@@ -555,7 +752,7 @@ function player(id,lines){
 
 /* ---------- rendering ---------- */
 function mcQ(id,it,n,done){
-  const tf=it.tf!==undefined,opts=tf?["Taip","Ne"]:it.opts,correct=mcCorrect(it),ord=tf?[0,1]:order(opts.length,id),val=S.ans[id];
+  const L=id.slice(0,2),tf=it.tf!==undefined,opts=tf?["Taip","Ne"]:it.opts,correct=mcCorrect(it),ord=tf?[0,1]:order(opts.length,S.deck[L]+"|o|"+id),val=S.ans[id];
   const st=done?(val===correct?"ok":"bad"):"";
   const pre=it.clip?player(id+".clip",it.clip):"";
   const qt=it.sign?`<span class="sign">${esc(it.sign)}</span>`:esc(it.q||"Pasirinkite žodį, kuris netinka.");
@@ -570,7 +767,7 @@ function criteria(base,t){
   ${t.criteria.map((c,i)=>{const id=`${base}.c${i}`;return `<label class="ck"><input type="checkbox" id="${cid(id)}" data-chk="${id}" ${S.chk[id]?"checked":""}><span>${esc(c)}</span></label>`}).join("")}</div>`;
 }
 function renderTask(L,s,ti,t,tn,done){
-  const base=`${L}.${s}.${ti}`;
+  const base=baseId(L,s,ti);
   let h=`<section class="task"><div class="task-head"><h2><span class="tn">${tn} užduotis</span>${esc(t.title)}</h2><span class="pts">${tasku(taskMax(t))}</span></div><p class="en-inst">${esc(t.en)}</p>`;
   if(t.clip)h+=player(base+".clip",t.clip);
   if(t.passage)h+=`<div class="passage">${t.passage}</div>`;
@@ -578,13 +775,15 @@ function renderTask(L,s,ti,t,tn,done){
     h+=`<div class="qs">${t.items.map((it,i)=>mcQ(`${base}.${i}`,it,i+1,done)).join("")}</div>`;
   }else if(t.kind==="match"){
     h+=`<div class="ads">${t.ads.map(a=>`<div class="ad"><span class="ad-k">${a.k}</span><p>${esc(a.t)}</p></div>`).join("")}</div><ol class="match">`;
-    t.items.forEach((it,i)=>{const id=`${base}.${i}`,v=S.ans[id]||"",ok=v===it.a,st=done?(ok?"ok":"bad"):"";
-      h+=`<li class="mrow ${st}"><span class="qn">${i+1}.</span><p>${esc(it.q)}</p><select id="${cid(id)}" data-id="${id}" class="${st}" aria-label="Skelbimas ${i+1} klausimui" ${done?"disabled":""}><option value="">—</option>${t.ads.map(a=>`<option ${v===a.k?"selected":""}>${a.k}</option>`).join("")}</select>${done&&!ok?`<em class="fix">Teisingai: ${it.a}</em>`:""}</li>`});
+    const io=order(t.items.length,S.deck[L]+"|m|"+base);
+    io.forEach((i,n)=>{const it=t.items[i],id=`${base}.${i}`,v=S.ans[id]||"",ok=v===it.a,st=done?(ok?"ok":"bad"):"";
+      h+=`<li class="mrow ${st}"><span class="qn">${n+1}.</span><p>${esc(it.q)}</p><select id="${cid(id)}" data-id="${id}" class="${st}" aria-label="Skelbimas ${n+1} klausimui" ${done?"disabled":""}><option value="">—</option>${t.ads.map(a=>`<option ${v===a.k?"selected":""}>${a.k}</option>`).join("")}</select>${done&&!ok?`<em class="fix">Teisingai: ${it.a}</em>`:""}</li>`});
     h+=`</ol>`;
   }else if(t.kind==="cloze"){
+    const bank=order(t.bank.length,S.deck[L]+"|b|"+base).map(i=>t.bank[i]);
     const txt=t.text.replace(/\{(\d)\}/g,(m,d)=>{const id=`${base}.${d}`,v=S.ans[id]||"",ok=v===t.answers[d],st=done?(ok?"ok":"bad"):"";
-      return `<span class="gap"><sup>${+d+1}</sup><select id="${cid(id)}" data-id="${id}" class="${st}" aria-label="Spraga ${+d+1}" ${done?"disabled":""}><option value="">…</option>${t.bank.map(w=>`<option ${v===w?"selected":""}>${w}</option>`).join("")}</select>${done&&!ok?`<em class="fix">${t.answers[d]}</em>`:""}</span>`});
-    h+=`<div class="bank" aria-label="Žodžiai">${t.bank.map(w=>`<span>${w}</span>`).join("")}</div><div class="passage cloze">${txt}</div>`;
+      return `<span class="gap"><sup>${+d+1}</sup><select id="${cid(id)}" data-id="${id}" class="${st}" aria-label="Spraga ${+d+1}" ${done?"disabled":""}><option value="">…</option>${bank.map(w=>`<option ${v===w?"selected":""}>${w}</option>`).join("")}</select>${done&&!ok?`<em class="fix">${t.answers[d]}</em>`:""}</span>`});
+    h+=`<div class="bank" aria-label="Žodžiai">${bank.map(w=>`<span>${w}</span>`).join("")}</div><div class="passage cloze">${txt}</div>`;
   }else if(t.kind==="form"){
     h+=`<div class="passage">${t.source}</div><div class="form-card"><p class="form-title">ANKETA</p>${t.fields.map((f,i)=>{const id=`${base}.${i}`,v=S.ans[id]||"",ok=!!v&&f.check(v),st=done?(ok?"ok":"bad"):"";
       return `<label class="field"><span>${f.label}</span><input type="text" id="${cid(id)}" data-id="${id}" class="${st}" value="${esc(v)}" autocomplete="off" spellcheck="false" ${done?"disabled":""}>${done&&!ok?`<em class="fix">${esc(f.show)}</em>`:""}</label>`}).join("")}</div>`;
@@ -592,7 +791,7 @@ function renderTask(L,s,ti,t,tn,done){
     const id=base+".text",v=S.ans[id]||"",w=words(v);
     h+=`<div class="prompt">${t.prompt}</div><div class="write">
       <div class="keys" role="group" aria-label="Lietuviškos raidės">${[..."ąčęėįšųūž"].map(c=>`<button type="button" class="key" data-ch="${c}" data-target="${cid(id)}">${c}</button>`).join("")}</div>
-      <textarea id="${cid(id)}" data-id="${id}" rows="8" spellcheck="false" placeholder="Rašykite čia…" aria-label="Jūsų laiškas">${esc(v)}</textarea>
+      <textarea id="${cid(id)}" data-id="${id}" rows="8" spellcheck="false" placeholder="Rašykite čia…" aria-label="Jūsų tekstas">${esc(v)}</textarea>
       <p class="wc ${w>=t.min&&w<=t.max?"in":""}" data-wc="${cid(id)}" data-min="${t.min}" data-max="${t.max}">${w} žodž. · reikia ${t.min}–${t.max}</p></div>
       <details class="model"><summary>Pavyzdinis atsakymas</summary>${done?`<div class="model-text">${esc(t.model)}</div>`:`<p class="muted">Pavyzdys bus parodytas, kai baigsite egzaminą.</p>`}</details>`+criteria(base,t);
   }else if(t.kind==="speak"){
@@ -601,43 +800,64 @@ function renderTask(L,s,ti,t,tn,done){
   }
   return h+`</section>`;
 }
+function eyebrow(L,ex,extra){return `<p class="eyebrow">${L} · ${ex.name} · Variantas ${S.attempt[L]+1}${extra?" · "+extra:""}</p>`}
 function renderSection(L,s){
-  const ex=EXAM[L],sec=ex.sections[s],done=S.done[L];
+  const ex=build(L),sec=ex.sections[s],done=S.done[L];
   let tn=ex.sections.slice(0,s).reduce((a,x)=>a+x.tasks.length,0);
   const pts=sec.tasks.reduce((a,t)=>a+taskMax(t),0);
-  let h=`<header class="sec-head"><p class="eyebrow">${L} · ${ex.name} · ${ROMAN[s]} dalis</p><h1>${sec.name}<span class="en">${sec.en}</span></h1><p class="meta">${tasku(pts)} · rekomenduojamas laikas ${sec.min} min.</p><p class="intro">${sec.intro}</p></header>`;
+  let h=`<header class="sec-head">${eyebrow(L,ex,ROMAN[s]+" dalis")}<h1>${sec.name}<span class="en">${sec.en}</span></h1><p class="meta">${tasku(pts)} · rekomenduojamas laikas ${sec.min} min.</p><p class="intro">${sec.intro}</p></header>`;
   if(sec.id==="klausymas")h+=`<div class="listen-bar"><div class="seg" role="group" aria-label="Skaitymo greitis"><button type="button" data-speed="0" aria-pressed="${!S.slow}">Įprastas greitis</button><button type="button" data-speed="1" aria-pressed="${S.slow}">Lėtai</button></div><p class="voice-note" id="voiceNote"></p></div>`;
   sec.tasks.forEach((t,ti)=>{tn++;h+=renderTask(L,s,ti,t,tn,done)});
   const n=ex.sections.length;
   h+=`<div class="next"><button type="button" class="btn primary" data-sec="${s+1}">${s+1<n?`Toliau: ${ROMAN[s+1]} dalis · ${ex.sections[s+1].name} →`:"Rezultatai →"}</button></div>`;
   return h;
 }
+function historyBlock(L){
+  const hs=S.history[L];if(!hs.length)return "";
+  return `<div class="hist"><h3>Ankstesni bandymai <span class="en">Past attempts</span></h3><ul class="todo">${hs.slice().reverse().map(x=>`<li><span>Variantas ${x.n} · ${x.date}</span><span>${x.pct} %</span></li>`).join("")}</ul></div>`;
+}
 function renderResults(L){
-  const ex=EXAM[L],g=gradeLevel(L),done=S.done[L];
-  let h=`<header class="sec-head"><p class="eyebrow">${L} · ${ex.name}</p><h1>Rezultatai<span class="en">Results</span></h1></header>`;
+  const ex=build(L),g=gradeLevel(L),done=S.done[L];
+  let h=`<header class="sec-head">${eyebrow(L,ex)}<h1>Rezultatai<span class="en">Results</span></h1></header>`;
   if(!done){
     h+=`<p class="intro" style="margin-top:1.25rem">Kai baigsite, atsakymai bus įvertinti. Teisingi atsakymai bus pažymėti kiekvienoje dalyje, atsiras klausymo tekstai ir pavyzdiniai rašymo atsakymai. <i class="en">Finishing marks your answers and unlocks transcripts and model answers.</i></p>
     <ul class="todo">${g.map(r=>`<li><span>${r.name}</span><span>${r.self?"įsivertinimas":`atsakyta ${r.answered} iš ${r.auto}`}</span></li>`).join("")}</ul>
-    <div class="actions"><button type="button" class="btn primary" id="finish">Baigti egzaminą</button></div>`;
+    <div class="actions"><button type="button" class="btn primary" id="finish">Baigti egzaminą</button><button type="button" class="btn" id="skip">Praleisti šį variantą</button></div>`+historyBlock(L);
     return h;
   }
-  const pc=g.map(r=>r.mx?r.sc/r.mx:0),overall=pc.reduce((a,b)=>a+b,0)/pc.length,pass=overall>=0.6&&pc.every(p=>p>=0.4);
+  const {pc,overall}=overallOf(g),pass=overall>=0.6&&pc.every(p=>p>=0.4);
   const totS=g.reduce((a,r)=>a+r.sc,0),totM=g.reduce((a,r)=>a+r.mx,0);
   h+=`<div class="res-top"><div class="score">${Math.round(overall*100)}<small>%</small></div><div class="verdict"><span class="pill ${pass?"pass":"fail"}">${pass?`${L} lygis pasiektas`:`${L} lygis dar nepasiektas`}</span><p>${totS} iš ${tasku(totM)}. Kiekviena dalis sudaro penktadalį galutinio įvertinimo.</p></div></div>
   <div class="rows">${g.map((r,i)=>{const p=pc[i];return `<div class="rrow"><b>${ROMAN[i]}. ${r.name}<small>${r.en}${r.self?" · įsivertinta":""}</small></b><div class="bar"><i class="${p<0.4?"low":""}" style="width:${Math.round(p*100)}%"></i></div><span class="num">${r.sc}/${r.mx} · ${Math.round(p*100)}%</span></div>`}).join("")}</div>
   <p class="note">Praktinė riba: bent 60 % iš viso ir ne mažiau kaip 40 % kiekvienoje dalyje. Tikrame egzamine rašymą ir kalbėjimą vertina egzaminuotojai, o ribas nustato egzamino rengėjai. <i class="en">Practice threshold: 60% overall and at least 40% per part. In a real exam, examiners grade writing and speaking.</i></p>
-  <p class="note">Atsakymus galite peržiūrėti kiekvienoje dalyje: teisingi pažymėti žaliai, klaidingi – raudonai.</p>
-  <div class="actions">${ex.sections.map((sx,i)=>`<button type="button" class="btn" data-sec="${i}">${ROMAN[i]}. ${sx.name}</button>`).join("")}<button type="button" class="btn warn" id="reset">Pradėti ${L} iš naujo</button></div>`;
+  <p class="note">Peržiūrėkite atsakymus kiekvienoje dalyje: teisingi pažymėti žaliai, klaidingi – raudonai. Kitas variantas turės kitus tekstus ir klausimus. <i class="en">Review your answers in each part. The next version has different texts and questions.</i></p>
+  <div class="actions"><button type="button" class="btn primary" id="nextAttempt">Kitas variantas →</button>${ex.sections.map((sx,i)=>`<button type="button" class="btn" data-sec="${i}">${ROMAN[i]}. ${sx.name}</button>`).join("")}</div>`+historyBlock(L);
   return h;
 }
 function render(scroll){
-  const L=S.level,ex=EXAM[L],si=S.sec[L],n=ex.sections.length;
+  const L=S.level,ex=build(L),si=S.sec[L],n=ex.sections.length;
   document.querySelectorAll("[data-level]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.level===L));
+  $("#brandSub").textContent=`Klausimų bankas · Variantas ${S.attempt[L]+1}`;
   $("#parts").innerHTML=ex.sections.map((s,i)=>`<button type="button" class="part" data-sec="${i}" aria-current="${i===si?"step":"false"}"><span class="rn">${ROMAN[i]}</span>${s.name}</button>`).join("")
     +`<button type="button" class="part" data-sec="${n}" aria-current="${si===n?"step":"false"}">${S.done[L]?'<span class="dot"></span>':""}Rezultatai</button>`;
   $("#paper").innerHTML=si<n?renderSection(L,si):renderResults(L);
   updateClock();updatePlayers();
   if(scroll)window.scrollTo({top:0});
+}
+
+/* ---------- attempts ---------- */
+function newAttempt(L){
+  stopAudio();
+  const p=L+".";
+  for(const o of [S.ans,S.chk,S.plays])for(const k of Object.keys(o))if(k.startsWith(p))delete o[k];
+  S.attempt[L]++;S.done[L]=false;S.sec[L]=0;S.timer[L]={left:EXAM[L].minutes*60,running:false};
+  save();render(true);
+}
+function finish(L){
+  const g=gradeLevel(L),{overall}=overallOf(g);
+  S.done[L]=true;S.timer[L].running=false;
+  S.history[L].push({n:S.attempt[L]+1,pct:Math.round(overall*100),date:new Date().toISOString().slice(0,10)});
+  save();render(true);
 }
 
 /* ---------- timer ---------- */
@@ -678,29 +898,26 @@ document.addEventListener("input",e=>{
     if(wc){const w=words(el.value),mn=+wc.dataset.min,mx=+wc.dataset.max;wc.textContent=`${w} žodž. · reikia ${mn}–${mx}`;wc.classList.toggle("in",w>=mn&&w<=mx)}
   }
 });
-let confirmFinish=false,confirmReset=false;
+const pending={};
+function confirmTwice(b,key,msg,label,fn){
+  if(!pending[key]){pending[key]=true;b.classList.add("confirm");b.textContent=msg;setTimeout(()=>{pending[key]=false;if(b.isConnected){b.classList.remove("confirm");b.textContent=label}},4000);return}
+  pending[key]=false;fn();
+}
 document.addEventListener("click",e=>{
   const b=e.target.closest("button");if(!b)return;
-  if(b.dataset.level){if(S.level!==b.dataset.level){if(playing){speechSynthesis.cancel();playing=null}S.level=b.dataset.level;save();render(true)}return}
-  if(b.dataset.sec!==undefined){if(playing){speechSynthesis.cancel();playing=null}S.sec[S.level]=+b.dataset.sec;save();render(true);return}
+  if(b.dataset.level){if(S.level!==b.dataset.level){stopAudio();S.level=b.dataset.level;save();render(true)}return}
+  if(b.dataset.sec!==undefined){stopAudio();S.sec[S.level]=+b.dataset.sec;save();render(true);return}
   if(b.dataset.speed!==undefined){S.slow=b.dataset.speed==="1";save();document.querySelectorAll("[data-speed]").forEach(x=>x.setAttribute("aria-pressed",x.dataset.speed===b.dataset.speed));return}
   if(b.classList.contains("play")){playClip(b.closest(".player").dataset.clip);return}
   if(b.classList.contains("tx")){const tr=b.closest(".player").nextElementSibling;tr.hidden=!tr.hidden;b.textContent=tr.hidden?"Rodyti tekstą":"Slėpti tekstą";return}
   if(b.classList.contains("key")){const ta=document.getElementById(b.dataset.target);if(!ta)return;const st=ta.selectionStart??ta.value.length,en=ta.selectionEnd??st;ta.setRangeText(b.dataset.ch,st,en,"end");ta.focus();ta.dispatchEvent(new Event("input",{bubbles:true}));return}
   if(b.classList.contains("stimer")){startSpeak(b);return}
   if(b.id==="clockBtn"){const t=S.timer[S.level];if(t.left>0&&!S.done[S.level]){t.running=!t.running;save();updateClock()}return}
-  if(b.id==="finish"){
-    if(!confirmFinish){confirmFinish=true;b.classList.add("confirm");b.textContent="Spauskite dar kartą, kad baigtumėte";setTimeout(()=>{confirmFinish=false;if(b.isConnected){b.classList.remove("confirm");b.textContent="Baigti egzaminą"}},4000);return}
-    confirmFinish=false;S.done[S.level]=true;S.timer[S.level].running=false;save();render(true);return}
-  if(b.id==="reset"){
-    if(!confirmReset){confirmReset=true;b.textContent="Spauskite dar kartą: visi atsakymai bus ištrinti";setTimeout(()=>{confirmReset=false;if(b.isConnected)b.textContent=`Pradėti ${S.level} iš naujo`},4000);return}
-    confirmReset=false;const L=S.level,p=L+".";
-    for(const o of [S.ans,S.chk,S.plays])for(const k of Object.keys(o))if(k.startsWith(p))delete o[k];
-    S.done[L]=false;S.sec[L]=0;S.timer[L]={left:EXAM[L].minutes*60,running:false};save();render(true);return}
+  if(b.id==="finish"){confirmTwice(b,"finish","Spauskite dar kartą, kad baigtumėte","Baigti egzaminą",()=>finish(S.level));return}
+  if(b.id==="skip"){confirmTwice(b,"skip","Spauskite dar kartą: atsakymai bus ištrinti","Praleisti šį variantą",()=>newAttempt(S.level));return}
+  if(b.id==="nextAttempt"){newAttempt(S.level);return}
 });
-document.addEventListener("keydown",e=>{
-  if(e.target.matches&&e.target.matches('.field input')&&e.key==="Enter")e.preventDefault();
-});
+document.addEventListener("keydown",e=>{if(e.target.matches&&e.target.matches(".field input")&&e.key==="Enter")e.preventDefault()});
 render(false);
 </script>
 
