@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sharing Is Caring: Zero-Copy Cells for AgentCore Subagents</title>
+<meta name="description" content="A cost model and reference architecture for sharing large files between Amazon Bedrock AgentCore subagents, with proofs, representative evaluation and a decision matrix.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<style>
+:root{--ink:#1d1d1b;--quiet:#5f5e5a;--rule:#e2e0d9;--bg:#fbfaf7;--card:#ffffff;--accent:#1f5fae;--code:#f3f1ec}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.65 "Source Serif 4",Georgia,serif}
+.wrap{max-width:780px;margin:0 auto;padding:56px 24px 96px}
+header h1{font:600 2.1rem/1.2 Inter,system-ui,sans-serif;letter-spacing:-0.02em;margin:0 0 12px}
+.byline{font:400 0.95rem Inter,system-ui,sans-serif;color:var(--quiet);margin:0 0 32px}
+.byline a{color:var(--quiet)}
+nav.toc{font:400 0.92rem/1.5 Inter,system-ui,sans-serif;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:16px 0;margin:0 0 40px}
+nav.toc strong{font-weight:600;display:block;margin-bottom:6px}
+nav.toc ol{margin:0;padding-left:20px;columns:2;column-gap:32px}
+nav.toc a{color:var(--ink);text-decoration:none}
+nav.toc a:hover{color:var(--accent)}
+h2{font:600 1.45rem/1.3 Inter,system-ui,sans-serif;letter-spacing:-0.01em;margin:56px 0 12px;padding-top:8px}
+h3{font:600 1.12rem/1.35 Inter,system-ui,sans-serif;margin:36px 0 8px}
+h2#executive-overview{margin-top:0}
+h2#executive-overview + p{font-size:1.15rem}
+a{color:var(--accent)}
+p,li{margin:0 0 14px}
+ul,ol{padding-left:24px}
+li p{margin:0 0 6px}
+code{font:0.86em/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--code);padding:1px 5px;border-radius:4px}
+pre{background:var(--code);padding:14px 16px;border-radius:8px;overflow-x:auto}
+pre code{background:none;padding:0}
+.math{overflow-x:auto;overflow-y:hidden;margin:18px 0;padding:4px 0}
+figure{margin:32px 0;background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:12px}
+figure img{display:block;width:100%;height:auto;border-radius:6px}
+figcaption{font:400 0.85rem Inter,system-ui,sans-serif;color:var(--quiet);margin:10px 4px 2px}
+.table-wrap{overflow-x:auto;margin:20px 0;border:1px solid var(--rule);border-radius:10px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font:400 0.86rem/1.45 Inter,system-ui,sans-serif}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--rule)}
+th{font-weight:600;background:#f5f3ee;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td p{margin:0}
+footer{font:400 0.85rem Inter,system-ui,sans-serif;color:var(--quiet);border-top:1px solid var(--rule);margin-top:64px;padding-top:16px}
+@media (max-width:640px){body{font-size:17px}header h1{font-size:1.6rem}nav.toc ol{columns:1}.wrap{padding:32px 16px 64px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header>
+<p class="byline" style="margin-bottom:24px"><a href="../">&larr; jrodimusprime</a></p>
+<h1 id="sharing-is-caring-zero-copy-cells-a-cost-model-for-sharing-large-files-between-agentcore-subagents">Sharing Is Caring: Zero-Copy Cells — A Cost Model for Sharing Large Files Between AgentCore Subagents</h1>
+<p class="byline"><time datetime="2026-10-30">30 October 2026</time> · <a href="https://github.com/jrodimusprime">jrodimusprime</a></p>
+</header>
+<nav class="toc" aria-label="Contents"><strong>Contents</strong><ol><li><a href="#executive-overview">Executive overview</a></li><li><a href="#abstract">Abstract</a></li><li><a href="#1-introduction">1. Introduction</a></li><li><a href="#2-background-agentcore-storage-and-placement">2. Background: AgentCore storage and placement</a></li><li><a href="#3-the-proposed-design-and-the-baselines">3. The proposed design and the baselines</a></li><li><a href="#4-cost-model">4. Cost model</a></li><li><a href="#5-theoretical-results">5. Theoretical results</a></li><li><a href="#6-representative-evaluation">6. Representative evaluation</a></li><li><a href="#7-discussion-and-decision-matrix">7. Discussion and decision matrix</a></li><li><a href="#8-threats-to-validity-and-benchmark-protocol">8. Threats to validity and benchmark protocol</a></li><li><a href="#9-conclusion">9. Conclusion</a></li><li><a href="#references">References</a></li><li><a href="#appendix-a-designer-chosen-versus-agent-chosen-atoms">Appendix A. Designer-chosen versus agent-chosen atoms</a></li></ol></nav>
+<article>
+
+<h2 id="executive-overview">Executive overview</h2>
+<p>Subagents that share one copy of their data on one machine hand off a 1 GiB file 3 to 50 times faster than through any network store, without leaving AgentCore governance.</p>
+<p><strong>Example.</strong> An orchestrator fans a 1 GB data room out to subagents that extract clauses, check financials and flag risks; the data changes hands 10 times. With 30 s of model time, the job takes 31 s with shared memory in one AgentCore session, 36 s via S3, 53 s via EFS and 88 s via Postgres.</p>
+<p><strong>Recommendations.</strong></p>
+<ul><li><p>Keep every subagent an AgentCore runtime with its own identity and audit trail. This is the one fixed requirement.</p></li><li><p>Co-locate trusted subagents in one session and share data through memory.</p></li><li><p>Commit work in whole units, so no reader ever sees partial output.</p></li><li><p>Use S3 to cross machines or persist results, and databases for small records only.</p></li></ul>
+<h3 id="solution-design">Solution design</h3>
+<p>The solution has four layers, each with a single responsibility and a clear business outcome.</p>
+<div class="table-wrap"><table><thead><tr><th>Layer</th><th>What it does</th><th>Business value</th></tr></thead><tbody><tr><td>Governance</td><td>Every subagent runs as an AgentCore runtime with its own role and audit trail</td><td>Compliance and traceability are preserved by design</td></tr><tr><td>Execution cell</td><td>Subagents working on one task share one machine and one copy of the working data</td><td>Faster turnaround, with less memory and network traffic per task</td></tr><tr><td>Units of work</td><td>Output is handed over only in complete, verified units</td><td>No partial or inconsistent results; failed work is simply redone</td></tr><tr><td>Persistence</td><td>Finished units move to S3; databases keep small records and references</td><td>Durable results that other teams and systems can consume</td></tr></tbody></table></div>
+<p><strong>Who decides the units of work.</strong> Architects define the catalogue of units and the guardrails around them. Agents decide at run time which unit to pick up next and, for generative work, where a unit ends. Agent-led scheduling is the default inside a cell, where coordination is almost free; a fixed, pre-approved plan is reserved for uniform work coordinated through slower services. Appendix A sets out the evidence.</p>
+<p><strong>Caveat.</strong> The figures come from a model, not measurements, and co-located subagents must trust each other. Section 8 gives the benchmark.</p>
+<h2 id="abstract">Abstract</h2>
+<p>Co-locating AgentCore subagents on one Instances session and sharing a memory-mapped volume moves a 1 GiB file in about 0.12 s, 5.5 to 50 times faster than any networked alternative under representative constants.</p>
+<p>The paper makes one hard assumption: every subagent runs under AgentCore orchestration, because its governance layer is required. Everything else is optimised within that constraint.</p>
+<p>Subagents on Amazon Bedrock AgentCore often exchange multi-gigabyte files and coordinate on them with locks. We propose a zero-copy cell: subagent runtimes invoked with one session ID land on one EC2 instance and share an EBS volume through the kernel page cache. We prove that any cross-process share costs at least one cache-coherence transfer plus one pass over the bytes, and that the cell meets this bound once mappings are reused.</p>
+<p>We compare the cell against five baselines: copy-based local I/O, SQLite in WAL mode, an NFS mount (EFS or S3 Files), Amazon RDS for PostgreSQL and S3 objects. The baselines rank differently by size: S3 overtakes NFS above about 61 MB and SQLite above about 100 MB. Databases are competitive only for small locked commits. All constants are representative, not measured; Section 8 gives the benchmark needed to replace them.</p>
+<h2 id="1-introduction">1. Introduction</h2>
+<p>Where a shared file lives relative to compute decides how fast subagents can hand it to each other, and the gap spans five orders of magnitude.</p>
+<p>Multi-agent systems fan work out to subagents that produce large intermediate artifacts: datasets, embeddings, code trees, model checkpoints, rendered media. Other subagents consume those artifacts, often concurrently, and some must update them under a lock. The default choice is whatever storage the team already runs: an object store, a shared filesystem or a database.</p>
+<p>That default is rarely examined. A file in the consumer&#39;s own address space costs nothing to share. The same file behind a network round trip and a server process costs milliseconds before the first byte moves, and a per-client bandwidth cap after that.</p>
+<p>This paper makes four contributions:</p>
+<ol><li><p>A taxonomy of sharing mechanisms ordered by distance from compute.</p></li><li><p>The zero-copy cell, a concrete design for AgentCore Runtime Instances.</p></li><li><p>A cost model with three results: a lower bound, a dominance ordering and closed-form crossover sizes.</p></li><li><p>A representative evaluation, a decision matrix and a benchmark protocol for replacing representative constants with measurements.</p></li></ol>
+<h3 id="scope-the-one-hard-assumption">Scope: the one hard assumption</h3>
+<p>Every subagent must run as an AgentCore runtime, invoked through AgentCore, so that it sits inside AgentCore&#39;s governance layer. This is the paper&#39;s only hard assumption; the question is how to make file sharing fast without leaving that layer.</p>
+<p>The assumption has three consequences for the design space:</p>
+<ol><li><p><em>Each subagent keeps its own identity and audit trail.</em> Each agent runs with IAM credentials from its own runtime&#39;s execution role, and CloudTrail records the principal and session ID of every invocation (<a href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-instances-security.html">security model</a>).</p></li><li><p><em>Collapsing subagents into one process is out.</em> Threads in one runtime (mechanism A) would merge identities and audit records, so A is kept only as a theoretical bound.</p></li><li><p><em>Placement follows AgentCore&#39;s rules.</em> Co-location is available only on the Instances compute type, by sharing a session ID, and the session is the trust boundary.</p></li></ol>
+<p>Because each governed subagent is a separate process, Theorem 1&#39;s cross-process bound applies, and Corollary 1 makes the zero-copy cell the fastest admissible design.</p>
+<h2 id="2-background-agentcore-storage-and-placement">2. Background: AgentCore storage and placement</h2>
+<p>AgentCore&#39;s Instances compute type is what makes the cell possible: runtimes invoked with the same session ID run on the same EC2 instance and can mount the same EBS volume.</p>
+<p>AgentCore Runtime offers two compute types (<a href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-instances-how-it-works.html">AgentCore Instances</a>):</p>
+<div class="table-wrap"><table><thead><tr><th>Property</th><th>microVMs</th><th>Instances</th></tr></thead><tbody><tr><td>Agents per session</td><td>1</td><td>Many (1:N)</td></tr><tr><td>Maximum session</td><td>8 hours</td><td>14 days</td></tr><tr><td>Managed storage</td><td>Session storage, isolated per session</td><td>EBS capacity provider volumes</td></tr><tr><td>Shared storage</td><td>EFS or S3 Files access points (VPC)</td><td>Same volume mounted by co-located runtimes</td></tr><tr><td>GPUs</td><td>No</td><td>Supported families, shared by agents on the instance</td></tr></tbody></table></div>
+<p>On Instances, invoking a second runtime that shares the capacity provider with the same <code>runtimeSessionId</code> launches it beside the first. If both runtimes list the same <code>capacityProviderVolume</code>, both mount it (<a href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-filesystem-configurations.md">file system configurations</a>).</p>
+<p>On microVMs, sharing across sessions requires a bring-your-own mount. EFS offers full POSIX with advisory locking and close-to-open consistency over NFSv4.1. S3 Files mounts over NFSv4.2 and syncs bidirectionally with a bucket, with roughly 60 seconds of batching before NFS writes appear through the S3 API (<a href="https://computingforgeeks.com/amazon-s3-files-guide-setup-performance-pricing/">S3 Files guide</a>).</p>
+<p>The trust boundary is the session. Agents on one instance are not isolated from each other, so only mutually trusted subagents may share a cell (<a href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-instances-security.html">security model</a>).</p>
+<h2 id="3-the-proposed-design-and-the-baselines">3. The proposed design and the baselines</h2>
+<p>We propose two mechanisms and compare them against five baselines that teams commonly reach for; the baselines are not recommendations.</p>
+<figure><img src="figures/fig1-distance.png" alt="Seven mechanisms placed by distance from compute" loading="lazy"><figcaption>Figure 1 · seven mechanisms placed by distance from compute</figcaption></figure>
+<p>Each container a mechanism sits in adds a cost to everything inside it: a copy at the instance level, a network round trip in the VPC, a service request in the Region.</p>
+<h3 id="proposed">Proposed</h3>
+<p><strong>A. Threads in one process.</strong> All subagents run as threads or coroutines in one agent runtime. Sharing a file is passing a pointer. A is the theoretical upper bound, but one process means one failure domain and one IAM identity, so it bypasses per-subagent governance and is not admissible under the paper&#39;s hard assumption.</p>
+<p><strong>B. Zero-copy cell.</strong> Each subagent is its own runtime on one capacity provider, invoked with one session ID, mounting one EBS volume. The volume holds three regions:</p>
+<ol><li><p>A control file every agent maps with MAP_SHARED, holding robust process-shared futexes, generation counters, leases with fencing tokens and an event ring buffer.</p></li><li><p>A chunk store of immutable, content-addressed chunks of 16 to 64 MiB. Readers map sealed chunks without locks. Writers filling a chunk take OFD byte-range locks, which the kernel releases if the holder dies.</p></li><li><p>Manifests listing a file&#39;s chunks and generation, committed by atomic rename so readers always see a complete version.</p></li></ol>
+<h3 id="baselines">Baselines</h3>
+<p><strong>C. Copy I/O, co-located.</strong> The same cell, but consumers read() bytes into private buffers. It isolates the cost of copying.</p>
+<p><strong>D. SQLite in WAL mode, co-located.</strong> Files stored as blobs in a SQLite database on the shared volume. WAL needs shared memory, so all processes must be on one host and it does not work over a network filesystem (<a href="https://fossies.org/linux/sqlite-doc/wal.html">SQLite WAL</a>). Containers on one host sharing a volume do satisfy this (<a href="https://simonwillison.net/2026/apr/7/sqlite-wal-docker-containers">Willison, 2026</a>).</p>
+<p><strong>E. NFS mount.</strong> EFS or S3 Files mounted into microVM sessions in the same Availability Zone, with advisory locks over NFS.</p>
+<p><strong>F. Amazon RDS for PostgreSQL.</strong> Files stored as bytea or large objects in a same-AZ instance, with row locks for coordination.</p>
+<p><strong>G. S3 objects.</strong> Producers PUT, consumers GET with parallel ranged requests, and manifests commit with conditional writes.</p>
+<h3 id="reference-architecture-of-the-cell">Reference architecture of the cell</h3>
+<p>The cell keeps every byte on one instance and touches the network only to seed the volume and to persist sealed results.</p>
+<figure><img src="figures/fig2-architecture.png" alt="Reference architecture of the zero-copy cell on AgentCore Instances" loading="lazy"><figcaption>Figure 2 · reference architecture of the zero-copy cell on AgentCore Instances</figcaption></figure>
+<ol><li><p>The caller invokes each subagent runtime with the same runtimeSessionId, which names the cell.</p></li><li><p>AgentCore Runtime launches every runtime that shares the capacity provider on the same managed EC2 instance, each with its own execution role.</p></li><li><p>Runtimes share bytes through the kernel page cache: mapped chunks, futexes in the control file and OFD byte-range locks.</p></li><li><p>The capacity provider volume holds the control file, chunk store and manifests, and survives session stops.</p></li><li><p>Sealed chunks and manifests spill asynchronously to S3 through a gateway endpoint, committed with conditional writes, so other cells can read them.</p></li><li><p>An EBS snapshot named in the capacity provider seeds the volume with reference data at first launch.</p></li></ol>
+<p>Official AWS Architecture Icons can replace the service boxes without changing the layout.</p>
+<h3 id="atomic-units-of-work">Atomic units of work</h3>
+<p>Every unit of work should commit all-or-nothing, on a boundary chosen on purpose and at a size chosen from the cost model.</p>
+<p>We borrow the vocabulary of atomic design: atoms compose into molecules, molecules into organisms. Here each level is also atomic in the transactional sense, so a reader never sees part of a unit.</p>
+<figure><img src="figures/fig3-atomic-units.png" alt="Atomic units of work and the controller for generative atoms" loading="lazy"><figcaption>Figure 3 · atomic units of work and the controller for generative atoms</figcaption></figure>
+<p>A crash at any level leaves the committed level below intact and the level above unchanged, so recovery is discarding what never committed.</p>
+<p><strong>Three rules.</strong></p>
+<ol><li><p><em>Intentional boundaries.</em> An atom ends at a semantic unit (a record, a shard, a function, a tool-call output) and preserves a stated invariant. A byte count caps an atom&#39;s size; it never defines where the atom ends, because a cut mid-record exposes half a fact.</p></li><li><p><em>Compose only committed parts.</em> A manifest references only sealed atoms, and a task commit references only committed manifests.</p></li><li><p><em>Idempotent identity.</em> An atom&#39;s ID is the hash of its content, so a deterministic retry produces the same atom and deduplicates. A non-deterministic retry produces a different hash, so manifests commit conditionally and the first commit wins; losing atoms are garbage-collected.</p></li></ol>
+<p><strong>Sizing an atom.</strong> Small atoms pay a fixed seal cost λ_u many times; large atoms lose more work when a writer fails mid-atom. With producer rate β_p and failure rate φ per second of production, the expected overhead of producing S bytes in atoms of size c is</p>
+<pre><code class="language-latex">O(c) = \frac{S}{c}\,\lambda_u + \varphi \, \frac{S}{\beta_p} \cdot \frac{c}{2\beta_p}</code></pre>
+<p>Setting dO/dc = 0 gives the optimal atom size, the same square-root form as Young&#39;s optimal checkpoint interval:</p>
+<pre><code class="language-latex">c^{*} = \beta_p \sqrt{\frac{2\lambda_u}{\varphi}}</code></pre>
+<p><em>Worked example.</em> With β_p = 100 MB/s, λ_u = 50 µs and one failure per hour (φ = 2.78 × 10⁻⁴ per second): c* = 100 MB/s × √(2 × 5 × 10⁻⁵ / 2.78 × 10⁻⁴) = 100 MB/s × √0.36 = 60 MB, so 64 MiB chunks. Ten times the failure rate shrinks c* by √10, to 19 MB.</p>
+<p><strong>Generative atoms.</strong> When a subagent generates output with a model, an atom&#39;s size and boundary are not known in advance, so sizing must be controlled at run time rather than fixed. The controller in Figure 3 does four things:</p>
+<ol><li><p><em>Seals on the first of three triggers:</em> size reaches c*, the generator emits a semantic boundary, or a time budget T_max elapses. Setting T_max = c* / β̂_p makes the size and time triggers agree in steady state, and bounds lost work to T_max of generation.</p></li><li><p><em>Makes boundaries intentional.</em> The generator is constrained to structured output with explicit boundary markers, so semantic boundaries arrive more often than c*. If they don&#39;t, the controller falls back to the time budget and flags the unit for review.</p></li><li><p><em>Retunes online.</em> It keeps moving averages φ̂ and β̂_p, recomputes c* from the formula above, and clamps it to a fixed range so it doesn&#39;t oscillate.</p></li><li><p><em>Never half-commits.</em> Each open atom holds a lease with a fencing token and a heartbeat. If the lease expires, the atom is discarded, and a stale writer&#39;s late seal is rejected by its token. A cap on open atoms per subagent keeps uncommitted bytes from crowding the page cache.</p></li></ol>
+<h2 id="4-cost-model">4. Cost model</h2>
+<p>Every mechanism is reduced to three numbers: a fixed latency, a per-byte cost to move the data, and a per-byte cost to read it that all mechanisms share.</p>
+<p><strong>Bulk workload.</strong> One producer shares a file of S bytes with N consumers, and each consumer reads every byte. The producer&#39;s own work to generate the bytes is common to all mechanisms and excluded. We count only the cost of getting bytes from where they were produced to where they are read. For one consumer:</p>
+<pre><code class="language-latex">T_k(S) = \lambda_k + S\left(\frac{1}{\beta^{w}_k} + \frac{1}{\beta^{r}_k}\right) + \frac{S}{B_{mem}}</code></pre>
+<p>Here λ_k is the fixed synchronization and setup latency, β^w_k and β^r_k are the effective write and read transfer bandwidths, and S / B_mem is the consumer touching the bytes in RAM. We write c_k = 1/β^w_k + 1/β^r_k for the per-byte transfer cost, so T_k(S) = λ_k + c_k S + S / B_mem.</p>
+<p><strong>Small-op workload.</strong> One subagent takes a lock, reads and rewrites a 4 KiB record, and releases the lock. This models claiming a task or bumping a manifest generation.</p>
+<p><strong>Hardware constants (common to all).</strong> B_mem = 10 GB/s single-core read bandwidth; B_copy = 8 GB/s memcpy; fault-around window F = 64 KiB; minor fault t_f = 0.5 µs; syscall t_sys = 1 µs; read buffer b = 1 MiB. GB means 10^9 bytes.</p>
+<div class="table-wrap"><table><thead><tr><th>Mechanism</th><th>Role</th><th>λ (fixed latency)</th><th>Write β</th><th>Read β</th><th>c (s per GB)</th></tr></thead><tbody><tr><td>A. Threads in one process</td><td>Proposed (upper bound)</td><td>100 ns</td><td>none</td><td>none</td><td>0</td></tr><tr><td>B. Zero-copy cell (shared mmap)</td><td>Proposed</td><td>50 ns + ⌈S/F⌉ t_f / R</td><td>none</td><td>none</td><td>0</td></tr><tr><td>C. Copy I/O, co-located</td><td>Baseline</td><td>2 t_sys ⌈S/b⌉</td><td>8 GB/s</td><td>8 GB/s</td><td>0.25</td></tr><tr><td>D. SQLite (WAL), co-located</td><td>Baseline</td><td>25 µs</td><td>1.0 GB/s</td><td>2.5 GB/s</td><td>1.4</td></tr><tr><td>E. NFS: EFS or S3 Files</td><td>Baseline</td><td>2.0 ms</td><td>1.0 GB/s</td><td>1.0 GB/s</td><td>2.0</td></tr><tr><td>F. RDS for PostgreSQL</td><td>Baseline</td><td>1.9 ms</td><td>0.3 GB/s</td><td>0.5 GB/s</td><td>5.33</td></tr><tr><td>G. S3 objects, parallel ranged</td><td>Baseline</td><td>100 ms</td><td>5 GB/s</td><td>5 GB/s</td><td>0.4</td></tr></tbody></table></div>
+<p>R is the number of shares that reuse one mapping. Every constant is an order-of-magnitude assumption for current x86 or Graviton instances in one Availability Zone, chosen to be fair to each baseline. None is a measurement.</p>
+<h2 id="5-theoretical-results">5. Theoretical results</h2>
+<p>The cell is provably as fast as any cross-process scheme can be, up to a mapping cost that vanishes with reuse, and no baseline can beat copy I/O on the same host.</p>
+<h3 id="theorem-1-lower-bound">Theorem 1 (lower bound)</h3>
+<p>Any scheme in which a consumer in a different thread or process from the producer reads all S bytes takes at least</p>
+<pre><code class="language-latex">T \geq t_c + \frac{S}{B_{mem}}</code></pre>
+<p>where t_c is the minimum inter-core cache-coherence latency.</p>
+<p><em>Proof.</em> The consumer must touch all S bytes, which costs at least S / B_mem. It must also learn the bytes are ready, which means observing a write made on another core; that costs at least one coherence transfer, t_c. The consumer cannot safely read before the signal arrives, so the two costs are sequential. ∎</p>
+<p><strong>Corollary 1.</strong> Mechanism A attains t_c + S / B_mem and is optimal within the model. Mechanism B adds a mapping cost amortized over R shares:</p>
+<pre><code class="language-latex">T_B(S) - T_A(S) = \frac{\lceil S/F \rceil \, t_f}{R} \;\xrightarrow{R \to \infty}\; 0</code></pre>
+<p>So B is asymptotically optimal among cross-process schemes. For S = 1 GiB the mapping cost is 16,384 × 0.5 µs = 8.2 ms at R = 1, and 0.08 ms at R = 100.</p>
+<h3 id="theorem-2-dominance">Theorem 2 (dominance)</h3>
+<p>For every S ≥ 0: T_A ≤ T_B ≤ T_C, and T_C ≤ T_k for every k in {D, E, F, G}.</p>
+<p><em>Proof.</em> Let O_k be the multiset of operations on mechanism k&#39;s critical path, each with non-negative cost. If O_j ⊆ O_k then T_j ≤ T_k. The inclusions are:</p>
+<ul><li><p>O_B = O_A ∪ {page faults, futex in a shared mapping}.</p></li><li><p>O_C = O_B ∪ {syscalls, kernel-to-user copies}. A real read() also faults pages into the page cache, so it contains O_B&#39;s work.</p></li><li><p>O_D ⊇ O_C: SQLite reads and writes pages through the same copy path, plus B-tree traversal, WAL appends and checkpoint copies.</p></li><li><p>O_E, O_F, O_G ⊇ O_C: each delivers bytes into a user buffer by copy, plus network round trips and server-side processing.</p></li></ul>
+<p>Each added operation has positive cost in practice, so every inequality is strict. ∎</p>
+<p>Theorem 2 is a partial order. It does not rank D, E, F and G against each other, because their operation sets are not nested.</p>
+<h3 id="theorem-3-crossover-size">Theorem 3 (crossover size)</h3>
+<p>For two baselines a and b with λ_a &lt; λ_b and c_a &gt; c_b, a is faster below and b faster above</p>
+<pre><code class="language-latex">S^{*}_{a,b} = \frac{\lambda_b - \lambda_a}{c_a - c_b}</code></pre>
+<p><em>Proof.</em> T_a(S) − T_b(S) = (λ_a − λ_b) + (c_a − c_b) S, since the S / B_mem terms cancel. This is linear in S with a negative intercept and positive slope, so it has exactly one root, at S*. ∎</p>
+<p>If λ_a ≤ λ_b and c_a ≤ c_b, a dominates b at every size. Under Section 4&#39;s constants, SQLite dominates both NFS and RDS, and NFS dominates RDS above about 30 KB. The crossovers against S3 are worked in Section 6.</p>
+<h2 id="6-representative-evaluation">6. Representative evaluation</h2>
+<p>Under Section 4&#39;s constants, the cell moves 1 GiB in 0.116 s: within 8% of the one-process bound, and 3.3 to 50 times faster than every baseline.</p>
+<figure><img src="figures/fig4-latency-by-size.png" alt="Time per consumer by file size for all seven mechanisms" loading="lazy"><figcaption>Figure 4 · cost model of Section 4, representative constants, 4 KiB to 16 GiB</figcaption></figure>
+<p>The cell&#39;s line sits on the one-process bound at every size. Among baselines, S3 is slowest for small files and fastest above 61 MB; RDS for PostgreSQL is slowest for large ones.</p>
+<h3 id="worked-calculation-at-1-gib">Worked calculation at 1 GiB</h3>
+<p>S = 1 GiB = 1.074 GB, so the common read term is S / B_mem = 1.074 GB ÷ 10 GB/s = 0.107 s. Each row applies T = λ + c × S + S / B_mem with c in seconds per GB.</p>
+<div class="table-wrap"><table><thead><tr><th>Mechanism</th><th>λ</th><th>c × S</th><th>S / B_mem</th><th>T(1 GiB)</th><th>Slower than cell</th></tr></thead><tbody><tr><td>A. Threads, one process</td><td>100 ns</td><td>0</td><td>0.107 s</td><td>0.107 s</td><td>0.93×</td></tr><tr><td>B. Zero-copy cell</td><td>8.2 ms (16,384 faults × 0.5 µs)</td><td>0</td><td>0.107 s</td><td>0.116 s</td><td>1.0×</td></tr><tr><td>C. Copy I/O</td><td>2.0 ms (1,024 reads × 2 × 1 µs)</td><td>0.25 × 1.074 = 0.268 s</td><td>0.107 s</td><td>0.378 s</td><td>3.3×</td></tr><tr><td>G. S3 objects</td><td>100 ms</td><td>0.4 × 1.074 = 0.430 s</td><td>0.107 s</td><td>0.637 s</td><td>5.5×</td></tr><tr><td>D. SQLite (WAL)</td><td>25 µs</td><td>1.4 × 1.074 = 1.503 s</td><td>0.107 s</td><td>1.611 s</td><td>13.9×</td></tr><tr><td>E. NFS: EFS or S3 Files</td><td>2.0 ms</td><td>2.0 × 1.074 = 2.147 s</td><td>0.107 s</td><td>2.257 s</td><td>19.5×</td></tr><tr><td>F. RDS for PostgreSQL</td><td>1.9 ms</td><td>5.33 × 1.074 = 5.727 s</td><td>0.107 s</td><td>5.836 s</td><td>50.5×</td></tr></tbody></table></div>
+<h3 id="crossovers-between-baselines">Crossovers between baselines</h3>
+<p>Theorem 3 gives each crossover as S* = (λ_b − λ_a) / (c_a − c_b), with λ in seconds and c in seconds per GB, so S* comes out in GB:</p>
+<pre><code class="language-latex">\begin{aligned}
+S^{*}_{E,G} &amp;= \frac{0.100 - 0.002}{2.0 - 0.4} = 0.061\ \text{GB} \approx 61\ \text{MB} \\
+S^{*}_{D,G} &amp;= \frac{0.100 - 0.000025}{1.4 - 0.4} = 0.100\ \text{GB} \approx 100\ \text{MB} \\
+S^{*}_{F,G} &amp;= \frac{0.100 - 0.0019}{5.33 - 0.4} = 0.020\ \text{GB} \approx 20\ \text{MB} \\
+S^{*}_{F,E} &amp;= \frac{0.0020 - 0.0019}{5.33 - 2.0} = 0.00003\ \text{GB} \approx 30\ \text{KB}
+\end{aligned}</code></pre>
+<p>Below each crossover the first-named mechanism wins; above it, the second. So RDS beats NFS only for records under about 30 KB, and S3 beats every other baseline above 100 MB.</p>
+<h3 id="ranking-by-workload">Ranking by workload</h3>
+<div class="table-wrap"><table><thead><tr><th>Mechanism</th><th>1 MiB file</th><th>1 GiB file</th><th>Small locked commit</th><th>Memory for N consumers</th></tr></thead><tbody><tr><td>A. Threads, one process</td><td>1</td><td>1</td><td>1</td><td>S</td></tr><tr><td>B. Zero-copy cell</td><td>2</td><td>2</td><td>2</td><td>S</td></tr><tr><td>C. Copy I/O</td><td>3</td><td>3</td><td>3</td><td>N × S</td></tr><tr><td>D. SQLite (WAL)</td><td>4</td><td>5</td><td>4</td><td>N × S</td></tr><tr><td>E. NFS: EFS or S3 Files</td><td>5</td><td>6</td><td>6</td><td>N × S</td></tr><tr><td>F. RDS for PostgreSQL</td><td>6</td><td>7</td><td>5</td><td>N × S</td></tr><tr><td>G. S3 objects</td><td>7</td><td>4</td><td>7</td><td>N × S</td></tr></tbody></table></div>
+<p>Only A and B keep one copy of the data however many consumers read it. With 8 consumers of a 1 GiB file, every baseline holds 8 GiB in memory where the cell holds 1 GiB.</p>
+<figure><img src="figures/fig5-small-commit.png" alt="Latency of a small locked commit for each mechanism" loading="lazy"><figcaption>Figure 5 · small-op workload, representative constants</figcaption></figure>
+<p>The small commit is a futex and a 4 KiB copy in the cell; OFD-lock syscalls with pread and pwrite for C; a WAL append without fsync for D; one round trip plus a server-side fsync for F; three NFS round trips (lock, write, unlock) for E; and a conditional PUT for G.</p>
+<h2 id="7-discussion-and-decision-matrix">7. Discussion and decision matrix</h2>
+<p>Use the cell when subagents trust each other and share large data, S3 to cross cells, and databases for metadata rather than bytes.</p>
+<h3 id="when-storage-choice-matters">When storage choice matters</h3>
+<p>If file sharing is a fraction f of a task&#39;s end-to-end time, no storage design can speed the task up by more than</p>
+<pre><code class="language-latex">\text{speedup} \leq \frac{1}{1 - f}</code></pre>
+<p>The storage result matters only where f is large, which is why the paper should report f for real workloads.</p>
+<figure><img src="figures/fig6-end-to-end.png" alt="End-to-end task time with 30 s of inference and ten 1 GiB shares" loading="lazy"><figcaption>Figure 6 · Section 6 results with an assumed 30 s of inference and ten 1 GiB shares per task</figcaption></figure>
+<p>With 30 s of inference, the cell keeps sharing near 4% of task time, while slower baselines make storage the dominant cost. The 30 s and ten shares are assumptions; replace them with measured values.</p>
+<h3 id="decision-matrix">Decision matrix</h3>
+<p>Each mechanism is scored 1 (worst) to 5 (best) per criterion, and the weighted score is</p>
+<pre><code class="language-latex">\text{Score}_k = \sum_i w_i \, s_{k,i}, \qquad \sum_i w_i = 1</code></pre>
+<p>The weights below fit trusted subagents sharing large files. Speed scores follow the rankings in Section 6; the rest are qualitative.</p>
+<div class="table-wrap"><table><thead><tr><th>Mechanism</th><th>Large files (w 0.35)</th><th>Small commits (w 0.20)</th><th>Crosses hosts (w 0.15)</th><th>Isolation (w 0.10)</th><th>Durability (w 0.10)</th><th>Ops simplicity (w 0.10)</th><th>Weighted score</th><th>Choose when</th></tr></thead><tbody><tr><td>B. Zero-copy cell</td><td>5</td><td>5</td><td>1</td><td>3</td><td>3</td><td>4</td><td>3.90</td><td>Trusted subagents share large data in one session</td></tr><tr><td>A. Threads, one process</td><td>5</td><td>5</td><td>1</td><td>1</td><td>1</td><td>5</td><td>3.60</td><td>Not admissible: bypasses per-subagent governance; a bound only</td></tr><tr><td>G. S3 objects</td><td>3</td><td>1</td><td>5</td><td>5</td><td>5</td><td>5</td><td>3.50</td><td>Handing results between cells, or persisting them</td></tr><tr><td>C. Copy I/O</td><td>4</td><td>4</td><td>1</td><td>3</td><td>3</td><td>4</td><td>3.35</td><td>Never by choice; a reference point for the cell</td></tr><tr><td>E. NFS: EFS or S3 Files</td><td>2</td><td>2</td><td>4</td><td>5</td><td>4</td><td>3</td><td>2.90</td><td>Isolated microVMs share mid-size files in one AZ</td></tr><tr><td>D. SQLite (WAL)</td><td>2</td><td>4</td><td>1</td><td>3</td><td>3</td><td>4</td><td>2.65</td><td>A queryable catalogue of chunks inside one cell</td></tr><tr><td>F. RDS for PostgreSQL</td><td>1</td><td>3</td><td>4</td><td>5</td><td>4</td><td>2</td><td>2.65</td><td>Task state already lives in Postgres; store S3 keys, not bytes</td></tr></tbody></table></div>
+<p><em>Worked line.</em> Score_B = 0.35 × 5 + 0.20 × 5 + 0.15 × 1 + 0.10 × 3 + 0.10 × 3 + 0.10 × 4 = 1.75 + 1.00 + 0.15 + 0.30 + 0.30 + 0.40 = 3.90.</p>
+<p><em>Sensitivity.</em> For fan-out across many instances, move weight from large files to crossing hosts (0.10 and 0.40). Then Score_G = 0.30 + 0.20 + 2.00 + 0.50 + 0.50 + 0.50 = 4.00 and Score_B = 0.50 + 1.00 + 0.40 + 0.30 + 0.30 + 0.40 = 2.90, so S3 wins.</p>
+<h3 id="recommended-composition">Recommended composition</h3>
+<ul><li><p><em>Inside a cell:</em> the zero-copy cell for bytes, with the control file (or SQLite on the shared volume) as the catalogue, and the atomic units of Section 3.</p></li><li><p><em>Across cells:</em> S3 objects with conditional manifest commits; a sealed atom crosses the network once.</p></li><li><p><em>Databases:</em> RDS for PostgreSQL only for relational task state that other systems query, holding S3 keys rather than file bytes.</p></li><li><p><em>Isolation first:</em> an NFS mount when subagents must not share an instance, accepting a 2 ms floor per operation.</p></li></ul>
+<h2 id="8-threats-to-validity-and-benchmark-protocol">8. Threats to validity and benchmark protocol</h2>
+<p>The theorems hold for any constants; the numbers in Sections 6 and 7 do not, and must be replaced with measurements before publication.</p>
+<p><strong>Threats.</strong></p>
+<ul><li><p><em>Representative constants.</em> Every λ and β in Section 4 is an assumption. EBS, EFS and S3 limits change, and they vary by instance size and Region.</p></li><li><p><em>Warm caches.</em> The model assumes bytes are in the page cache. A cold cell reads from EBS first, adding S / β_EBS to mechanisms A to D.</p></li><li><p><em>Client caching.</em> NFS clients cache data and attributes, so repeat reads on E can beat the model while first reads match it.</p></li><li><p><em>Contention.</em> The model has one writer. With many writers, SQLite serializes on one WAL writer, RDS on row locks, and S3 on per-prefix request rates.</p></li><li><p><em>Database tuning.</em> SQLite synchronous mode, page size and mmap_size, and RDS instance class and storage type, can each move D and F by several times.</p></li></ul>
+<p><strong>Protocol.</strong> Run each test on the AgentCore instance types you deploy, with all resources in one Availability Zone.</p>
+<ol><li><p>Hardware constants: a futex and OFD-lock microbenchmark for t_c and lock cost; a memcpy test for B_mem and B_copy; page-fault timing for t_f.</p></li><li><p>Volume: fio sequential and random reads and writes on the capacity provider volume, cold and warm.</p></li><li><p>Each mechanism: the bulk workload at 4 KiB to 16 GiB in powers of four, and the small-op workload, with N = 1, 4 and 16 consumers.</p></li><li><p>Statistics: at least 30 runs per point; report median and p99 with 95% bootstrap intervals.</p></li><li><p>Fit λ_k and c_k per mechanism by least squares on T_k(S), then recompute the crossovers from Theorem 3 and report fitted against assumed values.</p></li><li><p>Publish the harness, raw results and instance metadata so the numbers can be reproduced.</p></li></ol>
+<h2 id="9-conclusion">9. Conclusion</h2>
+<p>Given that every subagent must run under AgentCore governance, put trusted subagents in one cell, share bytes through the page cache, and reach for networked storage only to cross cells or persist results.</p>
+<p>The zero-copy cell meets the cross-process lower bound once mappings are reused, and copy-based local I/O bounds every networked baseline from below. Among those baselines no single winner exists. S3 wins large transfers, SQLite wins small commits on one host, and RDS for PostgreSQL wins neither under these constants. The open question is empirical: the benchmark in Section 8 will fix the constants, and Theorem 3 will then give each deployment its own crossover sizes.</p>
+<h2 id="references">References</h2>
+<ol><li><p>Amazon Web Services. <a href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-filesystem-configurations.md">File system configurations for AgentCore Runtime</a>. Accessed 30 October 2026.</p></li><li><p>Amazon Web Services. <a href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-instances-how-it-works.html">Instances, Amazon Bedrock AgentCore</a>. Accessed 30 October 2026.</p></li><li><p>Amazon Web Services. <a href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-instances-security.html">Security model and permissions for Runtime Instances</a>. Accessed 30 October 2026.</p></li><li><p>Amazon Web Services. <a href="https://aws.amazon.com/about-aws/whats-new/2026/05/amazon-bedrock-agentcore-runtime/">AgentCore Runtime supports bring-your-own file system from S3 Files and EFS</a>. 6 May 2026.</p></li><li><p>Amazon Web Services. <a href="https://aws.amazon.com/about-aws/whats-new/2026/03/bedrock-agentcore-runtime-session-storage">AgentCore Runtime managed session storage (preview)</a>. 25 March 2026.</p></li><li><p>ComputingForGeeks. <a href="https://computingforgeeks.com/amazon-s3-files-guide-setup-performance-pricing/">Amazon S3 Files: setup, performance and pricing</a>. 2026.</p></li><li><p>SQLite. <a href="https://fossies.org/linux/sqlite-doc/wal.html">Write-Ahead Logging</a> (mirror of sqlite.org/wal.html).</p></li><li><p>S. Willison. <a href="https://simonwillison.net/2026/apr/7/sqlite-wal-docker-containers">SQLite WAL mode across Docker containers sharing a volume</a>. 7 April 2026.</p></li><li><p>R. L. Graham. Bounds on multiprocessing timing anomalies. <em>SIAM Journal on Applied Mathematics</em>, 17(2), 1969.</p></li><li><p>R. D. Blumofe and C. E. Leiserson. Scheduling multithreaded computations by work stealing. <em>Journal of the ACM</em>, 46(5), 1999.</p></li><li><p>J. W. Young. A first order approximation to the optimum checkpoint interval. <em>Communications of the ACM</em>, 17(9), 1974.</p></li></ol>
+<h2 id="appendix-a-designer-chosen-versus-agent-chosen-atoms">Appendix A. Designer-chosen versus agent-chosen atoms</h2>
+<p>Inside a cell, agents should choose which atom to work on themselves: in simulation, self-scheduling cuts load-imbalance overhead for generative work from 21.8 s to 2.6 s, and a fixed plan wins only once each claim costs more than 5 to 126 ms.</p>
+<h3 id="a1-two-separate-decisions">A.1 Two separate decisions</h3>
+<p>Choosing atoms involves two decisions that are often conflated:</p>
+<ul><li><p><em>Definition:</em> what an atom is, meaning its boundary type, the invariant it preserves and its size envelope.</p></li><li><p><em>Assignment:</em> which agent works on which atom, and when.</p></li></ul>
+<p>Either can be fixed by the designer before the run (static) or made by agents during it (dynamic). Section 3&#39;s rules govern definition. This appendix gives the evidence for assignment first, then returns to definition.</p>
+<h3 id="a2-static-assignment-the-designers-plan">A.2 Static assignment: the designer&#39;s plan</h3>
+<p>The orchestrator splits k atoms evenly across n agents before the run. If atom durations have mean μ and standard deviation σ, each agent&#39;s load is a sum of m = k / n durations, and the run ends when the slowest agent finishes. A normal approximation to the maximum of n such sums gives the expected overhead above perfect balance:</p>
+<pre><code class="language-latex">\mathbb{E}[T_{\text{static}}] - \frac{W}{n} \approx \sigma \sqrt{m} \, \sqrt{2 \ln n}</code></pre>
+<p>The overhead grows with the variability of the work and with the square root of the atoms per agent. Model calls make variability high, because output length and endpoint latency vary from call to call.</p>
+<h3 id="a3-dynamic-assignment-agents-claim-atoms">A.3 Dynamic assignment: agents claim atoms</h3>
+<p>Each agent claims the next unclaimed atom when it finishes, through a locked claim costing δ. Graham&#39;s list-scheduling bound caps the imbalance at roughly one atom, and the claims add their own cost:</p>
+<pre><code class="language-latex">T_{\text{dynamic}} \leq \frac{W}{n} + \left(1 - \frac{1}{n}\right) t_{\max} + \frac{k}{n}\,\delta \qquad (k\delta \ll W/n)</code></pre>
+<p>The imbalance term no longer grows with m, but the claim term does. Dynamic assignment therefore wins whenever claims are cheap relative to the variability they absorb. The cell makes claims cheap: one claim is one locked commit in the control file, about 1 µs in Figure 5.</p>
+<h3 id="a4-simulation">A.4 Simulation</h3>
+<p>We simulated both policies with n = 8 agents and k = 800 atoms of mean 2 s, so 200 s of work per agent. Durations were lognormal with a coefficient of variation of 0.75 (<em>generative</em> work, such as model calls) or 0.05 (<em>uniform</em> work, such as deterministic transforms). Claims were serialized through one lock, and each point is the mean of 300 runs.</p>
+<figure><img src="figures/fig7-atom-assignment.png" alt="Simulated overhead of fixed plans versus agents claiming atoms, by claim cost" loading="lazy"><figcaption>Figure 7 · discrete-event simulation (model/schedule_sim.py), lognormal atom durations, claims serialized through one lock</figcaption></figure>
+<p>For generative work, a fixed plan leaves 21.8 s of imbalance against 2.6 s for claiming in a cell. For uniform work the figures are 1.41 s and 0.87 s. The normal approximation in A.2 overestimates the static overhead (30.6 s and 2.0 s), as expected of an approximation to a maximum.</p>
+<p>Mapping the crossovers onto the claim costs of Figure 5 gives the verdict for each mechanism:</p>
+<div class="table-wrap"><table><thead><tr><th>Claim mechanism</th><th>Claim cost</th><th>Uniform work</th><th>Generative work</th></tr></thead><tbody><tr><td>Cell control file</td><td>1 µs</td><td>Agents claim</td><td>Agents claim</td></tr><tr><td>SQLite on the shared volume</td><td>35 µs</td><td>Agents claim</td><td>Agents claim</td></tr><tr><td>RDS for PostgreSQL</td><td>1.2 ms</td><td>Agents claim</td><td>Agents claim</td></tr><tr><td>NFS lock</td><td>3 ms</td><td>Agents claim</td><td>Agents claim</td></tr><tr><td>S3 conditional write</td><td>50 ms</td><td>Fixed plan</td><td>Agents claim</td></tr></tbody></table></div>
+<h3 id="a5-agent-chosen-boundaries">A.5 Agent-chosen boundaries</h3>
+<p>For generative work, the agent also decides where each atom ends. Adding claim cost and imbalance to Section 3&#39;s seal-versus-rework trade-off gives a per-agent overhead in time units, where τ is an atom&#39;s duration:</p>
+<pre><code class="language-latex">O(\tau) = \frac{W}{n\tau}\left(\lambda_u + \delta\right) + \tau + \varphi \, \frac{W}{n} \cdot \frac{\tau}{2}</code></pre>
+<p>The three terms are fixed costs per atom, imbalance of about one atom, and expected rework. Minimizing gives</p>
+<pre><code class="language-latex">\tau^{*} = \sqrt{\frac{(W/n)\,(\lambda_u + \delta)}{1 + \varphi W / (2n)}}</code></pre>
+<p><em>Worked values.</em> With W / n = 200 s, λ_u = 50 µs and one failure per hour (so φW / 2n = 0.028), τ* is 0.10 s in a cell (δ = 1 µs), 0.77 s over NFS (δ = 3 ms) and 3.1 s over S3 (δ = 50 ms). In a cell, atoms can end at fine semantic boundaries chosen by the agent; over the network they must be seconds long, which favours coarse atoms fixed by the designer.</p>
+<h3 id="a6-a-division-of-responsibility">A.6 A division of responsibility</h3>
+<p>The evidence supports three regimes:</p>
+<div class="table-wrap"><table><thead><tr><th>Regime</th><th>Who defines atoms</th><th>Who assigns atoms</th><th>Use when</th></tr></thead><tbody><tr><td>Catalogue and claim (default)</td><td>Designer</td><td>Agents</td><td>Most work inside a cell</td></tr><tr><td>Envelope and claim</td><td>Agents, within a designer-set envelope</td><td>Agents</td><td>Generative work whose boundaries emerge during the run</td></tr><tr><td>Fixed plan</td><td>Designer</td><td>Designer</td><td>Uniform work with claims over about 5 ms, or a plan that must be approved before the run</td></tr></tbody></table></div>
+<p>In every regime the designer owns the invariant each atom preserves, the allowed boundary types, the size envelope [τ_min, τ_max] and which agents may claim. Agents own only the run-time choices inside those limits: which atom next, and where to cut within the envelope. This is what makes dynamic choice intentional rather than improvised.</p>
+<p>Dynamic choice also stays inside the governance assumption. Every claim and seal is written to the control file with a fencing token and the claiming runtime&#39;s identity, then copied into the manifest. Together with AgentCore&#39;s record of each invocation, this reconstructs who worked on what and when.</p>
+<h3 id="a7-limits-of-the-evidence">A.7 Limits of the evidence</h3>
+<p>The simulation assumes independent durations, a single lock and no failures. Heavy-tailed durations would favour dynamic assignment further, while a correlated slowdown, such as a throttled model endpoint, hurts both policies alike. The next step is to replay measured atom durations from real subagents through the same simulation, following the protocol in Section 8.</p>
+
+</article>
+<footer>
+<p>All figures come from a representative cost model, not measurements. The cost model is in <a href="https://github.com/jrodimusprime/jrodimusprime.github.io/blob/main/sharing-is-caring-agentcore/model/model.py">model/model.py</a> and the scheduling simulation in <a href="https://github.com/jrodimusprime/jrodimusprime.github.io/blob/main/sharing-is-caring-agentcore/model/schedule_sim.py">model/schedule_sim.py</a>; Section 8 describes the benchmark needed to replace its constants.</p>
+</footer>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script>
+document.querySelectorAll('pre > code.language-latex').forEach(function (el) {
+  var div = document.createElement('div');
+  div.className = 'math';
+  try { katex.render(el.textContent, div, {displayMode: true, throwOnError: false}); }
+  catch (e) { div.textContent = el.textContent; }
+  el.parentNode.replaceWith(div);
+});
+</script>
+</body>
+</html>
