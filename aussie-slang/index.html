@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Proper Strine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600&display=swap">
+<style>
+/* Layout: road-sign masthead with hi-vis stripe, sticky filter bar, dense grid of phrase cards colour-coded by mood */
+:root {
+  --bg: #ECEFEA;
+  --surface: #FFFFFF;
+  --ink: #15201A;
+  --muted: #56615A;
+  --line: #D3D9D2;
+  --hivis: #F26B0F;
+  --hivis-ink: #A84A00;
+  --daily: #2F7A55;
+  --hype: #A87700;
+  --roast: #2459A3;
+  --wrong: #C2321C;
+  --chip-bg: #DFE4DD;
+  --f-display: "Big Shoulders Display", "Barlow Condensed", Impact, sans-serif;
+  --f-body: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-label: "Barlow Condensed", "Barlow", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111813; --surface: #19221C; --ink: #E9EFEA; --muted: #A1ADA5; --line: #2C3830;
+    --hivis: #FF7A1F; --hivis-ink: #FF9A52;
+    --daily: #5EC08E; --hype: #E9B530; --roast: #74A6EC; --wrong: #F2765F;
+    --chip-bg: #243028; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111813; --surface: #19221C; --ink: #E9EFEA; --muted: #A1ADA5; --line: #2C3830;
+  --hivis: #FF7A1F; --hivis-ink: #FF9A52;
+  --daily: #5EC08E; --hype: #E9B530; --roast: #74A6EC; --wrong: #F2765F;
+  --chip-bg: #243028; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; } [hidden] { display: none !important; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.4; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 1280px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+/* Masthead */
+.stripe { height: 10px; background: repeating-linear-gradient(-45deg, var(--hivis) 0 18px, var(--ink) 18px 36px); }
+header.mast { padding-block: 22px 12px; }
+.mast-grid { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: end; }
+.eyebrow { font-family: var(--f-label); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--hivis-ink); font-weight: 600; margin: 0 0 2px; }
+h1 { font-family: var(--f-display); font-weight: 900; font-size: clamp(44px, 8vw, 84px); line-height: .88; margin: 0; text-transform: uppercase; letter-spacing: .01em; text-wrap: balance; }
+h1 em { font-style: normal; color: var(--hivis); }
+.lede { max-width: 62ch; color: var(--muted); margin: 10px 0 0; font-size: 15.5px; }
+.mood-meter { display: flex; flex-direction: column; gap: 6px; min-width: 0; font-size: 12px; color: var(--muted); }
+.meter-bar { display: flex; height: 8px; width: 240px; max-width: 100%; overflow: hidden; }
+.meter-bar span { display: block; height: 100%; }
+.meter-legend { display: flex; flex-wrap: wrap; gap: 2px 12px; max-width: 260px; }
+.meter-legend i { display: inline-block; width: 8px; height: 8px; margin-right: 5px; }
+
+/* Controls */
+.controls { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 2px solid var(--ink); }
+.controls .wrap { padding-block: 10px; display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+.search { flex: 1 1 200px; min-width: 0; }
+.search input { width: 100%; font: inherit; font-size: 14px; padding: 7px 10px; border-radius: 4px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.search input:focus-visible { outline: 2px solid var(--hivis); outline-offset: 1px; }
+.chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.chip { font-family: var(--f-label); font-size: 14px; font-weight: 600; letter-spacing: .03em; border: 0; cursor: pointer; padding: 4px 10px; border-radius: 3px; background: var(--chip-bg); color: var(--ink); display: inline-flex; align-items: center; gap: 6px; }
+.chip .dot { width: 8px; height: 8px; background: var(--c, var(--ink)); }
+.chip .n { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 13px; }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.chip[aria-pressed="true"] .n { color: var(--bg); opacity: .75; }
+.chip:focus-visible, .ibtn:focus-visible { outline: 2px solid var(--hivis); outline-offset: 2px; }
+.toggles { display: flex; gap: 14px; flex-wrap: wrap; }
+.tgl { display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; color: var(--muted); cursor: pointer; user-select: none; }
+.tgl input { width: 15px; height: 15px; margin: 0; accent-color: var(--hivis); }
+
+/* Grid */
+main { padding-block: 16px 40px; }
+.count { font-size: 12px; color: var(--muted); margin: 0 0 10px; font-variant-numeric: tabular-nums; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px; }
+.card { --c: var(--daily); background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--c); border-radius: 4px; padding: 9px 11px 10px; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.card[data-cat="hype"] { --c: var(--hype); }
+.card[data-cat="roast"] { --c: var(--roast); }
+.card[data-cat="wrong"] { --c: var(--wrong); }
+.head { display: flex; align-items: flex-start; gap: 6px; }
+.phrase { font-size: 17px; font-weight: 700; margin: 0; line-height: 1.2; flex: 1; min-width: 0; }
+.crude { font-family: var(--f-label); font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--wrong); border: 1px solid currentColor; border-radius: 2px; padding: 0 4px; margin-left: 5px; vertical-align: 2px; white-space: nowrap; }
+.acts { display: flex; gap: 2px; flex: none; margin: -2px -4px 0 0; }
+.ibtn { width: 26px; height: 26px; display: inline-grid; place-items: center; cursor: pointer; background: transparent; color: var(--muted); border: 0; border-radius: 4px; padding: 0; }
+.ibtn:hover { color: var(--c); background: var(--chip-bg); }
+.ibtn svg { width: 12px; height: 12px; fill: currentColor; }
+.ibtn.done { color: var(--daily); }
+.say { font-family: var(--f-label); font-size: 13px; letter-spacing: .04em; color: var(--hivis-ink); margin: 0; }
+.def { margin: 2px 0 0; font-weight: 500; font-size: 14px; }
+.ex { margin: 3px 0 0; font-size: 13.5px; font-style: italic; color: var(--ink); }
+.note { margin: 3px 0 0; font-size: 12.5px; color: var(--muted); }
+.empty { color: var(--muted); padding: 40px 0; text-align: center; }
+
+/* Quiz mode */
+body.quiz .card .def { filter: blur(5px); user-select: none; transition: filter .2s; }
+body.quiz .card { cursor: pointer; }
+body.quiz .card.revealed .def { filter: none; user-select: auto; }
+
+footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 12.5px; }
+footer .wrap { padding-block: 16px 28px; }
+
+@media (max-width: 640px) { .mast-grid { grid-template-columns: 1fr; } .grid { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="stripe" aria-hidden="true"></div>
+<header class="mast">
+  <div class="wrap">
+    <div class="mast-grid">
+      <div>
+        <p class="eyebrow">Australian slang cheat sheet</p>
+        <h1>Proper <em>Strine</em></h1>
+        <p class="lede">100 phrases Aussies actually say: at work, at the pub, at the servo, and when everything's gone to shit. No shrimps, no barbies, no kangaroos.</p>
+      </div>
+      <div class="mood-meter" aria-label="Mix of phrases by mood">
+        <div class="meter-bar" id="meter"></div>
+        <div class="meter-legend" id="meterLegend"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="wrap">
+    <div class="search">
+      <input id="q" type="search" placeholder="Search phrases or meanings…" autocomplete="off" aria-label="Search phrases">
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Filter by mood"></div>
+    <div class="toggles">
+      <label class="tgl" for="hideCrude"><input type="checkbox" id="hideCrude"> Hide crude ones</label>
+      <label class="tgl" for="quiz"><input type="checkbox" id="quiz"> Quiz mode</label>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <p class="count" id="count"></p>
+    <div class="grid" id="grid"></div>
+    <p class="empty" id="empty" hidden>Nothing matches that. Try another word.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    Phrases tagged <span class="crude">crude</span> are fine at the pub, less so in the all-hands. Quiz mode blurs the meanings; tap a card to check yourself. The play button uses an Australian voice when your device has one. Your crude setting is remembered in this browser.
+  </div>
+</footer>
+
+<script>
+const CATS = {
+  daily: { label: "Everyday", color: "var(--daily)" },
+  hype:  { label: "Hype", color: "var(--hype)" },
+  roast: { label: "Roasts & funny", color: "var(--roast)" },
+  wrong: { label: "Gone to shit", color: "var(--wrong)" }
+};
+
+// [cat, phrase, meaning, example, note, how it sounds, crude?]
+const RAW = [
+  // ---------- Everyday (30) ----------
+  ["daily","What's crackin'?","What's going on? What's the plan?","What's crackin' this arvo, boys?","",""],
+  ["daily","She'll be right","It'll be fine, don't stress. (Said right before it isn't.)","Bit of rust on the trailer, she'll be right.","",""],
+  ["daily","No wukkas","No worries.","Cheers for covering. No wukkas.","Short for 'no wuckin' furries'.","no WUCK-uz"],
+  ["daily","Yeah nah","No. Polite, but definitely no.","Coming to the 7am meeting? Yeah nah.","",""],
+  ["daily","Nah yeah","Yes. Agreeing after pretending to think about it.","Beer after work? Nah yeah, go on.","",""],
+  ["daily","Chuck a sickie","Take a 'sick' day that has nothing to do with being sick.","Grand final's Friday, I'm chucking a sickie.","",""],
+  ["daily","Smoko","A work break. Smoking optional.","Smoko at ten, coffee van's here.","",""],
+  ["daily","Flat out like a lizard drinking","Extremely busy.","Can't talk, flat out like a lizard drinking.","",""],
+  ["daily","Give it a burl","Give it a go.","Never driven a forklift? Give it a burl.","",""],
+  ["daily","Hit the frog and toad","Hit the road, head off.","Right, I'm gonna hit the frog and toad.","Rhyming slang.",""],
+  ["daily","Servo run","A trip to the petrol station for snacks, smokes or a pie.","Anyone want anything? Doing a servo run.","",""],
+  ["daily","Chuck a U-ey","Do a U-turn.","Missed the turn, chuck a U-ey.","","chuck a YOO-ee"],
+  ["daily","Hard yakka","Hard physical work.","Laying pavers all day, proper hard yakka.","","hard YACK-uh"],
+  ["daily","Knockies","After-work drinks.","Knockies at the pub at five?","From 'knock-off drinks'.","NOCK-eez"],
+  ["daily","My shout","I'm paying (for this round).","Put your wallet away, it's my shout.","",""],
+  ["daily","Bring a plate","Bring food to share. Not an empty plate.","Office party Friday, bring a plate.","Confuses every new arrival.",""],
+  ["daily","Have a squiz","Have a look.","Have a squiz at this spreadsheet.","","SKWIZ"],
+  ["daily","Have a crack","Have a try.","Can't fix it? Let me have a crack.","",""],
+  ["daily","See a man about a dog","Going somewhere I'm not explaining. Usually the loo.","Back in five, gotta see a man about a dog.","",""],
+  ["daily","Too easy","No problem, consider it done.","Can you send that by three? Too easy.","",""],
+  ["daily","Righto","Okay, alright then.","Righto, let's get into it.","","RYE-toh"],
+  ["daily","She's apples","Everything's fine.","Fixed the leak, she's apples.","Rhyming slang: apples and spice = nice.",""],
+  ["daily","Chockers","Packed full.","Train was chockers this morning.","",""],
+  ["daily","Flat chat","Going as hard or fast as possible.","Been flat chat since Monday.","",""],
+  ["daily","Cop it sweet","Take the hit without complaining.","Got the parking fine, just copped it sweet.","",""],
+  ["daily","Keen as","Very up for it.","Footy Saturday? Keen as.","",""],
+  ["daily","Durry","A cigarette.","Got a durry I can bum off ya?","",""],
+  ["daily","Bottle-o","The liquor store.","Swing past the bottle-o on the way.","",""],
+  ["daily","Fang it","Drive fast, hurry up.","We're late, fang it.","",""],
+  ["daily","The rellies","The relatives, the extended family.","Can't, the rellies are down for Christmas.","",""],
+
+  // ---------- Hype (20) ----------
+  ["hype","Sweet as","Great, all good.","Pizza's here? Sweet as.","",""],
+  ["hype","Heaps good","Really good.","That pie was heaps good.","South Australian signature.",""],
+  ["hype","Stoked","Thrilled.","Got the job, absolutely stoked.","",""],
+  ["hype","You little ripper!","Fantastic! Brilliant!","Payday's early? You little ripper!","",""],
+  ["hype","Grouse","Excellent.","Grouse weekend down the coast.","Old-school Victorian.","GROWSE"],
+  ["hype","Fully sick","Awesome, unreal.","Your new ute is fully sick.","Western Sydney classic.",""],
+  ["hype","Mad cunt","A legend, said with love.","Drove six hours for the party? Mad cunt.","Affectionate. Still don't say it to HR.","",1],
+  ["hype","Deadset legend","A truly great person.","Brought donuts for the whole team. Deadset legend.","",""],
+  ["hype","Unreal","Brilliant.","That goal was unreal.","",""],
+  ["hype","Send it","Go for it, full commitment.","Jump off the jetty? Send it!","",""],
+  ["hype","Bloody oath","Absolutely, yes.","Want a beer? Bloody oath.","",""],
+  ["hype","Too right","Totally agree.","That ref was rubbish. Too right.","",""],
+  ["hype","Happy as Larry","Extremely happy.","Gave him a snag in bread, happy as Larry.","",""],
+  ["hype","Rapt","Over the moon.","Rapt with how the reno turned out.","",""],
+  ["hype","Going off","Pumping, amazing. (Or: getting angry.)","Party's going off!","'The boss went off at us' is the angry version.",""],
+  ["hype","Mint","In perfect condition.","Second-hand, but it's mint.","",""],
+  ["hype","Get on it","Let's party.","It's Friday, get on it!","",""],
+  ["hype","Good onya","Well done, good for you.","Ran a marathon? Good onya.","",""],
+  ["hype","Hectic","Intense, wild. Good or bad.","Saturday night was hectic.","",""],
+  ["hype","Big sesh","A long drinking session.","Big sesh at Dazza's tonight.","",""],
+
+  // ---------- Roasts & funny (25) ----------
+  ["roast","Off his rocker","Crazy, lost the plot.","Wants to drive to Perth in one go? He's off his rocker.","",""],
+  ["roast","Mad as a cut snake","Crazy, or absolutely furious.","Saw the bill and went mad as a cut snake.","",""],
+  ["roast","Tell him he's dreamin'","No way, that's ridiculous.","He wants how much for that car? Tell him he's dreamin'.","From the film The Castle.",""],
+  ["roast","Not here to fuck spiders","Let's get serious and get it done.","Right, we're not here to fuck spiders. Let's go.","","",1],
+  ["roast","Dog act","A low, nasty move.","Ate my lunch from the work fridge? Total dog act.","",""],
+  ["roast","Dropkick","A useless idiot.","Some dropkick parked across my driveway.","",""],
+  ["roast","Galah","A loud fool.","Stop carrying on like a galah.","","guh-LAH"],
+  ["roast","Flog","A tryhard, an idiot.","Look at this flog with his Bluetooth earpiece.","",""],
+  ["roast","Sook","A whinger, a crybaby.","Lost one game and he's sooking about it.","",""],
+  ["roast","Bludger","A lazy freeloader.","That bludger's been on smoko for an hour.","",""],
+  ["roast","Couldn't organise a piss-up in a brewery","Totally incompetent.","Management couldn't organise a piss-up in a brewery.","","",1],
+  ["roast","As useful as tits on a bull","Completely useless.","This new software's as useful as tits on a bull.","","",1],
+  ["roast","Dry as a dead dingo's donger","Extremely thirsty.","After that shift I'm dry as a dead dingo's donger.","","",1],
+  ["roast","Spat the dummy","Threw a tantrum.","Didn't get his way and spat the dummy.","Dummy = a baby's pacifier.",""],
+  ["roast","Pull your head in","Calm down, mind your own business.","Oi, pull your head in, it's not your call.","",""],
+  ["roast","Have a go, ya mug!","Try harder! The classic cricket-crowd heckle.","Three hours for 20 runs? Have a go, ya mug!","",""],
+  ["roast","Cashed-up bogan","Lots of money, zero class.","Jet ski, three utes, flag on the house. Cashed-up bogan.","Often shortened to CUB.",""],
+  ["roast","Up yourself","Arrogant, full of yourself.","One promotion and she's well up herself.","",""],
+  ["roast","Taking the piss","Joking, mocking, or being cheeky.","Forty bucks for a parma? They're taking the piss.","",""],
+  ["roast","Woop Woop","The middle of nowhere.","He moved out to Woop Woop.","",""],
+  ["roast","Do a Harold Holt","Bolt, vanish.","Bill came and he did a Harold Holt.","Rhyming slang, after the PM who vanished at sea.",""],
+  ["roast","Budgie smugglers","Tight men's swimwear.","Rocked up to the barbecue in budgie smugglers.","",""],
+  ["roast","Eshay","A tracksuit-and-bumbag street lad, or their greeting.","Eshay brah, lend us a lighter.","Pig Latin for 'sesh'. Sydney origin.","ESH-ay"],
+  ["roast","Feral","Gross, wild, or out of control.","The work kitchen is feral.","",""],
+  ["roast","Built like a brick shithouse","Huge and solid.","Their front-rower is built like a brick shithouse.","","",1],
+
+  // ---------- Gone to shit (25) ----------
+  ["wrong","Cooked","Done for. Or exhausted. Or unhinged.","Forgot the client's name in the pitch. I'm cooked.","",""],
+  ["wrong","Shat the bed","Failed spectacularly.","The website shat the bed on launch day.","","",1],
+  ["wrong","Carked it","Died or broke down.","The work fridge carked it.","",""],
+  ["wrong","Spewin'","Furious or gutted.","Missed the concert, I'm spewin'.","",""],
+  ["wrong","Rooted","Broken, or completely exhausted.","Car's rooted. So am I.","Also slang for sex, so watch the context.","",1],
+  ["wrong","Up shit creek","In serious trouble.","Server's down and no backup. We're up shit creek.","Paddle not included.","",1],
+  ["wrong","Cracked the shits","Got really annoyed.","Boss cracked the shits over one typo.","","",1],
+  ["wrong","Chuck a wobbly","Throw a fit.","Printer jammed and he chucked a wobbly.","",""],
+  ["wrong","Done like a dinner","Thoroughly beaten.","We got done like a dinner in the final.","",""],
+  ["wrong","Gone pear-shaped","Gone wrong.","The plan went pear-shaped pretty quick.","",""],
+  ["wrong","Dodgy","Shady, not to be trusted.","That quote looks dodgy.","",""],
+  ["wrong","Shonky","Badly made, unreliable.","Shonky builders, cracks everywhere.","",""],
+  ["wrong","Rort","A scam or rip-off.","These parking fees are a rort.","",""],
+  ["wrong","Cactus","Dead, broken, finished.","The laptop's cactus.","",""],
+  ["wrong","Bit of a stuff-up","A mistake, a mess.","Sent it to the wrong client. Bit of a stuff-up.","",""],
+  ["wrong","Not a happy Jan","Not happy at all.","The CEO saw the numbers. Not a happy Jan.","From a 90s Yellow Pages ad.",""],
+  ["wrong","Dog's breakfast","A complete mess.","The handover notes are a dog's breakfast.","",""],
+  ["wrong","On struggle street","Having a rough time.","Rent's up, car's broken. On struggle street.","",""],
+  ["wrong","A Barry Crocker","A shocker.","Had a Barry Crocker of a day.","Rhyming slang, after the singer.",""],
+  ["wrong","Ratshit","Terrible, rubbish.","Feeling ratshit after that flu.","","",1],
+  ["wrong","Hanging","Seriously hungover.","Big sesh last night. Hanging.","",""],
+  ["wrong","Dusty","A bit hungover.","Bit dusty this morning, go easy.","",""],
+  ["wrong","Ya dead set kiddin' me","You can't be serious.","They moved the deadline forward? Ya dead set kiddin' me.","",""],
+  ["wrong","Fuck me dead","Stunned disbelief.","Fuck me dead, look at that power bill.","","",1],
+  ["wrong","Arse over tit","Fell over, badly.","Tripped on the cable and went arse over tit.","","",1]
+];
+
+const PHRASES = RAW.map(([cat, phrase, def, ex, note, say, crude]) => ({ cat, phrase, def, ex, note, say, crude: !!crude }));
+
+const grid = document.getElementById("grid");
+const chipsEl = document.getElementById("chips");
+const q = document.getElementById("q");
+const quiz = document.getElementById("quiz");
+const hideCrude = document.getElementById("hideCrude");
+const empty = document.getElementById("empty");
+const countEl = document.getElementById("count");
+let active = "all";
+
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+};
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+const canSpeak = "speechSynthesis" in window;
+const ICON_PLAY = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>';
+const ICON_COPY = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 1h8a2 2 0 0 1 2 2v8h-2V3H5zM2 5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/></svg>';
+const ICON_TICK = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.2 11.6 2.6 8l-1.2 1.2 4.8 4.8L15 5.2 13.8 4z"/></svg>';
+
+function baseList() { return PHRASES.map((p, i) => [p, i]).filter(([p]) => !(hideCrude.checked && p.crude)); }
+function countsFor(list) { const c = { all: list.length }; list.forEach(([p]) => c[p.cat] = (c[p.cat] || 0) + 1); return c; }
+
+function renderMeter(c) {
+  const bar = document.getElementById("meter"), leg = document.getElementById("meterLegend");
+  bar.innerHTML = ""; leg.innerHTML = "";
+  Object.entries(CATS).forEach(([k, cat]) => {
+    const pct = c.all ? Math.round((c[k] || 0) / c.all * 100) : 0;
+    bar.insertAdjacentHTML("beforeend", `<span style="width:${pct}%;background:${cat.color}" title="${cat.label}: ${pct}%"></span>`);
+    leg.insertAdjacentHTML("beforeend", `<span><i style="background:${cat.color}"></i>${pct}% ${cat.label.toLowerCase()}</span>`);
+  });
+}
+function renderChips(c) {
+  const entries = [["all", { label: "All", color: "var(--ink)" }], ...Object.entries(CATS)];
+  chipsEl.innerHTML = entries.map(([k, cat]) =>
+    `<button class="chip" type="button" data-cat="${k}" aria-pressed="${k === active}" style="--c:${cat.color}">` +
+    (k === "all" ? "" : `<span class="dot"></span>`) + `${esc(cat.label)} <span class="n">${c[k] || 0}</span></button>`
+  ).join("");
+}
+function card(p, i) {
+  return `<article class="card" data-cat="${p.cat}">
+    <div class="head">
+      <h3 class="phrase">${esc(p.phrase)}${p.crude ? '<span class="crude">crude</span>' : ""}</h3>
+      <div class="acts">
+        ${canSpeak ? `<button class="ibtn" type="button" data-act="listen" data-i="${i}" aria-label="Listen to ${esc(p.phrase)}" title="Listen">${ICON_PLAY}</button>` : ""}
+        <button class="ibtn" type="button" data-act="copy" data-i="${i}" aria-label="Copy ${esc(p.phrase)}" title="Copy">${ICON_COPY}</button>
+      </div>
+    </div>
+    ${p.say ? `<p class="say">Say: ${esc(p.say)}</p>` : ""}
+    <p class="def">${esc(p.def)}</p>
+    <p class="ex">"${esc(p.ex)}"</p>
+    ${p.note ? `<p class="note">${esc(p.note)}</p>` : ""}
+  </article>`;
+}
+function render() {
+  const base = baseList();
+  const c = countsFor(base);
+  renderMeter(c); renderChips(c);
+  const term = q.value.trim().toLowerCase();
+  const list = base.filter(([p]) =>
+    (active === "all" || p.cat === active) &&
+    (!term || [p.phrase, p.def, p.ex, p.note].join(" ").toLowerCase().includes(term))
+  );
+  grid.innerHTML = list.map(([p, i]) => card(p, i)).join("");
+  empty.hidden = list.length > 0;
+  countEl.textContent = `Showing ${list.length} of ${PHRASES.length}`;
+}
+
+if (store.get("hideCrude") === "1") hideCrude.checked = true;
+
+chipsEl.addEventListener("click", e => { const b = e.target.closest(".chip"); if (!b) return; active = b.dataset.cat; render(); });
+q.addEventListener("input", render);
+hideCrude.addEventListener("change", () => { store.set("hideCrude", hideCrude.checked ? "1" : "0"); render(); });
+quiz.addEventListener("change", () => {
+  document.body.classList.toggle("quiz", quiz.checked);
+  grid.querySelectorAll(".revealed").forEach(c => c.classList.remove("revealed"));
+});
+
+let voices = [];
+function loadVoices() { try { voices = speechSynthesis.getVoices(); } catch (e) {} }
+if (canSpeak) { loadVoices(); try { speechSynthesis.onvoiceschanged = loadVoices; } catch (e) {} }
+
+grid.addEventListener("click", async e => {
+  const btn = e.target.closest("[data-act]");
+  if (btn) {
+    const p = PHRASES[+btn.dataset.i];
+    if (btn.dataset.act === "listen") {
+      try {
+        speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance(p.phrase);
+        u.lang = "en-AU"; u.rate = 0.95;
+        const v = voices.find(v => /en[-_]AU/i.test(v.lang)) || voices.find(v => /^en/i.test(v.lang));
+        if (v) u.voice = v;
+        speechSynthesis.speak(u);
+      } catch (err) {}
+    } else {
+      const text = `${p.phrase} — ${p.def}`;
+      try { await navigator.clipboard.writeText(text); }
+      catch (err) {
+        const r = document.createRange(); r.selectNodeContents(btn.closest(".card").querySelector(".phrase"));
+        const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      }
+      btn.innerHTML = ICON_TICK; btn.classList.add("done");
+      setTimeout(() => { btn.innerHTML = ICON_COPY; btn.classList.remove("done"); }, 1300);
+    }
+    return;
+  }
+  const c = e.target.closest(".card");
+  if (c && document.body.classList.contains("quiz")) c.classList.toggle("revealed");
+});
+
+render();
+</script>
+</body>
+</html>
