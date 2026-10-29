@@ -11,7 +11,7 @@ F=64*KiB; t_f=0.5e-6; t_sys=1e-6; buf=1*MiB
 def T(opt,S,R=1):
     consume=S/B_mem
     if opt==1: return 100e-9+consume
-    if opt==2: return 50e-9+(math.ceil(S/F)*t_f)/R+consume
+    if opt==2: return 100e-9+(math.ceil(S/F)*t_f)/R+consume       # same ready signal as opt 1; R = reads of the same mapped bytes
     if opt==3: return 2*t_sys*max(1,math.ceil(S/buf))+2*S/B_copy+consume
     if opt==4: return 25e-6+S/(1.0*GB)+S/(2.5*GB)+consume          # SQLite WAL, sync=NORMAL
     if opt==5: return 1.9e-3+S/(0.3*GB)+S/(0.5*GB)+consume         # RDS Postgres same AZ
@@ -38,6 +38,12 @@ for a,b in [(6,7),(5,7),(5,6),(4,7),(3,7)]:
     c=cross(a,b); print("cross",names[a],names[b], c and f"{c/1e6:.1f} MB")
 # speedup over S3 at 1 GiB and amortised mmap
 print("opt2 R=100 1GiB",T(2,GiB,100), "R=1",T(2,GiB))
+# business rules: a 1 MiB case through K steps, each one share plus one small locked commit
+K=100; rule=1e-3; llm=2.0
+for k in names:
+    step=T(k,MiB)+small[k]; store=K*step
+    print("rules",names[k],f"step {step*1e3:.3f} ms, x{step/(T(2,MiB)+small[2]):.1f}, storage {store:.3f} s,",
+          f"case {K*rule+store:.2f} s ({store/(K*rule+store):.0%}), with model rules {K*llm+store:.1f} s ({store/(K*llm+store):.1%})")
 rows=[]
 for k in names:
     for s,l in zip(sizes,labels):
