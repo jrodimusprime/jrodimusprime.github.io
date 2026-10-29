@@ -6,7 +6,7 @@
 <title>Desi Office Slang</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Hind:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Hind:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&family=Noto+Sans+Tamil:wght@500&family=Noto+Sans+Telugu:wght@500&family=Noto+Sans+Kannada:wght@500&family=Noto+Sans+Malayalam:wght@500&display=swap">
 <style>
 /* Layout: compact masthead + key, sticky filter bar, then a dense wrapping grid of phrase cards colour-coded by mood */
 :root {
@@ -105,6 +105,8 @@ h1 .hl { background: linear-gradient(transparent 62%, var(--turmeric) 62%, var(-
 .toggles { display: flex; gap: 14px; flex-wrap: wrap; }
 .tgl { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); cursor: pointer; user-select: none; }
 .tgl input { width: 15px; height: 15px; margin: 0; accent-color: var(--turmeric); }
+.tgl-group { display: inline-flex; gap: 12px; align-items: center; padding: 3px 10px; border: 1px solid var(--line); border-radius: 999px; }
+.tgl-group .tgl { color: var(--ink); font-weight: 500; }
 
 /* Grid */
 main { padding-block: 16px 40px; }
@@ -129,8 +131,9 @@ main { padding-block: 16px 40px; }
 .ibtn:hover { color: var(--c); background: var(--chip-bg); }
 .ibtn svg { width: 12px; height: 12px; fill: currentColor; }
 .ibtn.done { color: var(--cool); }
-.say { font-family: var(--f-mono); font-size: 12.5px; color: var(--turmeric-ink); margin: 0; }
-.deva { font-family: var(--f-display); font-size: 21px; line-height: 1.3; margin: 2px 0 0; overflow-wrap: anywhere; display: none; }
+.say { font-family: var(--f-mono); font-size: 12.5px; color: var(--turmeric-ink); margin: 0; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.lang { font-family: var(--f-body); font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+.deva { font-family: var(--f-display), "Noto Sans Tamil", "Noto Sans Telugu", "Noto Sans Kannada", "Noto Sans Malayalam", sans-serif; font-size: 21px; line-height: 1.3; margin: 2px 0 0; overflow-wrap: anywhere; display: none; }
 body.show-deva .deva { display: block; }
 .def { margin: 3px 0 0; font-weight: 500; font-size: 14px; }
 .lit { color: var(--muted); font-weight: 400; font-size: 12.5px; }
@@ -162,7 +165,7 @@ footer .wrap { padding-block: 16px 28px; }
       <div>
         <p class="eyebrow">Hinglish cheat sheet</p>
         <h1>Desi Office <span class="hl">Slang</span></h1>
-        <p class="lede">100 phrases you'll actually hear in an Indian office, on a team call, or over chai when the deploy just broke.</p>
+        <p class="lede">200 phrases you'll actually hear in Indian offices, from Delhi to Chennai. Hindi up north; Tamil, Telugu, Kannada and Malayalam down south.</p>
       </div>
       <div class="mood-meter" aria-label="Mix of phrases by mood">
         <div class="meter-bar" id="meter"></div>
@@ -180,6 +183,7 @@ footer .wrap { padding-block: 16px 28px; }
       <span><b>kh gh bh dh th</b> add a puff of air</span>
       <span><b>t d</b> tongue on back of teeth</span>
       <span><b>r</b> in jugaa<b>d</b>, tho<b>r</b>a = quick flick</span>
+      <span><b>zh</b> in o<b>zh</b>appan = r with tongue curled back</span>
     </section>
   </div>
 </header>
@@ -191,7 +195,11 @@ footer .wrap { padding-block: 16px 28px; }
     </div>
     <div class="chips" id="chips" role="group" aria-label="Filter by mood"></div>
     <div class="toggles">
-      <label class="tgl" for="deva"><input type="checkbox" id="deva"> Show Devanagari</label>
+      <span class="tgl-group" role="group" aria-label="Region">
+        <label class="tgl" for="rNorth" title="Hindi"><input type="checkbox" id="rNorth" checked> North</label>
+        <label class="tgl" for="rSouth" title="Tamil, Telugu, Kannada, Malayalam"><input type="checkbox" id="rSouth" checked> South</label>
+      </span>
+      <label class="tgl" for="deva"><input type="checkbox" id="deva"> Native script</label>
       <label class="tgl" for="quiz"><input type="checkbox" id="quiz"> Quiz mode</label>
     </div>
   </div>
@@ -207,7 +215,7 @@ footer .wrap { padding-block: 16px 28px; }
 
 <footer>
   <div class="wrap">
-    Phrases marked <span class="rude">mildly rude</span> are fine with work friends, not with your skip-level. Quiz mode blurs the meanings; tap a card to check yourself. The play button uses your device's Hindi voice when it has one.
+    Phrases marked <span class="rude">mildly rude</span> are fine with work friends, not with your skip-level. Quiz mode blurs the meanings; tap a card to check yourself. The play button uses your device's voice for that language when it has one. Your North/South and script choices are remembered in this browser.
   </div>
 </footer>
 
@@ -330,16 +338,138 @@ const RAW = [
   ["wrong","अब क्या करें?","Ab kya karein?","ub KYAA ku-RAIN","now what to do?","Now what?","Backup bhi corrupt hai. Ab kya karein?","The backup's corrupt too. Now what?"]
 ];
 
-const PHRASES = RAW.map(([cat, deva, roman, say, lit, def, ex, tr, rude]) => ({ cat, deva, roman, say, lit, def, ex, tr, rude: !!rude }));
+// South: [lang, cat, native script, roman, pronunciation, literal, meaning, example, translation, rude?]
+const RAW_S = [
+  // ---------- Tamil ----------
+  ["Tamil","office","ரொம்ப தேங்க்ஸ்","Romba thanks","ROM-ba thanks","very thanks","Thanks a lot.","Help pannadhukku romba thanks.","Thanks a lot for helping."],
+  ["Tamil","office","பாத்துக்கலாம்","Paathukalam","PAATH-thu-ku-laam","we can look after it","We'll handle it / sort it out later.","Bug ah? Paathukalam, tension aagadhe.","A bug? We'll sort it, don't stress."],
+  ["Tamil","office","சரி","Seri","SU-ri","right","Okay. The all-purpose yes.","Seri, naan pannuren.","Okay, I'll do it."],
+  ["Tamil","office","வேலை முடிஞ்சிடுச்சு","Velai mudinjiduchu","VAY-lai mu-DINJ-ji-du-chu","the work has finished","Work's done.","Report velai mudinjiduchu, anuppitten.","The report's done, I've sent it."],
+  ["Tamil","office","கொஞ்சம் வெயிட் பண்ணுங்க","Konjam wait pannunga","KON-jum wait PUN-nun-ga","do a little wait","Please hang on a sec.","Konjam wait pannunga, screen share panren.","Hang on, I'll share my screen."],
+  ["Tamil","office","நாளைக்கு பாக்கலாம்","Naalaiku paakalam","NAA-lai-ku PAAK-ku-laam","we can see tomorrow","Let's look tomorrow (i.e. not today).","Ippo mudiyaadhu, naalaiku paakalam.","Can't now, let's look tomorrow."],
+  ["Tamil","office","தல","Thala","THU-la","head","Boss, chief. A respectful-cool way to address a senior.","Thala, approval kudunga please.","Boss, please give the approval."],
+  ["Tamil","cool","மச்சான்","Machan","MUCH-chaan","brother-in-law","Dude, bro. Machi for short.","Machan, lunch ku polaama?","Bro, shall we go for lunch?"],
+  ["Tamil","cool","செம்ம","Semma","SEM-ma","intense","Awesome, super.","Presentation semma da!","That presentation was awesome!"],
+  ["Tamil","cool","மாஸ்","Mass","maas","mass appeal","Epic, hero-level.","Unga demo mass!","Your demo was epic!"],
+  ["Tamil","cool","வேற லெவல்","Vera level","VAY-ra LEV-el","another level","Next level, outstanding.","Pudhu design vera level!","The new design is next level!"],
+  ["Tamil","cool","பசங்க","Pasanga","PU-sun-ga","boys","The guys, the gang.","Pasanga ellaam ready ah?","Is the gang all ready?"],
+  ["Tamil","cool","கலக்கிட்ட","Kalakkita","ku-LUK-kit-ta","you stirred it up","You rocked it!","Client meeting la kalakkita machan!","You rocked the client meeting, bro!"],
+  ["Tamil","funny","கெத்து","Gethu","GETH-thu","pride, swagger","Swagger, flexing your style.","Pudhu laptop vaangi gethu kaattuvaan.","He bought a new laptop just to flex."],
+  ["Tamil","funny","ஜாலியா","Jaaliya","JAA-lee-yaa","jolly-ly","Happily, just for fun, chilled out.","Friday, jaaliya iru!","It's Friday, chill out!"],
+  ["Tamil","funny","சீன் போடாதே","Scene podaadhe","seen POH-daa-thay","don't put on a scene","Stop showing off.","Scene podaadhe, ellaarukkum theriyum.","Stop showing off, everyone knows."],
+  ["Tamil","funny","மொக்க","Mokka","MOK-ka","blunt","Lame, boring (especially a joke).","Un joke romba mokka.","Your joke is so lame."],
+  ["Tamil","funny","கலாய்","Kalaai","ku-LAAI","tease","To roast or troll someone.","Team full ah avana kalaaichitaanga.","The whole team roasted him."],
+  ["Tamil","funny","புலம்பல்","Pulambal","pu-LUM-bul","lament","Whining, moaning.","Podhum un pulambal, velaiya paaru.","Enough whining, get to work."],
+  ["Tamil","funny","சப்பை","Sappa","SUP-pai","flat","Weak, lame, pathetic.","Idhu romba sappa excuse.","That's a really lame excuse."],
+  ["Tamil","funny","ஓவரா பண்ணாதே","Over ah pannaadhe","O-ver-aa PUN-naa-thay","don't do it over","Tone it down, don't overdo it.","Over ah pannaadhe, oru bug dhaan.","Tone it down, it's one bug."],
+  ["Tamil","funny","டேய்","Dei","DAY","hey (informal)","Hey! Fine with mates, rude to a senior.","Dei, mute pannu!","Hey, mute yourself!"],
+  ["Tamil","wrong","காண்டு","Gaandu","GAAN-du","anger","Pissed off. (Sounds like a rude Hindi word, so careful up north.)","Manager full gaandu la irukkaaru.","The manager is properly pissed off.",1],
+  ["Tamil","wrong","ஐயோ","Aiyo","EYE-yo","alas","Oh no! Heard across the whole South.","Aiyo, server down!","Oh no, the server's down!"],
+  ["Tamil","wrong","என்ன டா இது?","Enna da idhu?","EN-na da I-dhu","what is this, man?","What the heck is this?","Enna da idhu, ellaam broken!","What the heck, it's all broken!"],
+  ["Tamil","wrong","கடுப்பு","Kaduppu","ku-DUP-pu","irritation","Annoyed, fed up.","Meeting mela meeting, semma kaduppu.","Meeting after meeting, so annoying."],
+  ["Tamil","wrong","பயங்கர","Bayangara","bu-YUN-gu-ra","frightful","Insanely, terribly.","Bayangara traffic, late aagum.","Insane traffic, I'll be late."],
+  ["Tamil","wrong","வெச்சு செஞ்சிட்டாங்க","Vechu senjitaanga","VECH-chu SEN-jit-taan-ga","they held and did","They absolutely destroyed us.","Review la vechu senjitaanga.","They tore us apart in the review."],
+  ["Tamil","wrong","முடியல","Mudiyala","mu-DI-ya-la","can't finish","I can't take it anymore.","Moonu mani neram call, mudiyala.","Three-hour call, I can't anymore."],
+  ["Tamil","wrong","சொதப்பிட்டான்","Sothappittaan","so-THUP-pit-taan","he botched it","He messed it up.","Deployment ah sothappittaan.","He botched the deployment."],
+  ["Tamil","wrong","காலி","Gaali","GAA-lee","empty","Done for, finished.","Boss paathuttaaru, naan gaali.","The boss saw it, I'm done for."],
+
+  // ---------- Telugu ----------
+  ["Telugu","office","ఏమైంది?","Emaindi?","AY-main-di","what happened?","What happened? / What's up with it?","Build ki emaindi?","What happened to the build?"],
+  ["Telugu","office","అయిపోయింది","Ayipoyindi","ay-i-POY-in-di","it got finished","It's done.","Testing ayipoyindi, release cheyyochu.","Testing's done, we can release."],
+  ["Telugu","office","చూద్దాం","Chuddam","CHOOD-daam","let's see","We'll see (often a polite no).","Hike aa? Chuddam.","A raise? We'll see."],
+  ["Telugu","office","పర్లేదు","Parledu","pur-LAY-du","no matter","No problem, it's fine.","Late ayina parledu.","It's fine if it's late."],
+  ["Telugu","office","అన్నా","Anna","UN-naa","elder brother","Polite way to address a male colleague. Used across the South.","Anna, oka help kaavali.","Anna, I need a favour."],
+  ["Telugu","office","టెన్షన్ పడకు","Tension padaku","TEN-shun pu-DA-ku","don't fall into tension","Don't stress.","Tension padaku, nenu chusukunta.","Don't stress, I'll handle it."],
+  ["Telugu","office","వద్దు","Vaddu","VUD-du","not wanted","No / don't.","Ippudu deploy vaddu.","Don't deploy right now."],
+  ["Telugu","office","లైట్ తీస్కో","Light teesko","LIGHT TEES-ko","take it light","Let it go, chill. Hugely popular.","Manager cheppindi light teesko.","Don't sweat what the manager said."],
+  ["Telugu","cool","కేక","Keka","KAY-ka","a scream","Awesome, a knockout.","Mee demo keka!","Your demo was a knockout!"],
+  ["Telugu","cool","మామ","Mama","MAA-ma","uncle","Dude, bro.","Mama, chai ki veldaama?","Dude, chai break?"],
+  ["Telugu","cool","తోపు","Thopu","THO-pu","Telugu slang","A pro, a legend at something.","Excel lo vaadu thopu.","He's a legend at Excel."],
+  ["Telugu","cool","భలే","Bhale","BHUL-lay","excellent","Wow, nicely.","Bhale chesaav!","Nicely done!"],
+  ["Telugu","cool","కుమ్మేసావ్","Kummesaav","kum-MAY-saav","you pounded it","You smashed it.","Presentation kummesaav ra!","You smashed the presentation!"],
+  ["Telugu","funny","పిచ్చి","Pichi","PICH-chi","madness","Crazy. Can be good or bad.","Pichi idea ra, kaani work avutundi.","Crazy idea, but it'll work."],
+  ["Telugu","funny","బొక్క","Bokka","BOK-ka","a hole","My foot! / Nothing at all.","Bonus aa? Bokka!","A bonus? My foot!",1],
+  ["Telugu","funny","సీన్ లేదు","Scene ledu","seen LAY-du","there's no scene","No chance, not happening.","Friday ki release aa? Scene ledu.","Release by Friday? No chance."],
+  ["Telugu","funny","నిజంగా?","Nijamga?","ni-JUM-gaa","truly?","Really? Seriously?","Nijamga? Okka rojulo?","Seriously? In one day?"],
+  ["Telugu","funny","సోది","Sodhi","SO-dhi","Telugu slang","Boring blabber, pointless talk.","Aa meeting antha sodhi.","That meeting was all blah-blah."],
+  ["Telugu","wrong","బాబోయ్","Baboi","BAA-boy","oh father!","Whoa! Oh my god!","Baboi, inni bugs aa?","Whoa, this many bugs?"],
+  ["Telugu","wrong","అబ్బా","Abba","UB-baa","ugh","Ugh, oh man.","Abba, malli meeting aa?","Ugh, another meeting?"],
+  ["Telugu","wrong","దొబ్బింది","Dobbindi","DOB-bin-di","Telugu slang","It's screwed, it broke down.","Server dobbindi.","The server's screwed.",1],
+  ["Telugu","wrong","గోల","Gola","GO-la","noise, fuss","Chaos, a racket.","Release roju office lo full gola.","Total chaos in the office on release day."],
+  ["Telugu","wrong","చిరాకు","Chiraaku","chi-RAA-ku","irritation","Annoyed, irritated.","Ee traffic tho full chiraaku.","This traffic is so irritating."],
+  ["Telugu","wrong","మొత్తం పోయింది","Mottham poyindi","MOT-thum POY-in-di","everything went","It's all gone, lost.","Backup lekapothe mottham poyindi.","Without a backup, everything's gone."],
+
+  // ---------- Kannada ----------
+  ["Kannada","office","ಸ್ವಲ್ಪ ಅಡ್ಜಸ್ಟ್ ಮಾಡಿ","Swalpa adjust maadi","SWUL-pa ad-JUST MAA-di","do a little adjust","Please adjust a bit. Bangalore's unofficial motto.","Meeting 5 ge shift aaytu, swalpa adjust maadi.","Meeting moved to 5, please adjust."],
+  ["Kannada","office","ಆಯ್ತು","Aaytu","AAY-thu","it happened","Okay / done.","Aaytu, naanu kalustini.","Okay, I'll send it."],
+  ["Kannada","office","ಬನ್ನಿ","Banni","BUN-ni","come (polite)","Come in, welcome.","Banni, kootkolli.","Come in, have a seat."],
+  ["Kannada","office","ಬೇಡ","Beda","BAY-da","not wanted","No / don't.","Ivattu deploy beda.","Don't deploy today."],
+  ["Kannada","office","ಕೆಲಸ ನಡೀತಾ ಇದೆ","Kelsa nadeeta ide","KEL-sa nu-DEE-thaa I-day","work is walking","Work in progress.","Report? Kelsa nadeeta ide.","The report? It's in progress."],
+  ["Kannada","office","ನಾಳೆ ನೋಡೋಣ","Naale nodona","NAA-lay NOH-doh-na","let's see tomorrow","Let's look tomorrow (i.e. not today).","Ivattu aagalla, naale nodona.","Can't today, let's look tomorrow."],
+  ["Kannada","office","ಗೊತ್ತಿಲ್ಲ","Gottilla","GOT-thil-la","not known","No idea.","Deadline yaavaga? Nange gottilla.","When's the deadline? No idea."],
+  ["Kannada","office","ಹೋಗ್ಲಿ ಬಿಡು","Hogli bidu","HOG-li BI-du","let it go, leave it","Never mind, let it go.","Hogli bidu, next sprint maadona.","Never mind, let's do it next sprint."],
+  ["Kannada","office","ಒಂದು ನಿಮಿಷ","Ondu nimisha","ON-du ni-MI-sha","one minute","One sec.","Ondu nimisha, bandbitte.","One sec, I'll be right there."],
+  ["Kannada","office","ಮೀಟಿಂಗ್ ಅಲ್ಲಿ ಇದೀನಿ","Meeting-alli idini","MEE-ting-ul-li i-DEE-ni","I am in meeting","I'm in a meeting.","Aamele call maadi, meeting-alli idini.","Call later, I'm in a meeting."],
+  ["Kannada","office","ಗುರು","Guru","GU-ru","teacher","Mate / boss. Bangalore's go-to address.","Guru, ondu help beku.","Mate, I need a favour."],
+  ["Kannada","cool","ಮಗ","Maga","MU-ga","son","Dude, bro.","Maga, lunch ge hogona?","Dude, let's grab lunch?"],
+  ["Kannada","cool","ಸಕ್ಕತ್","Sakkath","SUK-kuth","Bangalore slang","Awesome / really.","Party sakkath aagittu!","The party was awesome!"],
+  ["Kannada","cool","ಬೊಂಬಾಟ್","Bombaat","bom-BAAT","Kannada slang","Fantastic.","Oota bombaat!","The food is fantastic!"],
+  ["Kannada","cool","ಏನ್ ಗುರು?","Yen guru?","ayn GU-ru","what, teacher?","What's up, mate?","Yen guru, hegidiya?","What's up, mate, how are you?"],
+  ["Kannada","cool","ಚಿಂದಿ","Chindi","CHIN-di","rags, shreds","Killer, superb (tore it to shreds).","Presentation chindi guru!","That presentation was killer!"],
+  ["Kannada","funny","ತಲೆ ತಿನ್ಬೇಡ","Thale thinbeda","THU-lay thin-BAY-da","don't eat my head","Stop pestering me.","Thale thinbeda, deadline ide.","Stop bugging me, I've got a deadline."],
+  ["Kannada","funny","ಡಬ್ಬಾ","Dabba","DUB-baa","tin box","Useless, rubbish.","Ee laptop full dabba.","This laptop is rubbish."],
+  ["Kannada","funny","ಗುಬ್ಬಿ","Gubbi","GUB-bi","sparrow","Naive, silly person.","Aa gubbi password share maadbitta.","That silly guy shared his password."],
+  ["Kannada","funny","ಬೇವರ್ಸಿ","Bevarsi","bay-VAR-si","Kannada slang","Good-for-nothing, rascal.","Aa bevarsi meeting ge barlilla.","That rascal didn't show up to the meeting.",1],
+  ["Kannada","funny","ಸುಮ್ನೆ ಇರು","Sumne iru","SUM-nay I-ru","just stay","Just be quiet. / Stop kidding.","Sumne iru, boss kelstaare.","Quiet, the boss will hear."],
+  ["Kannada","wrong","ತಲೆ ಕೆಟ್ಟೋಗಿದೆ","Thale kettogide","THU-lay ket-TOH-gi-day","my head has gone bad","I'm fed up, my head's fried.","Ee bug inda thale kettogide.","This bug has fried my brain."],
+  ["Kannada","wrong","ಕಿರಿಕ್","Kirik","KI-rik","Kannada slang","Trouble, a squabble.","Client jothe swalpa kirik aaytu.","We had a bit of a squabble with the client."],
+  ["Kannada","wrong","ಕೈ ಕೊಟ್ಟ","Kai kotta","KAI KOT-ta","gave the hand","Ditched us, let us down.","Last minute alli vendor kai kotta.","The vendor ditched us at the last minute."],
+
+  // ---------- Malayalam ----------
+  ["Malayalam","office","ശരി","Sheri","SHU-ri","right","Okay.","Sheri, njan nokkaam.","Okay, I'll take a look."],
+  ["Malayalam","office","മതി","Mathi","MU-thi","enough","That's enough / that'll do.","Ithra mathi, baakki naale.","That's enough, the rest tomorrow."],
+  ["Malayalam","office","സാരമില്ല","Saaramilla","SAA-rum-il-la","no essence","No worries, never mind.","Late aayi? Saaramilla.","You're late? No worries."],
+  ["Malayalam","office","പിന്നെ നോക്കാം","Pinne nokkaam","PIN-nay NOK-kaam","let's look later","We'll look later (maybe never).","Documentation pinne nokkaam.","We'll do the docs later."],
+  ["Malayalam","cool","അടിപൊളി","Adipoli","U-di-po-li","Malayalam slang","Awesome, fantastic.","Party adipoli aayirunnu!","The party was awesome!"],
+  ["Malayalam","cool","പൊളിച്ചു","Polichu","po-LI-chu","broke it open","Nailed it! (Pwoli for short.)","Demo polichu machane!","You nailed the demo, bro!"],
+  ["Malayalam","cool","കിടിലം","Kidilam","ki-DI-lum","Malayalam slang","Amazing, top class.","Puthiya office kidilam.","The new office is amazing."],
+  ["Malayalam","cool","അളിയാ","Aliya","UL-i-yaa","brother-in-law","Buddy, mate.","Aliya, chaaya kudikkaan pokaam?","Mate, shall we go for tea?"],
+  ["Malayalam","funny","ചുമ്മാ","Chumma","CHUM-maa","for nothing","Just kidding / just because. Tamil uses it too.","Chumma paranjatha, tension aakanda.","Just kidding, don't worry."],
+  ["Malayalam","funny","എന്റെ അമ്മോ!","Ente ammo!","EN-tay UM-mo","oh my mother!","Oh my god!","Ente ammo, ithrem bugs!","Oh my god, so many bugs!"],
+  ["Malayalam","funny","ചളി അടിക്കല്ലേ","Chali adikkalle","CHU-li u-DIK-kul-lay","don't throw mud","Spare us the lame puns.","Chali adikkalle, meeting serious aanu.","No lame jokes, this meeting's serious."],
+  ["Malayalam","funny","തള്ള്","Thallu","THUL-lu","a push","Bragging, tall tales.","Avan parayunnathu full thallu aanu.","Everything he says is tall tales."],
+  ["Malayalam","funny","ഒഴപ്പൻ","Ozhappan","O-zhup-pun","Malayalam slang","Slacker.","Aa ozhappan innum report thannilla.","That slacker still hasn't sent the report."],
+  ["Malayalam","funny","മണ്ടൻ","Mandan","MUN-dun","fool","Idiot, dummy.","Ethu mandan aanu prod-il push cheythathu?","Which dummy pushed to prod?",1],
+  ["Malayalam","wrong","കലിപ്പ്","Kalippu","ku-LIP-pu","rage","Furious, angry.","Boss full kalippil aanu.","The boss is furious."],
+  ["Malayalam","wrong","പണി പാളി","Pani paali","PU-ni PAA-li","the work slipped","The plan flopped.","Launch plan pani paali.","The launch plan flopped."],
+  ["Malayalam","wrong","പണി കിട്ടി","Pani kitti","PU-ni KIT-ti","got work","Got screwed over, got payback.","Audit-il nalla pani kitti.","We got properly burned in the audit."],
+  ["Malayalam","wrong","പെട്ടു","Pettu","PET-tu","got caught","Stuck, trapped, done for.","Client demo chodichu, njan pettu.","Client asked for a demo, I'm stuck."],
+  ["Malayalam","wrong","കൂതറ","Koothara","KOO-thu-ra","Malayalam slang","Trashy, lousy.","Ee software koothara aanu.","This software is trash."],
+  ["Malayalam","wrong","സീൻ ആണ്","Scene aanu","seen AA-nu","it's a scene","It's a mess, there's drama.","Finance-il full scene aanu.","It's total drama in finance."],
+  ["Malayalam","wrong","ശോകം","Shokam","SHO-kum","sorrow","Depressing, a downer.","Monday meeting full shokam.","The Monday meeting is such a downer."]
+];
+
+const PHRASES = [
+  ...RAW.map(([cat, deva, roman, say, lit, def, ex, tr, rude]) => ({ region: "north", lang: "Hindi", cat, deva, roman, say, lit, def, ex, tr, rude: !!rude })),
+  ...RAW_S.map(([lang, cat, deva, roman, say, lit, def, ex, tr, rude]) => ({ region: "south", lang, cat, deva, roman, say, lit, def, ex, tr, rude: !!rude }))
+];
+const SPEECH = { Hindi: "hi", Tamil: "ta", Telugu: "te", Kannada: "kn", Malayalam: "ml" };
 
 const grid = document.getElementById("grid");
 const chipsEl = document.getElementById("chips");
 const q = document.getElementById("q");
 const quiz = document.getElementById("quiz");
 const devaT = document.getElementById("deva");
+const rNorth = document.getElementById("rNorth");
+const rSouth = document.getElementById("rSouth");
 const empty = document.getElementById("empty");
 const countEl = document.getElementById("count");
 let active = "all";
+
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+};
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
 const canSpeak = "speechSynthesis" in window;
@@ -347,23 +477,31 @@ const ICON_PLAY = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v1
 const ICON_COPY = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 1h8a2 2 0 0 1 2 2v8h-2V3H5zM2 5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/></svg>';
 const ICON_TICK = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.2 11.6 2.6 8l-1.2 1.2 4.8 4.8L15 5.2 13.8 4z"/></svg>';
 
-const counts = { all: PHRASES.length };
-PHRASES.forEach(p => counts[p.cat] = (counts[p.cat] || 0) + 1);
+function regionList() {
+  return PHRASES.map((p, i) => [p, i]).filter(([p]) => (p.region === "north" && rNorth.checked) || (p.region === "south" && rSouth.checked));
+}
+function countsFor(list) {
+  const c = { all: list.length };
+  list.forEach(([p]) => c[p.cat] = (c[p.cat] || 0) + 1);
+  return c;
+}
 
-(function meter() {
+function renderMeter(list) {
+  const c = countsFor(list);
   const bar = document.getElementById("meter"), leg = document.getElementById("meterLegend");
-  Object.entries(CATS).forEach(([k, c]) => {
-    const pct = Math.round(counts[k] / PHRASES.length * 100);
-    bar.insertAdjacentHTML("beforeend", `<span style="width:${pct}%;background:${c.color}" title="${c.label}: ${pct}%"></span>`);
-    leg.insertAdjacentHTML("beforeend", `<span><i style="background:${c.color}"></i>${pct}% ${c.label.toLowerCase()}</span>`);
+  bar.innerHTML = ""; leg.innerHTML = "";
+  Object.entries(CATS).forEach(([k, cat]) => {
+    const pct = c.all ? Math.round((c[k] || 0) / c.all * 100) : 0;
+    bar.insertAdjacentHTML("beforeend", `<span style="width:${pct}%;background:${cat.color}" title="${cat.label}: ${pct}%"></span>`);
+    leg.insertAdjacentHTML("beforeend", `<span><i style="background:${cat.color}"></i>${pct}% ${cat.label.toLowerCase()}</span>`);
   });
-})();
+}
 
-function renderChips() {
+function renderChips(c) {
   const entries = [["all", { label: "All", color: "var(--ink)" }], ...Object.entries(CATS)];
-  chipsEl.innerHTML = entries.map(([k, c]) =>
-    `<button class="chip" type="button" data-cat="${k}" aria-pressed="${k === active}" style="--c:${c.color}">` +
-    (k === "all" ? "" : `<span class="dot"></span>`) + `${esc(c.label)} <span class="n">${counts[k]}</span></button>`
+  chipsEl.innerHTML = entries.map(([k, cat]) =>
+    `<button class="chip" type="button" data-cat="${k}" aria-pressed="${k === active}" style="--c:${cat.color}">` +
+    (k === "all" ? "" : `<span class="dot"></span>`) + `${esc(cat.label)} <span class="n">${c[k] || 0}</span></button>`
   ).join("");
 }
 
@@ -376,42 +514,54 @@ function card(p, i) {
         <button class="ibtn" type="button" data-act="copy" data-i="${i}" aria-label="Copy ${esc(p.roman)}" title="Copy">${ICON_COPY}</button>
       </div>
     </div>
-    <p class="say">${esc(p.say)}</p>
-    <p class="deva" lang="hi">${esc(p.deva)}</p>
+    <p class="say"><span>${esc(p.say)}</span><span class="lang">${esc(p.lang)}</span></p>
+    <p class="deva" lang="${SPEECH[p.lang]}">${esc(p.deva)}</p>
     <p class="def">${esc(p.def)} <span class="lit">(lit. ${esc(p.lit)})</span></p>
     <p class="ex"><span class="hi">"${esc(p.ex)}"</span> <span class="tr">${esc(p.tr)}</span></p>
   </article>`;
 }
 
 function render() {
+  const base = regionList();
+  renderMeter(base);
+  renderChips(countsFor(base));
   const term = q.value.trim().toLowerCase();
-  const list = PHRASES.map((p, i) => [p, i]).filter(([p]) =>
+  const list = base.filter(([p]) =>
     (active === "all" || p.cat === active) &&
-    (!term || [p.deva, p.roman, p.def, p.lit, p.ex, p.tr, p.say].join(" ").toLowerCase().includes(term))
+    (!term || [p.deva, p.roman, p.def, p.lit, p.ex, p.tr, p.say, p.lang].join(" ").toLowerCase().includes(term))
   );
   grid.innerHTML = list.map(([p, i]) => card(p, i)).join("");
   empty.hidden = list.length > 0;
-  countEl.textContent = `Showing ${list.length} of ${PHRASES.length}`;
+  empty.textContent = base.length ? "No phrases match that. Try another word." : "Tick North or South to see phrases.";
+  countEl.textContent = `Showing ${list.length} of ${base.length}`;
 }
+
+// Restore saved preferences
+(function restore() {
+  const reg = store.get("regions");
+  if (reg) { rNorth.checked = reg.includes("N"); rSouth.checked = reg.includes("S"); }
+  if (store.get("showDeva") === "1") { devaT.checked = true; document.body.classList.add("show-deva"); }
+})();
+function saveRegions() { store.set("regions", (rNorth.checked ? "N" : "") + (rSouth.checked ? "S" : "") || "-"); }
 
 chipsEl.addEventListener("click", e => {
   const b = e.target.closest(".chip"); if (!b) return;
-  active = b.dataset.cat; renderChips(); render();
+  active = b.dataset.cat; render();
 });
 q.addEventListener("input", render);
+[rNorth, rSouth].forEach(el => el.addEventListener("change", () => { saveRegions(); render(); }));
 quiz.addEventListener("change", () => {
   document.body.classList.toggle("quiz", quiz.checked);
   grid.querySelectorAll(".revealed").forEach(c => c.classList.remove("revealed"));
 });
 devaT.addEventListener("change", () => {
   document.body.classList.toggle("show-deva", devaT.checked);
-  try { localStorage.setItem("showDeva", devaT.checked ? "1" : "0"); } catch (e) {}
+  store.set("showDeva", devaT.checked ? "1" : "0");
 });
-try { if (localStorage.getItem("showDeva") === "1") { devaT.checked = true; document.body.classList.add("show-deva"); } } catch (e) {}
 
-let hiVoice = null;
-function pickVoice() { try { hiVoice = speechSynthesis.getVoices().find(v => /^hi/i.test(v.lang)) || null; } catch (e) {} }
-if (canSpeak) { pickVoice(); try { speechSynthesis.onvoiceschanged = pickVoice; } catch (e) {} }
+let voices = [];
+function loadVoices() { try { voices = speechSynthesis.getVoices(); } catch (e) {} }
+if (canSpeak) { loadVoices(); try { speechSynthesis.onvoiceschanged = loadVoices; } catch (e) {} }
 
 grid.addEventListener("click", async e => {
   const btn = e.target.closest("[data-act]");
@@ -420,12 +570,15 @@ grid.addEventListener("click", async e => {
     if (btn.dataset.act === "listen") {
       try {
         speechSynthesis.cancel();
+        const code = SPEECH[p.lang];
         const u = new SpeechSynthesisUtterance(p.deva);
-        u.lang = "hi-IN"; u.rate = 0.85; if (hiVoice) u.voice = hiVoice;
+        u.lang = code + "-IN"; u.rate = 0.85;
+        const v = voices.find(v => v.lang && v.lang.toLowerCase().startsWith(code));
+        if (v) u.voice = v;
         speechSynthesis.speak(u);
       } catch (err) {}
     } else {
-      const text = `${p.roman} (${p.deva}) — ${p.say} — ${p.def}`;
+      const text = `${p.roman} (${p.deva}, ${p.lang}) — ${p.say} — ${p.def}`;
       try { await navigator.clipboard.writeText(text); }
       catch (err) {
         const r = document.createRange(); r.selectNodeContents(btn.closest(".card").querySelector(".roman"));
@@ -440,7 +593,6 @@ grid.addEventListener("click", async e => {
   if (c && document.body.classList.contains("quiz")) c.classList.toggle("revealed");
 });
 
-renderChips();
 render();
 </script>
 </body>
