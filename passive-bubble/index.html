@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Index Fund That Ate the World</title>
+<meta name="description" content="Index funds promise about 7% a year above inflation, forever. Compound that for a century and paying their owners would take more than four times the entire world&#x27;s output, every year. Passive investing is making a promise the planet can&#x27;t keep.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>
+html,body{margin:0;background:#0b0b10}
+.site{max-width:720px;margin:0 auto;padding:28px 16px 0;font:500 13px/1 "IBM Plex Sans",system-ui,sans-serif}
+.site a{color:#8d8a84;text-decoration:none}
+.site a:hover{color:#f0b45a}
+.page{padding:12px 16px 24px}
+.orig{max-width:720px;margin:0 auto;padding:0 16px 56px;font:400 13px/1.5 "IBM Plex Sans",system-ui,sans-serif;color:#8d8a84}
+.orig a{color:#8d8a84}
+</style>
+</head>
+<body>
+<nav class="site"><a href="../">← jrodimusprime</a></nav>
+<main class="page">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+.wt{--ink:#e9e7e2;--body:#cfccc5;--dim:#8d8a84;--line:#2a2a33;--card:#0f0f16;--accent:#f0b45a;--good:#8f8;--bad:#ff8f7a;
+  max-width:720px;margin:0 auto;padding:8px 0 64px;color:var(--body);font:18px/1.7 "Source Serif 4",Georgia,serif}
+.wt *{box-sizing:border-box}
+.wt .kicker{font:500 12px/1 "IBM Plex Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 18px}
+.wt h1{font:700 clamp(34px,5.4vw,52px)/1.08 "Source Serif 4",Georgia,serif;color:var(--ink);margin:0 0 18px;letter-spacing:-.015em;text-wrap:balance}
+.wt .dek{font:400 21px/1.5 "Source Serif 4",Georgia,serif;color:var(--ink);margin:0 0 20px;text-wrap:pretty}
+.wt .byline{font:400 13px/1.4 "IBM Plex Sans",sans-serif;color:var(--dim);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin:0 0 34px}
+.wt .byline b{color:var(--ink);font-weight:600}
+.wt h2{font:600 26px/1.25 "Source Serif 4",Georgia,serif;color:var(--ink);margin:46px 0 12px;text-wrap:balance}
+.wt p{margin:0 0 18px}
+.wt a{color:var(--accent);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.wt a:hover{color:#ffd08a}
+.wt strong{color:var(--ink);font-weight:600}
+.wt ul{margin:0 0 20px;padding-left:22px}
+.wt li{margin:0 0 10px}
+.wt .lede::first-letter{float:left;font:700 64px/0.8 "Source Serif 4",Georgia,serif;color:var(--accent);padding:8px 10px 0 0}
+.wt .num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+.wt figure{margin:30px 0 34px;padding:20px 22px;background:var(--card);border:1px solid var(--line);border-radius:6px}
+.wt figcaption{font:400 13px/1.55 "IBM Plex Sans",sans-serif;color:var(--dim);margin-top:14px}
+.wt .figtitle{font:600 14px/1.3 "IBM Plex Sans",sans-serif;color:var(--ink);margin:0 0 4px}
+.wt .figsub{font:400 12px/1.4 "IBM Plex Sans",sans-serif;color:var(--dim);margin:0 0 18px}
+.wt .bars{display:grid;grid-template-columns:118px 1fr;gap:10px 14px;align-items:center;font:400 13px/1.3 "IBM Plex Sans",sans-serif}
+.wt .bars .who{color:var(--ink)}
+.wt .track{position:relative;height:30px;background:#16161f;border-radius:3px}
+.wt .start{position:absolute;inset:0 auto 0 0;background:#2b2b38;border-radius:3px}
+.wt .left{position:absolute;inset:0 auto 0 0;background:var(--accent);border-radius:3px}
+.wt .lab{position:absolute;top:50%;transform:translateY(-50%);font:500 12px/1 "IBM Plex Mono",monospace;white-space:nowrap}
+.wt .lab.in{color:#16161f;left:8px}
+.wt .lab.end{color:var(--dim)}
+.wt .key{display:flex;flex-wrap:wrap;gap:16px;font:400 12px/1 "IBM Plex Sans",sans-serif;color:var(--dim);margin-top:14px}
+.wt .key i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:6px;vertical-align:-2px}
+.wt .ranges{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px}
+.wt .rng{border:1px solid var(--line);border-radius:5px;padding:14px 16px;background:#13131b}
+.wt .rng .k{font:500 11px/1 "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.wt .rng .v{font:600 24px/1.25 "IBM Plex Sans",sans-serif;color:var(--ink);margin:8px 0 4px}
+.wt .rng .x{font:400 13px/1.45 "IBM Plex Sans",sans-serif;color:var(--body)}
+.wt .tablewrap{overflow-x:auto;margin:26px 0 30px;border:1px solid var(--line);border-radius:6px}
+.wt table{width:100%;border-collapse:collapse;font:400 14px/1.45 "IBM Plex Sans",sans-serif;margin:0}
+.wt th{position:static;background:#13131b;color:var(--ink);font-weight:600;text-align:left;padding:11px 14px;border-bottom:1px solid var(--line)}
+.wt td{padding:10px 14px;border-bottom:1px solid #1c1c25;color:var(--body)}
+.wt th:not(:first-child){text-align:right}
+.wt td:not(:first-child){text-align:right;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+.wt td:first-child{color:var(--dim)}
+.wt tr.hl td{color:var(--ink);font-weight:600;background:#17140e}
+.wt tr:last-child td{border-bottom:none}
+.wt .pull{border-left:3px solid var(--accent);padding:4px 0 4px 18px;margin:30px 0;font:600 22px/1.45 "Source Serif 4",Georgia,serif;color:var(--ink)}
+.wt .method{font:400 15px/1.65 "IBM Plex Sans",sans-serif;color:var(--body)}
+.wt .method p,.wt .method li{font-size:15px}
+.wt .sources{font:400 14px/1.6 "IBM Plex Sans",sans-serif;padding-left:20px}
+.wt .money{margin:28px 0 30px;padding:18px 20px;background:#17140e;border:1px solid #3a2f1c;border-radius:6px}
+.wt .money p{font:400 15px/1.6 "IBM Plex Sans",sans-serif;margin:0 0 12px}
+.wt .money table{font-size:14px;margin:4px 0 0}
+.wt .money th{background:transparent}
+.wt .rng .then{font:400 12.5px/1.45 "IBM Plex Sans",sans-serif;color:var(--dim);margin-top:8px;border-top:1px solid var(--line);padding-top:8px}
+.wt .note{font:400 13px/1.55 "IBM Plex Sans",sans-serif;color:var(--dim);border-top:1px solid var(--line);padding-top:14px;margin-top:34px}
+@media (max-width:600px){.wt{font-size:17px}.wt .dek{font-size:19px}.wt .bars{grid-template-columns:1fr}.wt .bars .who{margin-top:6px}}
+</style>
+<style>
+.wt .chart{position:relative;margin:4px 0 0}
+.wt .chart svg{display:block;width:100%;height:auto;font-family:"IBM Plex Sans",sans-serif}
+.wt .chart .g{stroke:#22222c;stroke-width:1}
+.wt .chart .t{fill:var(--dim);font:11px "IBM Plex Mono",monospace}
+.wt .chart .ref{stroke:#55534f;stroke-width:1;stroke-dasharray:4 4}
+.wt .chart .rl{fill:var(--dim);font-size:11px}
+.wt .chart .ln{fill:none;stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
+.wt .chart .s1,.wt .lg .s1{stroke:#3987e5;background:#3987e5}
+.wt .chart .s2,.wt .lg .s2{stroke:#d95926;background:#d95926}
+.wt .chart .s3,.wt .lg .s3{stroke:#199e70;background:#199e70}
+.wt .chart .ll{fill:var(--ink);font-size:12px}
+.wt .chart .dot{fill:var(--ink)}
+.wt .chart .an{fill:var(--body);font-size:11px}
+.wt .chart .xh{stroke:var(--dim);stroke-width:1;stroke-dasharray:2 2}
+.wt .chart .tip{display:none;position:absolute;z-index:5;background:#e9e7e2;color:#111;font:12px/1.5 "IBM Plex Sans",sans-serif;
+  padding:8px 10px;border-radius:5px;max-width:240px;pointer-events:none;box-shadow:0 2px 10px rgba(0,0,0,.4)}
+.wt .lg{display:flex;flex-wrap:wrap;gap:14px;font:400 12px/1 "IBM Plex Sans",sans-serif;color:var(--dim);margin:0 0 10px}
+.wt .lg i{display:inline-block;width:14px;height:3px;border-radius:2px;margin-right:6px;vertical-align:3px}
+.wt .lg i.ref{background:none;border-top:1px dashed #77746e;height:0}
+.wt .earthrow{display:grid;grid-template-columns:150px 1fr;gap:12px 16px;align-items:center;margin:8px 0}
+.wt .earthrow .who{font:500 13px/1.35 "IBM Plex Sans",sans-serif;color:var(--ink)}
+.wt .earthrow .who span{display:block;color:var(--dim);font-weight:400}
+.wt .earths{width:100%;max-width:364px;height:auto;display:block}
+.wt .earths .e1{fill:#3987e5}.wt .earths .e2{fill:#d95926}.wt .earths .e0{fill:#2b2b38}
+.wt .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:10px;margin:22px 0 28px}
+.wt .stat{border:1px solid var(--line);border-radius:5px;padding:12px 14px;background:#13131b}
+.wt .stat .v{font:600 22px/1.2 "IBM Plex Sans",sans-serif;color:var(--ink)}
+.wt .stat .k{font:400 12.5px/1.4 "IBM Plex Sans",sans-serif;color:var(--dim);margin-top:4px}
+@media (max-width:600px){.wt .chart{overflow-x:auto}.wt .chart svg{min-width:620px}.wt .earthrow{grid-template-columns:1fr}}
+</style>
+
+<article class="wt">
+<p class="kicker">Markets · Long read</p>
+<h1>The Index Fund That Ate the World</h1>
+<p class="dek">Index funds promise about 7% a year above inflation, forever. Compound that for a century and paying
+their owners would take more than four times the entire world's output, every year. Passive investing is making a
+promise the planet can't keep.</p>
+<p class="byline"><b>Jared Ryan</b> · 21 October 2026</p>
+
+<p class="lede">The pitch is simple and, for one person, true. Put money in a fund that owns the whole market, don't
+touch it, and history says it grows about 10% a year, or 7% after inflation. Australians do it automatically through
+super. Americans do it through their retirement plans. Index funds and ETFs now hold more of America's fund money than
+active managers do.</p>
+<p>But a promise that works for one saver is not a plan that works for everyone at once. So we asked: what happens if
+the whole system keeps compounding at the historical average for the next hundred years?</p>
+
+<h2>Where we start</h2>
+<div class="stats">
+<div class="stat"><div class="v num">$158 trillion</div><div class="k">value of every listed share in the world, end of 2025</div></div>
+<div class="stat"><div class="v num">$117 trillion</div><div class="k">the world's entire yearly output (GDP), 2025</div></div>
+<div class="stat"><div class="v num">$471 trillion</div><div class="k">all personal wealth on Earth, end of 2024</div></div>
+<div class="stat"><div class="v num">$24 trillion</div><div class="k">in exchange-traded funds, August 2026, up from $3 trillion in 2015</div></div>
+</div>
+<p>The world's shares are already worth about 1.35 years of everything humanity produces, a record. In the United
+States the ratio is above 2. ETFs, almost all of them index trackers, have grown about 21% a year for a decade. Since
+the end of 2023, index funds have held more of America's fund money than active managers, and 55% by the end of 2025.</p>
+
+<h2>Three ways to project a century</h2>
+<p>We projected three paths, all in today's dollars, against a world economy that keeps growing at 3% a year after
+inflation, close to its recent pace.</p>
+<ul>
+<li><strong>Index funds keep growing like the last ten years.</strong> At about 18% a year after inflation, they would
+own every listed share on the planet by around 2043 to 2045, and be worth more than all the wealth on Earth by 2048.
+By 2126 they would be worth 149,000 years of world output. That path ends within twenty years, one way or another.</li>
+<li><strong>Shares compound at the US average.</strong> Seven percent a year after inflation, everything reinvested.
+By 2055 the world's shares would be worth more than all the wealth on Earth is today, measured against output. By
+2126 they would be worth 61 years of world output.</li>
+<li><strong>Shares compound at the world average.</strong> Since 1900, world shares have returned 5.2% a year after
+inflation. Even that gentler path makes shares worth 11 years of world output by 2126.</li>
+</ul>
+
+<figure>
+<p class="figtitle">What index funds and shares would be worth, measured in years of world output</p>
+<p class="figsub">Today's dollars · world output grows 3% a year · log scale: each line up is ten times bigger</p>
+<div class="lg"><span><i class="s1"></i>shares at the world average (5.2%)</span><span><i class="s2"></i>shares at the US average (7%)</span>
+<span><i class="s3"></i>index funds at their 10-year growth rate</span><span><i class="ref"></i>all wealth on Earth today</span></div>
+<div class="chart"><svg id="pa" viewBox="0 0 720 340" role="img" aria-label="Value relative to world output, 2026 to 2126, log scale"><line x1="84" x2="550" y1="306.0" y2="306.0" class="g"></line><text x="78" y="310.0" text-anchor="end" class="t">0.1×</text><line x1="84" x2="550" y1="264.9" y2="264.9" class="g"></line><text x="78" y="268.9" text-anchor="end" class="t">1×</text><line x1="84" x2="550" y1="223.7" y2="223.7" class="g"></line><text x="78" y="227.7" text-anchor="end" class="t">10×</text><line x1="84" x2="550" y1="182.6" y2="182.6" class="g"></line><text x="78" y="186.6" text-anchor="end" class="t">100×</text><line x1="84" x2="550" y1="141.4" y2="141.4" class="g"></line><text x="78" y="145.4" text-anchor="end" class="t">1,000×</text><line x1="84" x2="550" y1="100.3" y2="100.3" class="g"></line><text x="78" y="104.3" text-anchor="end" class="t">10,000×</text><line x1="84" x2="550" y1="59.1" y2="59.1" class="g"></line><text x="78" y="63.1" text-anchor="end" class="t">100,000×</text><line x1="84" x2="550" y1="18.0" y2="18.0" class="g"></line><text x="78" y="22.0" text-anchor="end" class="t">1,000,000×</text><text x="84.0" y="330" text-anchor="middle" class="t">2026</text><text x="200.5" y="330" text-anchor="middle" class="t">2051</text><text x="317.0" y="330" text-anchor="middle" class="t">2076</text><text x="433.5" y="330" text-anchor="middle" class="t">2101</text><text x="550.0" y="330" text-anchor="middle" class="t">2126</text><line x1="84" x2="550" y1="240.0" y2="240.0" class="ref"></line><text x="558" y="244.0" class="rl">all wealth on Earth</text><text x="558" y="257.0" class="rl">today (4× output)</text><polyline class="ln s1" points="84.0,259.5 88.7,259.1 93.3,258.7 98.0,258.4 102.6,258.0 107.3,257.6 112.0,257.2 116.6,256.8 121.3,256.5 125.9,256.1 130.6,255.7 135.3,255.3 139.9,255.0 144.6,254.6 149.2,254.2 153.9,253.8 158.6,253.4 163.2,253.1 167.9,252.7 172.5,252.3 177.2,251.9 181.9,251.6 186.5,251.2 191.2,250.8 195.8,250.4 200.5,250.0 205.2,249.7 209.8,249.3 214.5,248.9 219.1,248.5 223.8,248.2 228.5,247.8 233.1,247.4 237.8,247.0 242.4,246.6 247.1,246.3 251.8,245.9 256.4,245.5 261.1,245.1 265.7,244.8 270.4,244.4 275.1,244.0 279.7,243.6 284.4,243.3 289.0,242.9 293.7,242.5 298.4,242.1 303.0,241.7 307.7,241.4 312.3,241.0 317.0,240.6 321.7,240.2 326.3,239.9 331.0,239.5 335.6,239.1 340.3,238.7 345.0,238.3 349.6,238.0 354.3,237.6 358.9,237.2 363.6,236.8 368.3,236.5 372.9,236.1 377.6,235.7 382.2,235.3 386.9,234.9 391.6,234.6 396.2,234.2 400.9,233.8 405.5,233.4 410.2,233.1 414.9,232.7 419.5,232.3 424.2,231.9 428.8,231.5 433.5,231.2 438.2,230.8 442.8,230.4 447.5,230.0 452.1,229.7 456.8,229.3 461.5,228.9 466.1,228.5 470.8,228.1 475.4,227.8 480.1,227.4 484.8,227.0 489.4,226.6 494.1,226.3 498.7,225.9 503.4,225.5 508.1,225.1 512.7,224.7 517.4,224.4 522.0,224.0 526.7,223.6 531.4,223.2 536.0,222.9 540.7,222.5 545.3,222.1 550.0,221.7"></polyline><polyline class="ln s2" points="84.0,259.5 88.7,258.8 93.3,258.1 98.0,257.4 102.6,256.8 107.3,256.1 112.0,255.4 116.6,254.7 121.3,254.0 125.9,253.4 130.6,252.7 135.3,252.0 139.9,251.3 144.6,250.6 149.2,250.0 153.9,249.3 158.6,248.6 163.2,247.9 167.9,247.2 172.5,246.6 177.2,245.9 181.9,245.2 186.5,244.5 191.2,243.8 195.8,243.2 200.5,242.5 205.2,241.8 209.8,241.1 214.5,240.4 219.1,239.7 223.8,239.1 228.5,238.4 233.1,237.7 237.8,237.0 242.4,236.3 247.1,235.7 251.8,235.0 256.4,234.3 261.1,233.6 265.7,232.9 270.4,232.3 275.1,231.6 279.7,230.9 284.4,230.2 289.0,229.5 293.7,228.9 298.4,228.2 303.0,227.5 307.7,226.8 312.3,226.1 317.0,225.5 321.7,224.8 326.3,224.1 331.0,223.4 335.6,222.7 340.3,222.0 345.0,221.4 349.6,220.7 354.3,220.0 358.9,219.3 363.6,218.6 368.3,218.0 372.9,217.3 377.6,216.6 382.2,215.9 386.9,215.2 391.6,214.6 396.2,213.9 400.9,213.2 405.5,212.5 410.2,211.8 414.9,211.2 419.5,210.5 424.2,209.8 428.8,209.1 433.5,208.4 438.2,207.8 442.8,207.1 447.5,206.4 452.1,205.7 456.8,205.0 461.5,204.3 466.1,203.7 470.8,203.0 475.4,202.3 480.1,201.6 484.8,200.9 489.4,200.3 494.1,199.6 498.7,198.9 503.4,198.2 508.1,197.5 512.7,196.9 517.4,196.2 522.0,195.5 526.7,194.8 531.4,194.1 536.0,193.5 540.7,192.8 545.3,192.1 550.0,191.4"></polyline><polyline class="ln s3" points="84.0,293.2 88.7,290.8 93.3,288.3 98.0,285.9 102.6,283.5 107.3,281.1 112.0,278.7 116.6,276.3 121.3,273.9 125.9,271.5 130.6,269.0 135.3,266.6 139.9,264.2 144.6,261.8 149.2,259.4 153.9,257.0 158.6,254.6 163.2,252.2 167.9,249.8 172.5,247.3 177.2,244.9 181.9,242.5 186.5,240.1 191.2,237.7 195.8,235.3 200.5,232.9 205.2,230.5 209.8,228.0 214.5,225.6 219.1,223.2 223.8,220.8 228.5,218.4 233.1,216.0 237.8,213.6 242.4,211.2 247.1,208.8 251.8,206.3 256.4,203.9 261.1,201.5 265.7,199.1 270.4,196.7 275.1,194.3 279.7,191.9 284.4,189.5 289.0,187.0 293.7,184.6 298.4,182.2 303.0,179.8 307.7,177.4 312.3,175.0 317.0,172.6 321.7,170.2 326.3,167.8 331.0,165.3 335.6,162.9 340.3,160.5 345.0,158.1 349.6,155.7 354.3,153.3 358.9,150.9 363.6,148.5 368.3,146.0 372.9,143.6 377.6,141.2 382.2,138.8 386.9,136.4 391.6,134.0 396.2,131.6 400.9,129.2 405.5,126.8 410.2,124.3 414.9,121.9 419.5,119.5 424.2,117.1 428.8,114.7 433.5,112.3 438.2,109.9 442.8,107.5 447.5,105.0 452.1,102.6 456.8,100.2 461.5,97.8 466.1,95.4 470.8,93.0 475.4,90.6 480.1,88.2 484.8,85.8 489.4,83.3 494.1,80.9 498.7,78.5 503.4,76.1 508.1,73.7 512.7,71.3 517.4,68.9 522.0,66.5 526.7,64.0 531.4,61.6 536.0,59.2 540.7,56.8 545.3,54.4 550.0,52.0"></polyline><line x1="554" x2="564" y1="52.0" y2="52.0" class="ln s3"></line><text x="568" y="56.0" class="ll">index funds, 21%/yr</text><line x1="554" x2="564" y1="191.4" y2="191.4" class="ln s2"></line><text x="568" y="195.4" class="ll">stocks at US avg (7%)</text><line x1="554" x2="564" y1="221.7" y2="221.7" class="ln s1"></line><text x="568" y="225.7" class="ll">stocks at world avg (5.2%)</text><circle cx="174.7" cy="246.6" r="4.5" class="dot"></circle><text x="182.7" y="264.6" class="an">2045: index funds own</text><text x="182.7" y="277.6" class="an">every listed share</text><line class="xh" x1="0" x2="0" y1="16" y2="306" style="display:none"></line></svg><div class="tip" role="status"></div></div><script>(function(){var D=[[2026, 1.35, 1.35, 0.2], [2027, 1.379, 1.403, 0.2], [2028, 1.409, 1.457, 0.3], [2029, 1.439, 1.514, 0.3], [2030, 1.47, 1.573, 0.4], [2031, 1.501, 1.634, 0.4], [2032, 1.533, 1.697, 0.5], [2033, 1.566, 1.763, 0.5], [2034, 1.599, 1.832, 0.6], [2035, 1.633, 1.903, 0.7], [2036, 1.668, 1.977, 0.8], [2037, 1.704, 2.053, 0.9], [2038, 1.74, 2.133, 1.0], [2039, 1.777, 2.216, 1.2], [2040, 1.815, 2.302, 1.4], [2041, 1.854, 2.391, 1.6], [2042, 1.894, 2.484, 1.8], [2043, 1.934, 2.581, 2.0], [2044, 1.976, 2.681, 2.3], [2045, 2.018, 2.785, 2.7], [2046, 2.061, 2.893, 3.1], [2047, 2.105, 3.006, 3.5], [2048, 2.15, 3.122, 4.0], [2049, 2.196, 3.244, 4.6], [2050, 2.243, 3.37, 5.2], [2051, 2.291, 3.501, 6.0], [2052, 2.339, 3.636, 6.9], [2053, 2.389, 3.778, 7.8], [2054, 2.44, 3.924, 9.0], [2055, 2.493, 4.077, 10.3], [2056, 2.546, 4.235, 11.8], [2057, 2.6, 4.4, 13.5], [2058, 2.656, 4.57, 15.4], [2059, 2.712, 4.748, 17.6], [2060, 2.77, 4.932, 20.2], [2061, 2.83, 5.124, 23.1], [2062, 2.89, 5.323, 26.4], [2063, 2.952, 5.53, 30.3], [2064, 3.015, 5.744, 34.6], [2065, 3.079, 5.967, 39.6], [2066, 3.145, 6.199, 45.4], [2067, 3.212, 6.44, 51.9], [2068, 3.281, 6.69, 59.4], [2069, 3.351, 6.95, 68.0], [2070, 3.422, 7.22, 77.8], [2071, 3.495, 7.5, 89.1], [2072, 3.57, 7.791, 102.0], [2073, 3.646, 8.094, 116.7], [2074, 3.724, 8.408, 133.6], [2075, 3.804, 8.735, 152.9], [2076, 3.885, 9.074, 175.0], [2077, 3.968, 9.426, 200.3], [2078, 4.053, 9.792, 229.2], [2079, 4.139, 10.173, 262.3], [2080, 4.228, 10.568, 300.2], [2081, 4.318, 10.978, 343.6], [2082, 4.41, 11.405, 393.3], [2083, 4.504, 11.847, 450.1], [2084, 4.601, 12.308, 515.1], [2085, 4.699, 12.786, 589.6], [2086, 4.799, 13.282, 674.8], [2087, 4.902, 13.798, 772.3], [2088, 5.007, 14.334, 883.9], [2089, 5.113, 14.89, 1011.6], [2090, 5.223, 15.469, 1157.8], [2091, 5.334, 16.069, 1325.1], [2092, 5.448, 16.693, 1516.6], [2093, 5.565, 17.342, 1735.7], [2094, 5.683, 18.015, 1986.6], [2095, 5.805, 18.715, 2273.6], [2096, 5.929, 19.442, 2602.2], [2097, 6.055, 20.197, 2978.2], [2098, 6.185, 20.981, 3408.6], [2099, 6.317, 21.796, 3901.2], [2100, 6.452, 22.642, 4465.0], [2101, 6.59, 23.521, 5110.2], [2102, 6.73, 24.435, 5848.6], [2103, 6.874, 25.384, 6693.8], [2104, 7.021, 26.37, 7661.1], [2105, 7.171, 27.394, 8768.2], [2106, 7.324, 28.457, 10035.3], [2107, 7.481, 29.563, 11485.5], [2108, 7.64, 30.711, 13145.2], [2109, 7.803, 31.903, 15044.8], [2110, 7.97, 33.142, 17218.9], [2111, 8.14, 34.429, 19707.1], [2112, 8.314, 35.766, 22555.0], [2113, 8.492, 37.155, 25814.3], [2114, 8.673, 38.598, 29544.7], [2115, 8.858, 40.097, 33814.2], [2116, 9.048, 41.654, 38700.6], [2117, 9.241, 43.272, 44293.1], [2118, 9.438, 44.953, 50693.8], [2119, 9.64, 46.698, 58019.5], [2120, 9.846, 48.512, 66403.8], [2121, 10.056, 50.396, 75999.6], [2122, 10.271, 52.353, 86982.2], [2123, 10.49, 54.386, 99551.8], [2124, 10.714, 56.498, 113937.8], [2125, 10.943, 58.692, 130402.8], [2126, 11.177, 60.971, 149247.0]],s=document.getElementById("pa"),w=s.parentNode,t=w.querySelector(".tip"),x=s.querySelector(".xh");var L=84,R=170,W=720;function show(e){var b=s.getBoundingClientRect(),px=(e.clientX-b.left)*W/b.width,i=Math.round((px-L)/(W-L-R)*100);i=Math.max(0,Math.min(100,i));var r=D[i],X=L+(W-L-R)*i/100;x.setAttribute("x1",X);x.setAttribute("x2",X);x.style.display="";t.innerHTML="<b>"+r[0]+"</b><br>stocks at world avg: "+r[1].toLocaleString()+"× world output<br>stocks at US avg: "+r[2].toLocaleString()+"×<br>index funds at 21%/yr: "+r[3].toLocaleString()+"×";t.style.display="block";t.style.left=Math.min(Math.max(0,e.clientX-b.left+12),b.width-220)+"px";t.style.top="8px"}s.addEventListener("pointermove",show);s.addEventListener("pointerleave",function(){t.style.display="none";x.style.display="none"})})();</script>
+<figcaption>Hover for any year. Index fund assets include all ETFs, a small share of which are actively managed.</figcaption>
+</figure>
+
+<h2>How many Earths?</h2>
+<p>A share is a claim on future profits. To deliver a 7% return on everything, someone has to produce 7% of the
+market's value every year, in dividends, buybacks or growing profits. As the market grows faster than the economy,
+that bill grows faster too.</p>
+<p>At the US average, the bill passes the whole world's yearly output by 2088. By 2126 shareholders would need
+<strong>4.3 times everything the world produces</strong>, every year. Today company profits are about a tenth of
+output. At that share it would take <strong>43 Earths</strong> to pay them.</p>
+<p>The world average is gentler and still impossible. By 2126 shareholders would need 58% of all output, more than
+American workers take home today. Their return would outgrow the whole of today's company profits by 2043. At today's
+profit share it would take <strong>6 Earths</strong>.</p>
+
+<figure>
+<p class="figtitle">Share of the world's yearly output needed to pay shareholders their average return</p>
+<p class="figsub">Return × value of the world's shares ÷ world output</p>
+<div class="lg"><span><i class="s1"></i>world average (5.2%)</span><span><i class="s2"></i>US average (7%)</span><span><i class="ref"></i>today's benchmarks</span></div>
+<div class="chart"><svg id="pb" viewBox="0 0 720 320" role="img" aria-label="Share of world output needed each year to pay shareholders, 2026 to 2126"><line x1="84" x2="550" y1="286.0" y2="286.0" class="g"></line><text x="78" y="290.0" text-anchor="end" class="t">0%</text><line x1="84" x2="550" y1="226.0" y2="226.0" class="g"></line><text x="78" y="230.0" text-anchor="end" class="t">100%</text><line x1="84" x2="550" y1="166.0" y2="166.0" class="g"></line><text x="78" y="170.0" text-anchor="end" class="t">200%</text><line x1="84" x2="550" y1="106.0" y2="106.0" class="g"></line><text x="78" y="110.0" text-anchor="end" class="t">300%</text><line x1="84" x2="550" y1="46.0" y2="46.0" class="g"></line><text x="78" y="50.0" text-anchor="end" class="t">400%</text><text x="84.0" y="310" text-anchor="middle" class="t">2026</text><text x="200.5" y="310" text-anchor="middle" class="t">2051</text><text x="317.0" y="310" text-anchor="middle" class="t">2076</text><text x="433.5" y="310" text-anchor="middle" class="t">2101</text><text x="550.0" y="310" text-anchor="middle" class="t">2126</text><line x1="84" x2="550" y1="226.0" y2="226.0" class="ref"></line><text x="558" y="230.0" class="rl">the whole world economy</text><line x1="84" x2="550" y1="253.7" y2="253.7" class="ref"></line><text x="558" y="257.7" class="rl">workers' share (US, today)</text><line x1="84" x2="550" y1="280.0" y2="280.0" class="ref"></line><text x="558" y="284.0" class="rl">all company profits today</text><polyline class="ln s1" points="84.0,281.8 88.7,281.7 93.3,281.6 98.0,281.5 102.6,281.4 107.3,281.3 112.0,281.2 116.6,281.1 121.3,281.0 125.9,280.9 130.6,280.8 135.3,280.7 139.9,280.6 144.6,280.5 149.2,280.3 153.9,280.2 158.6,280.1 163.2,280.0 167.9,279.8 172.5,279.7 177.2,279.6 181.9,279.4 186.5,279.3 191.2,279.1 195.8,279.0 200.5,278.9 205.2,278.7 209.8,278.5 214.5,278.4 219.1,278.2 223.8,278.1 228.5,277.9 233.1,277.7 237.8,277.5 242.4,277.4 247.1,277.2 251.8,277.0 256.4,276.8 261.1,276.6 265.7,276.4 270.4,276.2 275.1,276.0 279.7,275.8 284.4,275.5 289.0,275.3 293.7,275.1 298.4,274.9 303.0,274.6 307.7,274.4 312.3,274.1 317.0,273.9 321.7,273.6 326.3,273.4 331.0,273.1 335.6,272.8 340.3,272.5 345.0,272.2 349.6,271.9 354.3,271.6 358.9,271.3 363.6,271.0 368.3,270.7 372.9,270.4 377.6,270.0 382.2,269.7 386.9,269.4 391.6,269.0 396.2,268.6 400.9,268.3 405.5,267.9 410.2,267.5 414.9,267.1 419.5,266.7 424.2,266.3 428.8,265.9 433.5,265.4 438.2,265.0 442.8,264.6 447.5,264.1 452.1,263.6 456.8,263.1 461.5,262.7 466.1,262.2 470.8,261.7 475.4,261.1 480.1,260.6 484.8,260.1 489.4,259.5 494.1,258.9 498.7,258.4 503.4,257.8 508.1,257.2 512.7,256.6 517.4,255.9 522.0,255.3 526.7,254.6 531.4,254.0 536.0,253.3 540.7,252.6 545.3,251.9 550.0,251.1"></polyline><polyline class="ln s2" points="84.0,280.3 88.7,280.1 93.3,279.9 98.0,279.6 102.6,279.4 107.3,279.1 112.0,278.9 116.6,278.6 121.3,278.3 125.9,278.0 130.6,277.7 135.3,277.4 139.9,277.0 144.6,276.7 149.2,276.3 153.9,276.0 158.6,275.6 163.2,275.2 167.9,274.7 172.5,274.3 177.2,273.8 181.9,273.4 186.5,272.9 191.2,272.4 195.8,271.8 200.5,271.3 205.2,270.7 209.8,270.1 214.5,269.5 219.1,268.9 223.8,268.2 228.5,267.5 233.1,266.8 237.8,266.1 242.4,265.3 247.1,264.5 251.8,263.6 256.4,262.8 261.1,261.9 265.7,260.9 270.4,260.0 275.1,259.0 279.7,257.9 284.4,256.8 289.0,255.7 293.7,254.5 298.4,253.3 303.0,252.0 307.7,250.7 312.3,249.3 317.0,247.9 321.7,246.4 326.3,244.9 331.0,243.3 335.6,241.6 340.3,239.9 345.0,238.1 349.6,236.2 354.3,234.3 358.9,232.3 363.6,230.2 368.3,228.0 372.9,225.8 377.6,223.5 382.2,221.0 386.9,218.5 391.6,215.9 396.2,213.2 400.9,210.3 405.5,207.4 410.2,204.3 414.9,201.2 419.5,197.9 424.2,194.5 428.8,190.9 433.5,187.2 438.2,183.4 442.8,179.4 447.5,175.2 452.1,170.9 456.8,166.5 461.5,161.8 466.1,157.0 470.8,152.0 475.4,146.8 480.1,141.4 484.8,135.8 489.4,129.9 494.1,123.9 498.7,117.6 503.4,111.1 508.1,104.3 512.7,97.2 517.4,89.9 522.0,82.3 526.7,74.3 531.4,66.1 536.0,57.6 540.7,48.7 545.3,39.5 550.0,29.9"></polyline><text x="546.0" y="21.9" text-anchor="end" class="ll">US avg (7%): 427% of output</text><text x="546.0" y="243.1" text-anchor="end" class="ll">world avg (5.2%): 58%</text><line class="xh" x1="0" x2="0" y1="16" y2="286" style="display:none"></line></svg><div class="tip" role="status"></div></div><script>(function(){var D=[[2026, 7.0, 9.5], [2027, 7.2, 9.8], [2028, 7.3, 10.2], [2029, 7.5, 10.6], [2030, 7.6, 11.0], [2031, 7.8, 11.4], [2032, 8.0, 11.9], [2033, 8.1, 12.3], [2034, 8.3, 12.8], [2035, 8.5, 13.3], [2036, 8.7, 13.8], [2037, 8.9, 14.4], [2038, 9.0, 14.9], [2039, 9.2, 15.5], [2040, 9.4, 16.1], [2041, 9.6, 16.7], [2042, 9.8, 17.4], [2043, 10.1, 18.1], [2044, 10.3, 18.8], [2045, 10.5, 19.5], [2046, 10.7, 20.3], [2047, 10.9, 21.0], [2048, 11.2, 21.9], [2049, 11.4, 22.7], [2050, 11.7, 23.6], [2051, 11.9, 24.5], [2052, 12.2, 25.5], [2053, 12.4, 26.4], [2054, 12.7, 27.5], [2055, 13.0, 28.5], [2056, 13.2, 29.6], [2057, 13.5, 30.8], [2058, 13.8, 32.0], [2059, 14.1, 33.2], [2060, 14.4, 34.5], [2061, 14.7, 35.9], [2062, 15.0, 37.3], [2063, 15.3, 38.7], [2064, 15.7, 40.2], [2065, 16.0, 41.8], [2066, 16.4, 43.4], [2067, 16.7, 45.1], [2068, 17.1, 46.8], [2069, 17.4, 48.6], [2070, 17.8, 50.5], [2071, 18.2, 52.5], [2072, 18.6, 54.5], [2073, 19.0, 56.7], [2074, 19.4, 58.9], [2075, 19.8, 61.1], [2076, 20.2, 63.5], [2077, 20.6, 66.0], [2078, 21.1, 68.5], [2079, 21.5, 71.2], [2080, 22.0, 74.0], [2081, 22.5, 76.8], [2082, 22.9, 79.8], [2083, 23.4, 82.9], [2084, 23.9, 86.2], [2085, 24.4, 89.5], [2086, 25.0, 93.0], [2087, 25.5, 96.6], [2088, 26.0, 100.3], [2089, 26.6, 104.2], [2090, 27.2, 108.3], [2091, 27.7, 112.5], [2092, 28.3, 116.9], [2093, 28.9, 121.4], [2094, 29.6, 126.1], [2095, 30.2, 131.0], [2096, 30.8, 136.1], [2097, 31.5, 141.4], [2098, 32.2, 146.9], [2099, 32.8, 152.6], [2100, 33.5, 158.5], [2101, 34.3, 164.6], [2102, 35.0, 171.0], [2103, 35.7, 177.7], [2104, 36.5, 184.6], [2105, 37.3, 191.8], [2106, 38.1, 199.2], [2107, 38.9, 206.9], [2108, 39.7, 215.0], [2109, 40.6, 223.3], [2110, 41.4, 232.0], [2111, 42.3, 241.0], [2112, 43.2, 250.4], [2113, 44.2, 260.1], [2114, 45.1, 270.2], [2115, 46.1, 280.7], [2116, 47.0, 291.6], [2117, 48.1, 302.9], [2118, 49.1, 314.7], [2119, 50.1, 326.9], [2120, 51.2, 339.6], [2121, 52.3, 352.8], [2122, 53.4, 366.5], [2123, 54.5, 380.7], [2124, 55.7, 395.5], [2125, 56.9, 410.8], [2126, 58.1, 426.8]],s=document.getElementById("pb"),w=s.parentNode,t=w.querySelector(".tip"),x=s.querySelector(".xh");var L=84,R=170,W=720;function show(e){var b=s.getBoundingClientRect(),px=(e.clientX-b.left)*W/b.width,i=Math.round((px-L)/(W-L-R)*100);i=Math.max(0,Math.min(100,i));var r=D[i],X=L+(W-L-R)*i/100;x.setAttribute("x1",X);x.setAttribute("x2",X);x.style.display="";t.innerHTML="<b>"+r[0]+"</b><br>world avg (5.2%): "+r[1]+"% of world output<br>US avg (7%): "+r[2]+"%";t.style.display="block";t.style.left=Math.min(Math.max(0,e.clientX-b.left+12),b.width-220)+"px";t.style.top="8px"}s.addEventListener("pointermove",show);s.addEventListener("pointerleave",function(){t.style.display="none";x.style.display="none"})})();</script>
+<figcaption>Hover for any year. The workers' line is the US labour share, a record low of 53.8% in late 2025.</figcaption>
+</figure>
+
+<figure>
+<p class="figtitle">Earths needed in 2126, if profits stay a tenth of output</p>
+<div class="earthrow"><div class="who">US average, 7%<span>43 Earths</span></div><svg viewBox="0 0 364 76" class="earths" role="img" aria-label="43 Earths"><circle cx="14" cy="14" r="9" class="e2"></circle><circle cx="38" cy="14" r="9" class="e2"></circle><circle cx="62" cy="14" r="9" class="e2"></circle><circle cx="86" cy="14" r="9" class="e2"></circle><circle cx="110" cy="14" r="9" class="e2"></circle><circle cx="134" cy="14" r="9" class="e2"></circle><circle cx="158" cy="14" r="9" class="e2"></circle><circle cx="182" cy="14" r="9" class="e2"></circle><circle cx="206" cy="14" r="9" class="e2"></circle><circle cx="230" cy="14" r="9" class="e2"></circle><circle cx="254" cy="14" r="9" class="e2"></circle><circle cx="278" cy="14" r="9" class="e2"></circle><circle cx="302" cy="14" r="9" class="e2"></circle><circle cx="326" cy="14" r="9" class="e2"></circle><circle cx="350" cy="14" r="9" class="e2"></circle><circle cx="14" cy="38" r="9" class="e2"></circle><circle cx="38" cy="38" r="9" class="e2"></circle><circle cx="62" cy="38" r="9" class="e2"></circle><circle cx="86" cy="38" r="9" class="e2"></circle><circle cx="110" cy="38" r="9" class="e2"></circle><circle cx="134" cy="38" r="9" class="e2"></circle><circle cx="158" cy="38" r="9" class="e2"></circle><circle cx="182" cy="38" r="9" class="e2"></circle><circle cx="206" cy="38" r="9" class="e2"></circle><circle cx="230" cy="38" r="9" class="e2"></circle><circle cx="254" cy="38" r="9" class="e2"></circle><circle cx="278" cy="38" r="9" class="e2"></circle><circle cx="302" cy="38" r="9" class="e2"></circle><circle cx="326" cy="38" r="9" class="e2"></circle><circle cx="350" cy="38" r="9" class="e2"></circle><circle cx="14" cy="62" r="9" class="e2"></circle><circle cx="38" cy="62" r="9" class="e2"></circle><circle cx="62" cy="62" r="9" class="e2"></circle><circle cx="86" cy="62" r="9" class="e2"></circle><circle cx="110" cy="62" r="9" class="e2"></circle><circle cx="134" cy="62" r="9" class="e2"></circle><circle cx="158" cy="62" r="9" class="e2"></circle><circle cx="182" cy="62" r="9" class="e2"></circle><circle cx="206" cy="62" r="9" class="e2"></circle><circle cx="230" cy="62" r="9" class="e2"></circle><circle cx="254" cy="62" r="9" class="e2"></circle><circle cx="278" cy="62" r="9" class="e2"></circle><circle cx="302" cy="62" r="9" class="e2"></circle></svg></div>
+<div class="earthrow"><div class="who">World average, 5.2%<span>6 Earths</span></div><svg viewBox="0 0 364 28" class="earths" role="img" aria-label="6 Earths"><circle cx="14" cy="14" r="9" class="e1"></circle><circle cx="38" cy="14" r="9" class="e1"></circle><circle cx="62" cy="14" r="9" class="e1"></circle><circle cx="86" cy="14" r="9" class="e1"></circle><circle cx="110" cy="14" r="9" class="e1"></circle><circle cx="134" cy="14" r="9" class="e1"></circle></svg></div>
+</figure>
+
+<h2>Why it hasn't happened yet</h2>
+<p>If the arithmetic is this bad, why does the 7% average exist at all? Because the system as a whole has never
+compounded it. Over the past century most shareholders spent their dividends, sold shares to retire, and lived
+through crashes, wars and confiscations. The average return is real for one saver because everyone else, together,
+kept taking money out.</p>
+<p>Part of what looks like return was also a one-off. Shares have become much more expensive relative to the economy,
+from about half of US output in the 1980s to more than twice it today. That rerating paid investors once. It can't
+double every few decades forever.</p>
+<p>Passive investing takes a result earned by one saver in a system that didn't compound it, and sells it as a plan for
+everyone, all at once, automatically.</p>
+
+<h2>Why that's a bubble</h2>
+<p>A bubble is a price held up by the money flowing in, not by the cash the asset can produce. Passive investing has
+three features that fit.</p>
+<p><strong>The money comes in regardless of price.</strong> Australia's super guarantee rose to 12% of wages in July
+2025. Retirement plans in the US and elsewhere enrol workers by default. Every payday, money buys the index at whatever
+the index costs.</p>
+<p><strong>Each dollar moves prices more than a dollar.</strong> Economists Xavier Gabaix and Ralph Koijen estimate
+that $1 flowing into the stock market raises its total value by about $5, because most big holders are bound by rules
+that stop them selling into a rally. Steady inflows don't just buy shares; they lift the price of all of them.</p>
+<p><strong>It buys most of what has already risen most.</strong> An index fund holds companies by size, so new money
+goes mostly to the biggest. Investor Michael Green, the best-known advocate of this argument, calls it a momentum
+machine. Its other danger is the reverse: when a large generation retires and starts selling to live, the same
+mechanism works downwards.</p>
+
+<h2>What society would have to give up to keep it flowing</h2>
+<p>The gains can only keep coming if more of the economy is handed to shareholders. Something has to give way.</p>
+<ul>
+<li><strong>Wages.</strong> Workers' share of US output fell to 53.8% in late 2025, the lowest since records began
+in 1947. Paying shareholders even the world average would eventually need more than that.</li>
+<li><strong>Competition.</strong> The same few index providers own every company in an industry. An owner of every
+airline has little reason to want a fare war. That pushes towards fat margins and away from lower prices.</li>
+<li><strong>Policy.</strong> When everyone's retirement depends on share prices, governments and central banks are
+under pressure to keep rates low and rescue markets in every fall. Markets become too big to be allowed to fall.</li>
+<li><strong>The young.</strong> Each generation buys shares from the last at higher prices, and the price of a future
+retirement keeps rising for people who start saving later.</li>
+<li><strong>Where capital goes.</strong> Money follows size, not merit. New and small companies compete for what is
+left after the giants are fed.</li>
+</ul>
+
+<h2>What happens instead</h2>
+<p>The projections can't come true, so one or more of these will happen:</p>
+<ul>
+<li><strong>Returns shrink</strong> towards the growth of the economy, slowly disappointing everyone counting on 7%.</li>
+<li><strong>Prices fall sharply</strong> when the flow of new money slows or reverses, as retirement withdrawals overtake contributions.</li>
+<li><strong>Inflation or taxes</strong> quietly reduce what the claims are worth.</li>
+<li><strong>Politics</strong> pushes back, through windfall taxes, wage rules or competition law, to claw back a bigger share for workers.</li>
+</ul>
+<p>Each of these keeps the books balanced, and each means savers get less than they were promised.</p>
+
+<h2>The strongest case against this</h2>
+<p>The argument has fair critics, and they deserve a hearing.</p>
+<ul>
+<li><strong>Prices are still set by active traders.</strong> Index funds trade little; active investors and arbitrage
+traders still decide what companies are worth. A passive majority of fund money is not a passive majority of trading.</li>
+<li><strong>Investment creates growth.</strong> Our model holds world growth at 3% whatever is invested. Reinvested
+profits build factories and software that raise output, which softens, though doesn't remove, the gap.</li>
+<li><strong>Companies are not the whole economy.</strong> Listed firms can earn abroad, take share from private
+businesses, and grow profits faster than GDP for a long time.</li>
+<li><strong>Bubbles can last decades.</strong> Being right about arithmetic says little about when prices turn.</li>
+</ul>
+<p>None of these changes the core sum. Claims can't compound faster than the economy that pays them, forever. The
+question is only how the gap closes, and who pays when it does.</p>
+
+<h2>The bottom line</h2>
+<p>For any one saver, an index fund is still a cheap and sensible way to own the market. As a promise to a whole
+society, it doesn't add up. Compounding at the historical average for a century would need dozens of Earths, or
+hand nearly everything the world produces to shareholders. Prices built on that promise, and on money that flows in
+whatever the price, are a bubble. The arithmetic decides that it ends; it doesn't decide when.</p>
+
+<h2>How we modelled it</h2>
+<div class="method">
+<p>All figures are in today's dollars, projected year by year for 100 years from 2026.</p>
+<ul>
+<li><strong>Starting values:</strong> world listed shares $158 trillion (end of 2025); world output $117 trillion
+(IMF, 2025); personal wealth $471 trillion (UBS, end of 2024); ETF assets $24.0 trillion (ETFGI, August 2026).</li>
+<li><strong>World output</strong> grows 3% a year after inflation (the IMF puts 2025 at 3.2%). Personal wealth is
+compared as a multiple of output (about 4× today).</li>
+<li><strong>Shares</strong> compound at 5.2% (world, 1900–2024) or 7% (US, since 1926, about 7.2%) a year after
+inflation, with every dividend reinvested and nothing withdrawn. That is the promise being tested, not a forecast.</li>
+<li><strong>Index funds</strong> grow at the ETF industry's 2015–2025 rate: from $2.99 trillion to $19.85 trillion, 20.8%
+a year, or 17.9% after 2.5% inflation. The 2015 figure also counts other exchange-traded products, which makes this growth rate a little low. ETF totals include a small share of actively managed funds.</li>
+<li><strong>Shareholder bill:</strong> the average return times the value of the world's shares, compared with world
+output. "Earths" divides that bill by company profits at about a tenth of output, roughly where US after-tax corporate
+profits sit.</li>
+</ul>
+<p>The model is deliberately simple: it ignores the feedback from investment to growth, changes in the profit share,
+and crashes. It shows what the average return implies, not what will happen. Not financial advice.</p>
+</div>
+
+<h2>Sources</h2>
+<ul class="sources">
+<li><a href="https://www.visualcapitalist.com/the-worlds-158-trillion-stock-market/">Visual Capitalist: The world's $158 trillion stock market</a></li>
+<li><a href="https://www.statisticstimes.com/m/economy/world-gdp.php">StatisticsTimes: World GDP (IMF World Economic Outlook, October 2025)</a></li>
+<li><a href="https://www.ubs.com/global/en/wealthmanagement/insights/global-wealth-report.html">UBS Global Wealth Report 2025</a></li>
+<li><a href="https://etfgi.com/news/press-releases/2026/09/etfgi-reports-global-etf-assets-top-24-trillion-first-time-investors">ETFGI: Global ETF assets top $24 trillion (September 2026)</a></li>
+<li><a href="https://www.theasset.com/article/55729/global-etf-assets-surge-33-7-to-record-us-19-85-trillion">The Asset: Global ETF assets reach $19.85 trillion at the end of 2025 (ETFGI)</a></li>
+<li><a href="https://hedgefundalpha.com/news/global-etfs-etps-gather-us372-0-billion-in-2015/">ETFGI via Hedge Fund Alpha: ETF/ETP assets of $2.99 trillion at the end of 2015</a></li>
+<li><a href="https://www.jbs.cam.ac.uk/2025/report-stocks-have-far-outperformed-over-the-past-125-years/">Cambridge Judge Business School: UBS Global Investment Returns Yearbook 2025</a></li>
+<li><a href="https://www.officialdata.org/us/stocks/s-p-500/1926">OfficialData: S&amp;P 500 returns since 1926</a></li>
+<li><a href="https://pwlcapital.com/wp-content/uploads/2026/04/YearEnd2025_The-Passive-vs-Active-Fund-Monitor_en.pdf">Morningstar via PWL Capital: Passive vs active fund monitor, year-end 2025</a></li>
+<li><a href="https://www.nber.org/system/files/working_papers/w28967/w28967.pdf">Gabaix and Koijen: In Search of the Origins of Financial Fluctuations: The Inelastic Markets Hypothesis (NBER)</a></li>
+<li><a href="https://www.institutionalinvestor.com/article/2e5um1swovwbm3x5yyk1s/corner-office/why-michael-green-is-known-as-the-cassandra-of-passive-investing">Institutional Investor: Why Michael Green is known as the Cassandra of passive investing</a></li>
+<li><a href="https://fortune.com/2026/01/13/us-workers-smallest-labor-share-gdp-on-record/">Fortune: US workers' smallest share of GDP on record</a></li>
+<li><a href="https://eco3min.fr/en/buffett-indicator-market-cap-to-gdp-dataset/">Eco3min: US stock market value to GDP since 1947</a></li>
+</ul>
+<p class="note">Indicative modelling, not financial advice.</p>
+</article>
+
+</main>
+<p class="orig">Also published on <a href="https://j4red.net/passive-bubble">j4red.net</a>. More writing at <a href="../">jrodimusprime</a>.</p>
+</body>
+</html>

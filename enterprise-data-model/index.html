@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stop Building the Enterprise Data Model</title>
+<meta name="description" content="For forty years, companies have paid teams of modellers to draw one great model of the whole business and force every system&#x27;s data into it. Most of those programmes ran for years, cost millions and were out of date on delivery. AI makes the big model unnecessary. What it can&#x27;t do without is the…">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>
+html,body{margin:0;background:#0b0b10}
+.site{max-width:720px;margin:0 auto;padding:28px 16px 0;font:500 13px/1 "IBM Plex Sans",system-ui,sans-serif}
+.site a{color:#8d8a84;text-decoration:none}
+.site a:hover{color:#f0b45a}
+.page{padding:12px 16px 24px}
+.orig{max-width:720px;margin:0 auto;padding:0 16px 56px;font:400 13px/1.5 "IBM Plex Sans",system-ui,sans-serif;color:#8d8a84}
+.orig a{color:#8d8a84}
+</style>
+</head>
+<body>
+<nav class="site"><a href="../">← jrodimusprime</a></nav>
+<main class="page">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+.wt{--ink:#e9e7e2;--body:#cfccc5;--dim:#8d8a84;--line:#2a2a33;--card:#0f0f16;--accent:#f0b45a;--good:#8f8;--bad:#ff8f7a;
+  max-width:720px;margin:0 auto;padding:8px 0 64px;color:var(--body);font:18px/1.7 "Source Serif 4",Georgia,serif}
+.wt *{box-sizing:border-box}
+.wt .kicker{font:500 12px/1 "IBM Plex Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 18px}
+.wt h1{font:700 clamp(34px,5.4vw,52px)/1.08 "Source Serif 4",Georgia,serif;color:var(--ink);margin:0 0 18px;letter-spacing:-.015em;text-wrap:balance}
+.wt .dek{font:400 21px/1.5 "Source Serif 4",Georgia,serif;color:var(--ink);margin:0 0 20px;text-wrap:pretty}
+.wt .byline{font:400 13px/1.4 "IBM Plex Sans",sans-serif;color:var(--dim);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin:0 0 34px}
+.wt .byline b{color:var(--ink);font-weight:600}
+.wt h2{font:600 26px/1.25 "Source Serif 4",Georgia,serif;color:var(--ink);margin:46px 0 12px;text-wrap:balance}
+.wt p{margin:0 0 18px}
+.wt a{color:var(--accent);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.wt a:hover{color:#ffd08a}
+.wt strong{color:var(--ink);font-weight:600}
+.wt ul{margin:0 0 20px;padding-left:22px}
+.wt li{margin:0 0 10px}
+.wt .lede::first-letter{float:left;font:700 64px/0.8 "Source Serif 4",Georgia,serif;color:var(--accent);padding:8px 10px 0 0}
+.wt .num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+.wt figure{margin:30px 0 34px;padding:20px 22px;background:var(--card);border:1px solid var(--line);border-radius:6px}
+.wt figcaption{font:400 13px/1.55 "IBM Plex Sans",sans-serif;color:var(--dim);margin-top:14px}
+.wt .figtitle{font:600 14px/1.3 "IBM Plex Sans",sans-serif;color:var(--ink);margin:0 0 4px}
+.wt .figsub{font:400 12px/1.4 "IBM Plex Sans",sans-serif;color:var(--dim);margin:0 0 18px}
+.wt .bars{display:grid;grid-template-columns:118px 1fr;gap:10px 14px;align-items:center;font:400 13px/1.3 "IBM Plex Sans",sans-serif}
+.wt .bars .who{color:var(--ink)}
+.wt .track{position:relative;height:30px;background:#16161f;border-radius:3px}
+.wt .start{position:absolute;inset:0 auto 0 0;background:#2b2b38;border-radius:3px}
+.wt .left{position:absolute;inset:0 auto 0 0;background:var(--accent);border-radius:3px}
+.wt .lab{position:absolute;top:50%;transform:translateY(-50%);font:500 12px/1 "IBM Plex Mono",monospace;white-space:nowrap}
+.wt .lab.in{color:#16161f;left:8px}
+.wt .lab.end{color:var(--dim)}
+.wt .key{display:flex;flex-wrap:wrap;gap:16px;font:400 12px/1 "IBM Plex Sans",sans-serif;color:var(--dim);margin-top:14px}
+.wt .key i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:6px;vertical-align:-2px}
+.wt .ranges{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px}
+.wt .rng{border:1px solid var(--line);border-radius:5px;padding:14px 16px;background:#13131b}
+.wt .rng .k{font:500 11px/1 "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.wt .rng .v{font:600 24px/1.25 "IBM Plex Sans",sans-serif;color:var(--ink);margin:8px 0 4px}
+.wt .rng .x{font:400 13px/1.45 "IBM Plex Sans",sans-serif;color:var(--body)}
+.wt .tablewrap{overflow-x:auto;margin:26px 0 30px;border:1px solid var(--line);border-radius:6px}
+.wt table{width:100%;border-collapse:collapse;font:400 14px/1.45 "IBM Plex Sans",sans-serif;margin:0}
+.wt th{position:static;background:#13131b;color:var(--ink);font-weight:600;text-align:left;padding:11px 14px;border-bottom:1px solid var(--line)}
+.wt td{padding:10px 14px;border-bottom:1px solid #1c1c25;color:var(--body)}
+.wt th:not(:first-child){text-align:right}
+.wt td:not(:first-child){text-align:right;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+.wt td:first-child{color:var(--dim)}
+.wt tr.hl td{color:var(--ink);font-weight:600;background:#17140e}
+.wt tr:last-child td{border-bottom:none}
+.wt .pull{border-left:3px solid var(--accent);padding:4px 0 4px 18px;margin:30px 0;font:600 22px/1.45 "Source Serif 4",Georgia,serif;color:var(--ink)}
+.wt .method{font:400 15px/1.65 "IBM Plex Sans",sans-serif;color:var(--body)}
+.wt .method p,.wt .method li{font-size:15px}
+.wt .sources{font:400 14px/1.6 "IBM Plex Sans",sans-serif;padding-left:20px}
+.wt .money{margin:28px 0 30px;padding:18px 20px;background:#17140e;border:1px solid #3a2f1c;border-radius:6px}
+.wt .money p{font:400 15px/1.6 "IBM Plex Sans",sans-serif;margin:0 0 12px}
+.wt .money table{font-size:14px;margin:4px 0 0}
+.wt .money th{background:transparent}
+.wt .rng .then{font:400 12.5px/1.45 "IBM Plex Sans",sans-serif;color:var(--dim);margin-top:8px;border-top:1px solid var(--line);padding-top:8px}
+.wt .note{font:400 13px/1.55 "IBM Plex Sans",sans-serif;color:var(--dim);border-top:1px solid var(--line);padding-top:14px;margin-top:34px}
+@media (max-width:600px){.wt{font-size:17px}.wt .dek{font-size:19px}.wt .bars{grid-template-columns:1fr}.wt .bars .who{margin-top:6px}}
+</style>
+<style>
+.wt .exec{margin:0 0 34px;padding:20px 22px;background:#17140e;border:1px solid #3a2f1c;border-left:4px solid var(--accent);border-radius:6px}
+.wt .exec .k{font:500 11px/1 "IBM Plex Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
+.wt .exec p{font:600 19px/1.5 "Source Serif 4",Georgia,serif;color:var(--ink);margin:0 0 10px}
+.wt .exec p:last-child{margin:0}
+.wt .exec p.s{font:400 15px/1.6 "IBM Plex Sans",sans-serif;color:var(--body)}
+.wt .rng.stay{border-color:#24503f}.wt .rng.stay .k{color:#5fd0a0}
+.wt .rng.shrink{border-color:#4a3d22}.wt .rng.shrink .k{color:var(--accent)}
+.wt .rng.go{border-color:#4d2a24}.wt .rng.go .k{color:var(--bad)}
+.wt .rng ul{margin:8px 0 0;padding-left:18px;font:400 13.5px/1.5 "IBM Plex Sans",sans-serif}
+.wt .rng li{margin:0 0 5px}
+.wt table.txt td{text-align:left;font-family:"IBM Plex Sans",sans-serif;vertical-align:top}
+.wt table.txt th{text-align:left}
+.wt table.txt td:first-child{color:var(--ink);font-weight:600}
+</style>
+<article class="wt">
+<p class="kicker">Data · AI</p>
+<h1>Stop Building the Enterprise Data Model</h1>
+<p class="dek">For forty years, companies have paid teams of modellers to draw one great model of the whole business and
+force every system's data into it. Most of those programmes ran for years, cost millions and were out of date on delivery.
+AI makes the big model unnecessary. What it can't do without is the part the model was always meant to capture:
+<strong>what the data means</strong>.</p>
+<p class="byline"><b>Jared Ryan</b> · 4 November 2026</p>
+
+<aside class="exec">
+<p class="k">Executive statement</p>
+<p>The enterprise data model was a way to make data readable to people and dashboards: every customer, product and
+transaction forced into one approved structure. AI reads data in whatever structure it arrives in. Stop funding the big
+model. Fund a living glossary of what things mean, plus the keys that link them, and model new concepts in days as
+questions need them.</p>
+<div class="ranges" style="margin:16px 0 18px">
+<div class="rng"><div class="k">Typical programme</div><div class="v num">2–3 years</div>
+<div class="x">To build and implement an enterprise or industry data model, before it changes again.</div></div>
+<div class="rng"><div class="k">Standing cost</div><div class="v num">≈A$1.4m a year</div>
+<div class="x">8 modellers and data architects at A$180k, plus model licences and change boards.</div></div>
+<div class="rng"><div class="k">Could be freed</div><div class="v num">≈A$1m a year</div>
+<div class="x">Shrink to a 2–3 person glossary and keys team, and skip the next multi-year model build.</div></div>
+</div>
+<p class="s">The larger, hidden saving is the change tax: every new source system, product or acquisition currently waits for
+a model change request before anyone can use the data. The figures are illustrative arithmetic; scale them to your
+organisation.</p>
+<p>Model the meaning, not the tables.</p>
+</aside>
+
+<h2>What the enterprise model was for</h2>
+<p>The idea is older than the data warehouse. John Zachman's 1987 framework, James Martin's information engineering and
+Bill Inmon's normalised enterprise warehouse all aimed at one integrated model of the business, drawn by experts and
+imposed on every system. Vendors sold ready-made versions: IBM's banking and insurance models, Teradata's financial
+services model (FSLDM), the insurance industry's OMG property-and-casualty model. Data Vault offered a way to bolt every
+new source onto one structure.</p>
+<p>The reasons were sound. If every system calls a customer something different, nobody can count customers. People
+and reporting tools need one structure they can understand and trust. Before data reaches anyone, someone has to decide
+what a policy, an account or a household is.</p>
+<p>The track record was poor:</p>
+<ul>
+<li>In 2005 Gartner forecast that more than half of data warehouse projects would have limited acceptance or fail outright.</li>
+<li>A 2012 Dresner survey found only 41% were considered successful.</li>
+<li>Even IBM's own commissioned study of its industry models made the cost visible: buying a ready-made model was sold on
+cutting modelling time by 30–40%, because modelling is where the time goes.</li>
+<li>The model itself was rarely finished. The business kept changing faster than the model could be redrawn.</li>
+</ul>
+
+<h2>Why it's mostly pointless now</h2>
+<p>The big model existed so that <em>readers</em> could understand the data. The new reader doesn't need it. An AI agent can
+read a source system's own schema, work out that <code>cust_acct</code> in one system and <code>client_no</code> in another are
+the same thing, and join them when a question needs it. Making all the data fit one approved shape in advance no longer
+earns its cost.</p>
+<p>But the research makes the argument more interesting than "modelling is dead":</p>
+<ul>
+<li><strong>Meaning made the difference.</strong> In Sequeda, Allemang and Jacob's 2023 benchmark, GPT-4 answered
+enterprise questions over an insurance database with <strong>16.7%</strong> accuracy. Given a knowledge graph that
+described what the tables and fields <em>mean</em>, built on the OMG insurance industry model, accuracy rose to
+<strong>54.2%</strong>. The payoff didn't come from physically conforming the data to the industry model. It came from
+writing down the model's meaning where the AI could read it.</li>
+<li><strong>AI can't design the big model for you.</strong> Since Fill, Fettke and Köpke's first experiments with ChatGPT
+in 2023, researchers have tested AI at drawing data models from requirements. A 2026 study found reliability falls as
+requirements get more complex, with more inconsistencies and missed elements. That's not a problem if you stop trying to
+build one model of everything. It's a problem only if you ask AI to do the old job faster.</li>
+</ul>
+<div class="pull">The model's value was always the meaning. The structure was just the only way to deliver that meaning to
+readers who couldn't reason.</div>
+
+<figure>
+<p class="figtitle">What happens to data modelling</p>
+<p class="figsub">The meaning stays and matters more; the big structure goes</p>
+<div class="ranges">
+<div class="rng stay"><div class="k">Stays, and matters more</div>
+<ul>
+<li><strong>The business glossary.</strong> What a customer, account, policy or active user is, written precisely and
+versioned like code.</li>
+<li><strong>Keys and identity.</strong> Which records in which systems are the same thing.</li>
+<li><strong>A small map of core concepts.</strong> Customer has accounts, an account holds products: a page, not a
+warehouse.</li>
+<li><strong>Metric definitions.</strong> Revenue, margin, churn, with their rules.</li>
+<li><strong>Regulated models.</strong> The general ledger, regulatory returns, IFRS and Basel reporting.</li>
+<li><strong>Good design inside each application.</strong> Normalised schemas still matter where data is written.</li>
+</ul></div>
+<div class="rng shrink"><div class="k">Shrinks</div>
+<ul>
+<li>Logical models: from hundreds of entities to the concepts people actually ask about.</li>
+<li>Modelling teams: from drawing structures to curating meaning.</li>
+<li>Industry models: a reference for vocabulary, not a template to implement.</li>
+</ul></div>
+<div class="rng go"><div class="k">Goes</div>
+<ul>
+<li>The company-wide canonical physical model.</li>
+<li>Multi-year industry-model implementations.</li>
+<li>Change boards before any new data can be used.</li>
+<li>Forcing every source and acquisition into one shape.</li>
+</ul></div>
+</div>
+<figcaption>A glossary entry such as "active customer: at least one paid transaction in the last 90 days, excluding
+internal and test accounts" does the work that once needed a conformed customer dimension.</figcaption>
+</figure>
+
+<h2>Where the old model still earns its keep</h2>
+<ul>
+<li><strong>Systems that write data.</strong> An order system or core banking platform still needs a careful, normalised
+design. Codd's rules exist to stop data contradicting itself as it's written, and AI doesn't change that. This article is
+about the analytics and integration model, not application databases.</li>
+<li><strong>Regulated reporting.</strong> Financial statements, prudential returns and Basel risk reporting need fixed,
+repeatable structures. In the Basel Committee's 2023 review, only 2 of 31 global systemically important banks fully met
+its risk-data principles. Keep those models, and keep them reconciled.</li>
+<li><strong>Without a glossary, it's worse than before.</strong> If you drop the model and don't write down the meaning,
+every AI agent invents its own definitions, and you get chaos faster than the old model ever produced it. The 16.7% figure
+is what that looks like.</li>
+<li><strong>Performance.</strong> Some questions are asked thousands of times a day. Store those answers; that's caching,
+not enterprise modelling.</li>
+</ul>
+
+<h2>What to do instead</h2>
+<div class="tablewrap"><table class="txt">
+<thead><tr><th>Instead of</th><th>Do this</th></tr></thead>
+<tbody>
+<tr><td>A multi-year enterprise model build</td><td>A glossary of the 50–200 concepts people actually ask about, written in
+weeks and growing as questions arrive</td></tr>
+<tr><td>Model change requests before data can be used</td><td>Land the data as it is; add its definitions when someone
+first needs them</td></tr>
+<tr><td>Implementing an industry model</td><td>Borrow its vocabulary for your glossary, without restructuring your data to
+match it</td></tr>
+<tr><td>A modelling team that draws structures</td><td>A small team that owns meaning, keys and test questions</td></tr>
+<tr><td>Measuring model coverage</td><td>Measuring questions answered correctly against known answers</td></tr>
+</tbody></table></div>
+<p>Enterprise data modelling was never really about the diagram. It was about getting a whole company to agree on what its
+words mean. That agreement is still the hard part, and still worth paying for. Forcing all the data into one structure to
+express it isn't. This is the third part of a series: see <a href="../data-after-ai/">"AI Is the Knowledge Layer Now"</a> and
+<a href="../acquisition-data/">"Stop Remodelling the Companies You Buy"</a>.</p>
+
+<p class="note">Sources: Zachman (1987), "A framework for information systems architecture", <em>IBM Systems Journal</em>;
+Inmon (1992), <em>Building the Data Warehouse</em>; Codd (1970), "A relational model of data for large shared data banks";
+Gartner (2005) press release on data warehouse project failure, as reported by
+<a href="https://dssresources.com/news/628.php">DSSResources</a>; Dresner Advisory (2012), as cited by
+<a href="https://timmitchell.net/post/2017/01/10/why-data-warehouse-projects-fail">Tim Mitchell</a>; Hurwitz &amp; Associates,
+<a href="https://public.dhe.ibm.com/software/data/mdm/analystreport/hurwitz_datamodels.pdf">IBM-commissioned study of industry
+data models</a>; Sequeda, Allemang &amp; Jacob (2023), <a href="https://arxiv.org/abs/2311.07509">"A Benchmark to Understand the
+Role of Knowledge Graphs on Large Language Model's Accuracy for Question Answering on Enterprise SQL Databases"</a>; Fill,
+Fettke &amp; Köpke (2023), <a href="https://emisa-journal.org/emisa/article/view/318/200">"Conceptual Modeling and Large Language
+Models: Impressions From First Experiments With ChatGPT"</a>, <em>EMISA</em> 18; <a href="https://arxiv.org/abs/2605.11986">"On the
+Limitations of Large Language Models for Conceptual Database Modeling"</a> (2026); Basel Committee (2023),
+<a href="https://www.bis.org/bcbs/publ/d559.htm">progress in adopting the principles for risk data aggregation</a>. The 2–3 year
+programme length is a typical planning range, not a measured median. The savings are illustrative arithmetic, not measured
+results.</p>
+</article>
+
+</main>
+<p class="orig">Also published on <a href="https://j4red.net/enterprise-data-model">j4red.net</a>. More writing at <a href="../">jrodimusprime</a>.</p>
+</body>
+</html>
