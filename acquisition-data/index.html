@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stop Remodelling the Companies You Buy</title>
+<meta name="description" content="When a company buys another, the data team spends a year or more forcing the new business&#x27;s data into the enterprise data model, so the reports line up. AI can read both companies&#x27; data as they are, which makes most of that remodelling a cost with no return: a few million dollars and a year of…">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>
+html,body{margin:0;background:#0b0b10}
+.site{max-width:720px;margin:0 auto;padding:28px 16px 0;font:500 13px/1 "IBM Plex Sans",system-ui,sans-serif}
+.site a{color:#8d8a84;text-decoration:none}
+.site a:hover{color:#f0b45a}
+.page{padding:12px 16px 24px}
+.orig{max-width:720px;margin:0 auto;padding:0 16px 56px;font:400 13px/1.5 "IBM Plex Sans",system-ui,sans-serif;color:#8d8a84}
+.orig a{color:#8d8a84}
+</style>
+</head>
+<body>
+<nav class="site"><a href="../">← jrodimusprime</a></nav>
+<main class="page">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+.wt{--ink:#e9e7e2;--body:#cfccc5;--dim:#8d8a84;--line:#2a2a33;--card:#0f0f16;--accent:#f0b45a;--good:#8f8;--bad:#ff8f7a;
+  max-width:720px;margin:0 auto;padding:8px 0 64px;color:var(--body);font:18px/1.7 "Source Serif 4",Georgia,serif}
+.wt *{box-sizing:border-box}
+.wt .kicker{font:500 12px/1 "IBM Plex Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 18px}
+.wt h1{font:700 clamp(34px,5.4vw,52px)/1.08 "Source Serif 4",Georgia,serif;color:var(--ink);margin:0 0 18px;letter-spacing:-.015em;text-wrap:balance}
+.wt .dek{font:400 21px/1.5 "Source Serif 4",Georgia,serif;color:var(--ink);margin:0 0 20px;text-wrap:pretty}
+.wt .byline{font:400 13px/1.4 "IBM Plex Sans",sans-serif;color:var(--dim);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin:0 0 34px}
+.wt .byline b{color:var(--ink);font-weight:600}
+.wt h2{font:600 26px/1.25 "Source Serif 4",Georgia,serif;color:var(--ink);margin:46px 0 12px;text-wrap:balance}
+.wt p{margin:0 0 18px}
+.wt a{color:var(--accent);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.wt a:hover{color:#ffd08a}
+.wt strong{color:var(--ink);font-weight:600}
+.wt ul{margin:0 0 20px;padding-left:22px}
+.wt li{margin:0 0 10px}
+.wt .lede::first-letter{float:left;font:700 64px/0.8 "Source Serif 4",Georgia,serif;color:var(--accent);padding:8px 10px 0 0}
+.wt .num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+.wt figure{margin:30px 0 34px;padding:20px 22px;background:var(--card);border:1px solid var(--line);border-radius:6px}
+.wt figcaption{font:400 13px/1.55 "IBM Plex Sans",sans-serif;color:var(--dim);margin-top:14px}
+.wt .figtitle{font:600 14px/1.3 "IBM Plex Sans",sans-serif;color:var(--ink);margin:0 0 4px}
+.wt .figsub{font:400 12px/1.4 "IBM Plex Sans",sans-serif;color:var(--dim);margin:0 0 18px}
+.wt .bars{display:grid;grid-template-columns:118px 1fr;gap:10px 14px;align-items:center;font:400 13px/1.3 "IBM Plex Sans",sans-serif}
+.wt .bars .who{color:var(--ink)}
+.wt .track{position:relative;height:30px;background:#16161f;border-radius:3px}
+.wt .start{position:absolute;inset:0 auto 0 0;background:#2b2b38;border-radius:3px}
+.wt .left{position:absolute;inset:0 auto 0 0;background:var(--accent);border-radius:3px}
+.wt .lab{position:absolute;top:50%;transform:translateY(-50%);font:500 12px/1 "IBM Plex Mono",monospace;white-space:nowrap}
+.wt .lab.in{color:#16161f;left:8px}
+.wt .lab.end{color:var(--dim)}
+.wt .key{display:flex;flex-wrap:wrap;gap:16px;font:400 12px/1 "IBM Plex Sans",sans-serif;color:var(--dim);margin-top:14px}
+.wt .key i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:6px;vertical-align:-2px}
+.wt .ranges{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px}
+.wt .rng{border:1px solid var(--line);border-radius:5px;padding:14px 16px;background:#13131b}
+.wt .rng .k{font:500 11px/1 "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.wt .rng .v{font:600 24px/1.25 "IBM Plex Sans",sans-serif;color:var(--ink);margin:8px 0 4px}
+.wt .rng .x{font:400 13px/1.45 "IBM Plex Sans",sans-serif;color:var(--body)}
+.wt .tablewrap{overflow-x:auto;margin:26px 0 30px;border:1px solid var(--line);border-radius:6px}
+.wt table{width:100%;border-collapse:collapse;font:400 14px/1.45 "IBM Plex Sans",sans-serif;margin:0}
+.wt th{position:static;background:#13131b;color:var(--ink);font-weight:600;text-align:left;padding:11px 14px;border-bottom:1px solid var(--line)}
+.wt td{padding:10px 14px;border-bottom:1px solid #1c1c25;color:var(--body)}
+.wt th:not(:first-child){text-align:right}
+.wt td:not(:first-child){text-align:right;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+.wt td:first-child{color:var(--dim)}
+.wt tr.hl td{color:var(--ink);font-weight:600;background:#17140e}
+.wt tr:last-child td{border-bottom:none}
+.wt .pull{border-left:3px solid var(--accent);padding:4px 0 4px 18px;margin:30px 0;font:600 22px/1.45 "Source Serif 4",Georgia,serif;color:var(--ink)}
+.wt .method{font:400 15px/1.65 "IBM Plex Sans",sans-serif;color:var(--body)}
+.wt .method p,.wt .method li{font-size:15px}
+.wt .sources{font:400 14px/1.6 "IBM Plex Sans",sans-serif;padding-left:20px}
+.wt .money{margin:28px 0 30px;padding:18px 20px;background:#17140e;border:1px solid #3a2f1c;border-radius:6px}
+.wt .money p{font:400 15px/1.6 "IBM Plex Sans",sans-serif;margin:0 0 12px}
+.wt .money table{font-size:14px;margin:4px 0 0}
+.wt .money th{background:transparent}
+.wt .rng .then{font:400 12.5px/1.45 "IBM Plex Sans",sans-serif;color:var(--dim);margin-top:8px;border-top:1px solid var(--line);padding-top:8px}
+.wt .note{font:400 13px/1.55 "IBM Plex Sans",sans-serif;color:var(--dim);border-top:1px solid var(--line);padding-top:14px;margin-top:34px}
+@media (max-width:600px){.wt{font-size:17px}.wt .dek{font-size:19px}.wt .bars{grid-template-columns:1fr}.wt .bars .who{margin-top:6px}}
+</style>
+<style>
+.wt .exec{margin:0 0 34px;padding:20px 22px;background:#17140e;border:1px solid #3a2f1c;border-left:4px solid var(--accent);border-radius:6px}
+.wt .exec .k{font:500 11px/1 "IBM Plex Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
+.wt .exec p{font:600 19px/1.5 "Source Serif 4",Georgia,serif;color:var(--ink);margin:0 0 10px}
+.wt .exec p:last-child{margin:0}
+.wt .exec p.s{font:400 15px/1.6 "IBM Plex Sans",sans-serif;color:var(--body)}
+.wt .tl{display:grid;grid-template-columns:120px 1fr;gap:12px 14px;align-items:center;font:400 13px/1.35 "IBM Plex Sans",sans-serif}
+.wt .tl .who{color:var(--ink);font-weight:600}
+.wt .tl .who span{display:block;color:var(--dim);font-weight:400;font-size:11.5px;margin-top:2px}
+.wt .tl .lane{position:relative;height:34px;background:#16161f;border-radius:4px}
+.wt .tl .seg{position:absolute;top:0;bottom:0;border-radius:4px;display:flex;align-items:center;padding:0 8px;font:500 11.5px/1.1 "IBM Plex Sans",sans-serif;color:#111;white-space:nowrap;overflow:hidden}
+.wt .tl .axis{grid-column:2;display:flex;justify-content:space-between;font:400 11px/1 "IBM Plex Mono",monospace;color:var(--dim)}
+.wt table.txt td{text-align:left;font-family:"IBM Plex Sans",sans-serif;vertical-align:top}
+.wt table.txt th{text-align:left}
+.wt table.txt td:first-child{color:var(--ink);font-weight:600}
+@media (max-width:600px){.wt .tl{grid-template-columns:1fr}.wt .tl .axis{grid-column:1}}
+</style>
+<article class="wt">
+<p class="kicker">Data · AI · M&amp;A</p>
+<h1>Stop Remodelling the Companies You Buy</h1>
+<p class="dek">When a company buys another, the data team spends a year or more forcing the new business's data into
+the enterprise data model, so the reports line up. AI can read both companies' data as they are, which makes most of that
+remodelling a cost with no return: a few million dollars and a year of delay on every deal.</p>
+<p class="byline"><b>Jared Ryan</b> · 4 November 2026</p>
+
+<aside class="exec">
+<p class="k">Executive statement</p>
+<p>Every acquisition triggers the same ritual: remap the new company's customers, products and transactions into the
+parent's enterprise model, rebuild the pipelines, reconcile, and only then report on the combined business. AI makes
+that remodel unnecessary. Keep their data as it is, link the shared keys, write their definitions down, and ask
+questions across both companies within weeks.</p>
+<div class="ranges" style="margin:16px 0 18px">
+<div class="rng"><div class="k">Typical data integration</div><div class="v num">12–24 months</div>
+<div class="x">The common planning range for consolidating an acquired company's data and systems.</div></div>
+<div class="rng"><div class="k">Cost of the remodel</div><div class="v num">≈A$2–4.5m</div>
+<div class="x">Per deal: a 15-person data team at A$150k for 12–24 months.</div></div>
+<div class="rng"><div class="k">AI-native integration</div><div class="v num">≈A$2–4m saved</div>
+<div class="x">Per deal, with combined answers in weeks, not after the remodel.</div></div>
+</div>
+<p class="s">The bigger prize is time. Advisers commonly attribute 30–50% of deal synergies to IT and data integration, and
+those synergies wait until the combined numbers exist. The figures are illustrative arithmetic on a mid-sized deal; scale
+them to your team and deal size.</p>
+<p>Conform the books. Leave the rest of the acquired company's data as it is.</p>
+</aside>
+
+<h2>Why we've always remodelled</h2>
+<p>The reasons were real. An enterprise data model (Bill Inmon's "single version of the truth", or Ralph Kimball's conformed
+dimensions) means every report uses one definition of customer, product, region and revenue. When you buy a company, its
+data arrives in a different shape: its customer table, product hierarchy, chart of accounts and its own idea of what an
+"active" customer is. A dashboard can't read two shapes at once, and an analyst can't be trusted to reconcile them by
+hand each time. So the new company gets remodelled to fit:</p>
+<ul>
+<li>map every field into the parent model;</li>
+<li>rebuild the pipelines and backfill the history;</li>
+<li>reconcile until the numbers tie out.</li>
+</ul>
+<p>Planning guides for this work commonly quote 12 to 24 months. Gartner has estimated that IT accounts for about a quarter
+of total integration effort. Meanwhile, by Clayton Christensen's widely quoted estimate in <em>Harvard Business Review</em>,
+<strong>70–90% of acquisitions fail</strong> to deliver what was promised, and slow integration is one of the usual
+culprits.</p>
+
+<h2>Why it's wasteful now</h2>
+<p>The remodel exists because the <em>reader</em> needed one shape. The reader has changed. AI can read the acquired
+company's data in its own shape, work out how it relates to yours, and answer a question across both, with no shared model
+built in advance. The research has moved fast:</p>
+<ul>
+<li><strong>Matching records:</strong> Narayan, Chami, Orr and Ré (VLDB 2022) found that GPT-3 with only a few examples
+beat specialised, fully trained systems at the core integration tasks: deciding whether two records are the same thing,
+spotting errors and filling gaps.</li>
+<li><strong>Unseen data:</strong> Peeters, Steiner and Bizer (EDBT 2025) found GPT-4 matched customer and product records as
+well as models trained on large labelled datasets, without that training. It also held up far better on records it had never
+seen, which is exactly what an acquisition hands you.</li>
+<li><strong>Matching schemas:</strong> deciding that their <code>cust_acct</code> is your <code>customer_id</code> is now a
+working research area. Magneto (2024–25) pairs small and large language models to do it accurately at scale.</li>
+<li><strong>Context:</strong> written definitions make AI far more accurate on enterprise data. In Sequeda, Allemang and
+Jacob's benchmark, accuracy went from 16.7% to 54.2% (see <a href="../data-after-ai/">"AI Is the Knowledge Layer
+Now"</a>).</li>
+</ul>
+<div class="pull">You bought the company for what it knows. Then you spent a year deleting it to fit your schema.</div>
+<p>There's a hidden cost too. Forcing an acquisition into the parent's model <strong>throws away what made it
+different</strong>: its own product groupings, its way of measuring margin, the fields its people actually used. Those are
+often why you bought it. The data-mesh movement (Zhamak Dehghani, 2019) argued for leaving data with the domain that
+understands it. AI is what makes that workable: the meaning stays with the data, and the AI translates when someone asks a
+question across both companies.</p>
+
+<figure>
+<p class="figtitle">Time to the first combined answer</p>
+<p class="figsub">Illustrative mid-sized acquisition; the finance consolidation work is the same in both</p>
+<div class="tl">
+<div class="who">Remodel<span>enterprise model first</span></div>
+<div class="lane">
+<div class="seg" style="left:0;width:17%;background:#8d8a84">Map</div>
+<div class="seg" style="left:17%;width:42%;background:#ff8f7a">Remodel, rebuild pipelines, backfill</div>
+<div class="seg" style="left:59%;width:21%;background:#f0b45a">Reconcile</div>
+<div class="seg" style="left:80%;width:20%;background:#5fd0a0">Answers</div>
+</div>
+<div class="who">AI-native<span>keep, link, describe</span></div>
+<div class="lane">
+<div class="seg" style="left:0;width:4%;background:#8d8a84"></div>
+<div class="seg" style="left:4%;width:4%;background:#f0b45a"></div>
+<div class="seg" style="left:8%;width:92%;background:#5fd0a0">Answers from week 6 onward</div>
+</div>
+<div class="axis"><span>0</span><span>6 mo</span><span>12 mo</span><span>18 mo</span></div>
+</div>
+<figcaption>AI-native: land their raw data (weeks 1–2), link shared customers, products and accounts, and write down their
+definitions (weeks 2–6), then ask questions across both businesses. Remodel: combined reporting arrives after mapping,
+rebuilding and reconciling.</figcaption>
+</figure>
+
+<h2>What you still do, in weeks</h2>
+<div class="tablewrap"><table class="txt">
+<thead><tr><th>Keep doing</th><th>Why it stays</th></tr></thead>
+<tbody>
+<tr><td>Land their raw data, unchanged</td><td>The record of what happened. AI can work out meaning on demand, but it can't
+recover data you didn't keep.</td></tr>
+<tr><td>Link the shared keys</td><td>Which of their customers, products, suppliers and staff are also yours. That's a fact,
+not an inference, and it stops double counting. AI suggests the matches; people approve them.</td></tr>
+<tr><td>Write down their definitions</td><td>Their "active customer", their revenue rules, their product groupings, as
+context the AI reads. This keeps what the business knows instead of overwriting it.</td></tr>
+<tr><td>Map the general ledger</td><td>Consolidated financial statements must be exact and repeatable, and that's a legal
+requirement, not a modelling preference. Map their chart of accounts to the group's; it's a few hundred lines, not a
+warehouse.</td></tr>
+<tr><td>Apply their privacy terms</td><td>Their customers agreed to their privacy policy, not yours. Access rules come over
+before any AI can read across both companies.</td></tr>
+</tbody></table></div>
+<p>What you stop doing: rebuilding their transaction history in your model, conforming every dimension, and the months of
+reconciliation that follow.</p>
+
+<h2>Where it breaks</h2>
+<ul>
+<li><strong>Bad matches.</strong> A wrong customer match double-counts revenue or merges two people. Have people review AI
+matches before they count, especially for the largest accounts.</li>
+<li><strong>Silent definition clashes.</strong> If one company books revenue gross and the other net, an AI combining them
+without written definitions will add apples to oranges. Definitions come before questions.</li>
+<li><strong>The books.</strong> Group financial statements, regulatory returns and covenants stay exact and reconciled.
+Don't ask an AI to work them out fresh each time.</li>
+<li><strong>System retirement is a different decision.</strong> Switching off their ERP to save licences may still be worth
+it. Even then, move their data across as raw data plus written context, and don't rebuild it in your model.</li>
+</ul>
+
+<h2>For the next deal</h2>
+<ul>
+<li><strong>1. Write "no remodel" into the integration plan.</strong> The data workstream scope covers raw landing, key
+linking, definitions, the GL mapping and access rules. Nothing else is conformed unless a regulator or the board needs
+it.</li>
+<li><strong>2. Measure the first combined answer.</strong> Target weeks, not quarters.</li>
+<li><strong>3. Keep their meaning.</strong> Their definitions sit beside yours, versioned like code, so nothing they knew is
+lost.</li>
+<li><strong>4. Store only what's reused.</strong> If a combined question is asked every week, cache the answer with its
+definition (see <a href="../data-after-ai/">the knowledge layer piece</a>).</li>
+</ul>
+<p>The enterprise data model was how a company made its data readable to people and dashboards. AI reads the data as it
+is. The next acquisition doesn't need a year of remodelling, only its keys linked, its definitions written down, and its
+books mapped.</p>
+<p>Part three: why the enterprise data model itself is mostly unnecessary now, in <a href="../enterprise-data-model/">"Stop Building the Enterprise Data Model"</a>.</p>
+
+<p class="note">Sources: Inmon (1992), <em>Building the Data Warehouse</em>; Kimball (1996), <em>The Data Warehouse
+Toolkit</em>; Christensen, Alton, Rising &amp; Waldeck (2011), <a href="https://www.hbs.edu/faculty/Pages/item.aspx?num=39920">"The
+Big Idea: The New M&amp;A Playbook"</a>, <em>HBR</em>; Narayan, Chami, Orr &amp; Ré (2022),
+<a href="https://www.vldb.org/pvldb/vol16/p738-narayan.pdf">"Can Foundation Models Wrangle Your Data?"</a>, PVLDB 16(4);
+Peeters, Steiner &amp; Bizer (2025), <a href="https://arxiv.org/abs/2310.11244">"Entity Matching using Large Language Models"</a>,
+EDBT; Magneto (2024–25), <a href="https://arxiv.org/abs/2412.08194">"Combining Small and Large Language Models for Schema
+Matching"</a>; Sequeda, Allemang &amp; Jacob (2023), <a href="https://arxiv.org/abs/2311.07509">knowledge graphs and LLM accuracy
+on enterprise SQL</a>; Dehghani (2019), "How to Move Beyond a Monolithic Data Lake to a Distributed Data Mesh". The 12–24 month
+range is a common planning rule of thumb in integration guides, not a measured median. The 30–50% synergy share is
+attributed to McKinsey through secondary sources (Davis 2000), and the "about a quarter of integration effort" figure to
+Gartner (2015) through secondary sources. The savings are illustrative arithmetic, not measured results.</p>
+</article>
+
+</main>
+<p class="orig">Also published on <a href="https://j4red.net/acquisition-data">j4red.net</a>. More writing at <a href="../">jrodimusprime</a>.</p>
+</body>
+</html>

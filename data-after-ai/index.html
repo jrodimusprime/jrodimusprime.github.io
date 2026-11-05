@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Is the Knowledge Layer Now. Retire the Medallion.</title>
+<meta name="description" content="For twenty years, the meaning of a company&#x27;s data lived in pipelines: bronze, silver and gold copies, built in advance and rebuilt every night, because the people reading the data couldn&#x27;t work it out for themselves. AI can. It applies the meaning when you ask the question, which makes the…">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>
+html,body{margin:0;background:#0b0b10}
+.site{max-width:720px;margin:0 auto;padding:28px 16px 0;font:500 13px/1 "IBM Plex Sans",system-ui,sans-serif}
+.site a{color:#8d8a84;text-decoration:none}
+.site a:hover{color:#f0b45a}
+.page{padding:12px 16px 24px}
+.orig{max-width:720px;margin:0 auto;padding:0 16px 56px;font:400 13px/1.5 "IBM Plex Sans",system-ui,sans-serif;color:#8d8a84}
+.orig a{color:#8d8a84}
+</style>
+</head>
+<body>
+<nav class="site"><a href="../">← jrodimusprime</a></nav>
+<main class="page">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+.wt{--ink:#e9e7e2;--body:#cfccc5;--dim:#8d8a84;--line:#2a2a33;--card:#0f0f16;--accent:#f0b45a;--good:#8f8;--bad:#ff8f7a;
+  max-width:720px;margin:0 auto;padding:8px 0 64px;color:var(--body);font:18px/1.7 "Source Serif 4",Georgia,serif}
+.wt *{box-sizing:border-box}
+.wt .kicker{font:500 12px/1 "IBM Plex Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 18px}
+.wt h1{font:700 clamp(34px,5.4vw,52px)/1.08 "Source Serif 4",Georgia,serif;color:var(--ink);margin:0 0 18px;letter-spacing:-.015em;text-wrap:balance}
+.wt .dek{font:400 21px/1.5 "Source Serif 4",Georgia,serif;color:var(--ink);margin:0 0 20px;text-wrap:pretty}
+.wt .byline{font:400 13px/1.4 "IBM Plex Sans",sans-serif;color:var(--dim);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin:0 0 34px}
+.wt .byline b{color:var(--ink);font-weight:600}
+.wt h2{font:600 26px/1.25 "Source Serif 4",Georgia,serif;color:var(--ink);margin:46px 0 12px;text-wrap:balance}
+.wt p{margin:0 0 18px}
+.wt a{color:var(--accent);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.wt a:hover{color:#ffd08a}
+.wt strong{color:var(--ink);font-weight:600}
+.wt ul{margin:0 0 20px;padding-left:22px}
+.wt li{margin:0 0 10px}
+.wt .lede::first-letter{float:left;font:700 64px/0.8 "Source Serif 4",Georgia,serif;color:var(--accent);padding:8px 10px 0 0}
+.wt .num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+.wt figure{margin:30px 0 34px;padding:20px 22px;background:var(--card);border:1px solid var(--line);border-radius:6px}
+.wt figcaption{font:400 13px/1.55 "IBM Plex Sans",sans-serif;color:var(--dim);margin-top:14px}
+.wt .figtitle{font:600 14px/1.3 "IBM Plex Sans",sans-serif;color:var(--ink);margin:0 0 4px}
+.wt .figsub{font:400 12px/1.4 "IBM Plex Sans",sans-serif;color:var(--dim);margin:0 0 18px}
+.wt .bars{display:grid;grid-template-columns:118px 1fr;gap:10px 14px;align-items:center;font:400 13px/1.3 "IBM Plex Sans",sans-serif}
+.wt .bars .who{color:var(--ink)}
+.wt .track{position:relative;height:30px;background:#16161f;border-radius:3px}
+.wt .start{position:absolute;inset:0 auto 0 0;background:#2b2b38;border-radius:3px}
+.wt .left{position:absolute;inset:0 auto 0 0;background:var(--accent);border-radius:3px}
+.wt .lab{position:absolute;top:50%;transform:translateY(-50%);font:500 12px/1 "IBM Plex Mono",monospace;white-space:nowrap}
+.wt .lab.in{color:#16161f;left:8px}
+.wt .lab.end{color:var(--dim)}
+.wt .key{display:flex;flex-wrap:wrap;gap:16px;font:400 12px/1 "IBM Plex Sans",sans-serif;color:var(--dim);margin-top:14px}
+.wt .key i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:6px;vertical-align:-2px}
+.wt .ranges{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px}
+.wt .rng{border:1px solid var(--line);border-radius:5px;padding:14px 16px;background:#13131b}
+.wt .rng .k{font:500 11px/1 "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.wt .rng .v{font:600 24px/1.25 "IBM Plex Sans",sans-serif;color:var(--ink);margin:8px 0 4px}
+.wt .rng .x{font:400 13px/1.45 "IBM Plex Sans",sans-serif;color:var(--body)}
+.wt .tablewrap{overflow-x:auto;margin:26px 0 30px;border:1px solid var(--line);border-radius:6px}
+.wt table{width:100%;border-collapse:collapse;font:400 14px/1.45 "IBM Plex Sans",sans-serif;margin:0}
+.wt th{position:static;background:#13131b;color:var(--ink);font-weight:600;text-align:left;padding:11px 14px;border-bottom:1px solid var(--line)}
+.wt td{padding:10px 14px;border-bottom:1px solid #1c1c25;color:var(--body)}
+.wt th:not(:first-child){text-align:right}
+.wt td:not(:first-child){text-align:right;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+.wt td:first-child{color:var(--dim)}
+.wt tr.hl td{color:var(--ink);font-weight:600;background:#17140e}
+.wt tr:last-child td{border-bottom:none}
+.wt .pull{border-left:3px solid var(--accent);padding:4px 0 4px 18px;margin:30px 0;font:600 22px/1.45 "Source Serif 4",Georgia,serif;color:var(--ink)}
+.wt .method{font:400 15px/1.65 "IBM Plex Sans",sans-serif;color:var(--body)}
+.wt .method p,.wt .method li{font-size:15px}
+.wt .sources{font:400 14px/1.6 "IBM Plex Sans",sans-serif;padding-left:20px}
+.wt .money{margin:28px 0 30px;padding:18px 20px;background:#17140e;border:1px solid #3a2f1c;border-radius:6px}
+.wt .money p{font:400 15px/1.6 "IBM Plex Sans",sans-serif;margin:0 0 12px}
+.wt .money table{font-size:14px;margin:4px 0 0}
+.wt .money th{background:transparent}
+.wt .rng .then{font:400 12.5px/1.45 "IBM Plex Sans",sans-serif;color:var(--dim);margin-top:8px;border-top:1px solid var(--line);padding-top:8px}
+.wt .note{font:400 13px/1.55 "IBM Plex Sans",sans-serif;color:var(--dim);border-top:1px solid var(--line);padding-top:14px;margin-top:34px}
+@media (max-width:600px){.wt{font-size:17px}.wt .dek{font-size:19px}.wt .bars{grid-template-columns:1fr}.wt .bars .who{margin-top:6px}}
+</style>
+<style>
+.wt table.txt td{text-align:left;font-family:"IBM Plex Sans",sans-serif;vertical-align:top}
+.wt table.txt th{text-align:left}
+.wt table.txt td:first-child{color:var(--ink);font-weight:600;white-space:nowrap}
+.wt .exec{margin:0 0 34px;padding:20px 22px;background:#17140e;border:1px solid #3a2f1c;border-left:4px solid var(--accent);border-radius:6px}
+.wt .exec .k{font:500 11px/1 "IBM Plex Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
+.wt .exec p{font:600 19px/1.5 "Source Serif 4",Georgia,serif;color:var(--ink);margin:0 0 10px}
+.wt .exec p:last-child{margin:0}
+.wt .exec p.s{font:400 15px/1.6 "IBM Plex Sans",sans-serif;color:var(--body)}
+.wt .stack{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.wt .stack .col .h{font:500 11px/1 "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin:0 0 10px}
+.wt .stack .box{border:1px solid var(--line);border-radius:5px;padding:9px 12px;margin:0;font:400 13.5px/1.4 "IBM Plex Sans",sans-serif;color:var(--body);background:#13131b}
+.wt .stack .box b{color:var(--ink);font-weight:600}
+.wt .stack .ar{text-align:center;color:var(--dim);font:400 13px/1 "IBM Plex Sans",sans-serif;margin:4px 0}
+.wt .stack .old .box.cost{border-color:#4d2a24;background:#1a1212}
+.wt .stack .new .box.ai{border-color:#4a3d22;background:#17140e}
+.wt .stack .new .box.keep{border-color:#24503f;background:#0f1914}
+.wt .stack .tag{display:inline-block;font:500 10.5px/1 "IBM Plex Mono",monospace;letter-spacing:.06em;padding:3px 6px;border-radius:3px;margin-left:6px;vertical-align:1px}
+.wt .stack .tag.r{background:#3a1f1a;color:var(--bad)}.wt .stack .tag.a{background:#3a2f1c;color:var(--accent)}.wt .stack .tag.g{background:#173a2c;color:#5fd0a0}
+@media (max-width:600px){.wt table.txt td:first-child{white-space:normal}.wt .stack{grid-template-columns:1fr}}
+</style>
+<article class="wt">
+<p class="kicker">Data · AI</p>
+<h1>AI Is the Knowledge Layer Now. Retire the Medallion.</h1>
+<p class="dek">For twenty years, the meaning of a company's data lived in pipelines: bronze, silver and gold copies, built
+in advance and rebuilt every night, because the people reading the data couldn't work it out for themselves. AI can.
+It applies the meaning when you ask the question, which makes the medallion a workaround for a problem that has gone,
+and a team of 100 data people about A$3 million a year cheaper to run.</p>
+<p class="byline"><b>Jared Ryan</b> · 4 November 2026</p>
+
+<aside class="exec">
+<p class="k">Executive statement</p>
+<p>The silver and gold layers were never really about storage. They were a knowledge layer: the place where a business
+wrote down what its data means, in the only form its readers could use, finished tables. AI now does that work on demand.
+The medallion isn't needed, and neither are most of its costs.</p>
+<div class="ranges" style="margin:16px 0 18px">
+<div class="rng"><div class="k">Typical data team</div><div class="v num">A$15m</div>
+<div class="x">100 people at A$150k fully loaded, a year.</div></div>
+<div class="rng"><div class="k">Spent on pipelines</div><div class="v num">≈A$6m</div>
+<div class="x">About 40% of data-team time goes on building and maintaining pipelines.</div></div>
+<div class="rng"><div class="k">Could be freed</div><div class="v num">≈A$3m a year</div>
+<div class="x">Roughly half of that is building silver and gold copies most people never read.</div></div>
+</div>
+<p class="s">Add the compute and storage spent rebuilding layers nobody reads (68% of enterprise data goes unused), and
+the bigger prize: answers in minutes, not a new data mart in weeks. The figures are illustrative arithmetic on survey data.</p>
+<p>What replaces the medallion is small: the raw record, plus the context AI needs to read it, written down once.</p>
+</aside>
+
+<h2>The medallion was a knowledge layer in disguise</h2>
+<p>Bill Inmon's enterprise warehouse (1992) and Ralph Kimball's conformed dimensions (1996) answered one question: how do
+you get everyone to agree what the data means? Their answer was to <strong>bake the meaning into tables</strong>. One
+agreed customer, one agreed product, one agreed calendar, all pre-joined and pre-cleaned, because a person with a reporting
+tool couldn't be trusted to work out the business rules themselves.</p>
+<p>The modern medallion is the same idea with three named layers. Databricks describes <strong>bronze</strong> as raw data
+as it arrived, <strong>silver</strong> as validated, deduplicated and normalised, and <strong>gold</strong> as the
+business-ready views behind dashboards. Everything that makes data <em>meaningful</em> lives between bronze and gold:
+fixing late and out-of-order records, mapping codes to categories, converting currencies, deciding which date counts, and
+resolving which customer is which. Silver and gold aren't storage tiers. They're business knowledge, frozen into copies
+of the data and rebuilt on a schedule whether or not anyone asks.</p>
+<div class="pull">The medallion stores knowledge as finished tables, because its readers couldn't reason. Its new reader can.</div>
+
+<h2>AI does the same job, on demand</h2>
+<p>An AI agent given the raw record can do at question time what silver and gold did in advance. It can read the schema,
+join the tables, drop duplicates, apply the exchange rate, choose the right date, and explain what it did. Turning plain
+questions into correct SQL queries has gone from a research problem to near human level. On BIRD, a demanding benchmark,
+the best systems reached about <strong>82%</strong> in late 2025, against <strong>93%</strong> for human data
+engineers.</p>
+<p>What makes it reliable isn't a gold table. It's <strong>context</strong>: written-down definitions the AI reads before
+it answers.</p>
+<ul>
+<li>In a 2023 benchmark on a real insurance schema, GPT-4 answered enterprise questions with <strong>16.7%</strong> accuracy
+from the raw database, and <strong>54.2%</strong> when given a knowledge graph describing what the tables and fields mean
+(Sequeda, Allemang &amp; Jacob).</li>
+<li>dbt Labs reports near-perfect accuracy in 2026 when models are grounded in governed metric definitions.</li>
+</ul>
+<p>The knowledge layer hasn't gone. It has moved: from <strong>pre-built copies of the data</strong> to
+<strong>definitions the AI reads when it answers</strong>. A rule written once ("convert at the end-of-day rate on the
+transaction date, from this source") replaces a pipeline that applied it to every row every night.</p>
+
+<figure>
+<p class="figtitle">The knowledge layer moves from tables to AI</p>
+<p class="figsub">Same raw data, same rules; the work happens when someone asks, not every night in advance</p>
+<div class="stack">
+<div class="col old"><p class="h">Medallion: knowledge stored as tables</p>
+<div class="box"><b>Sources</b></div><div class="ar">↓</div>
+<div class="box"><b>Bronze</b> raw copy</div><div class="ar">↓ nightly jobs</div>
+<div class="box cost"><b>Silver</b> cleaned, conformed copy <span class="tag r">REBUILT DAILY</span></div><div class="ar">↓ nightly jobs</div>
+<div class="box cost"><b>Gold</b> marts per team <span class="tag r">MOSTLY UNREAD</span></div><div class="ar">↓</div>
+<div class="box"><b>Dashboard</b> → person</div>
+</div>
+<div class="col new"><p class="h">AI: knowledge applied on demand</p>
+<div class="box"><b>Sources</b></div><div class="ar">↓</div>
+<div class="box keep"><b>Raw record</b> immutable, time-stamped <span class="tag g">KEEP</span></div><div class="ar">↓ read at question time</div>
+<div class="box ai"><b>AI knowledge layer</b> joins, cleans, converts, explains <span class="tag a">ON DEMAND</span></div><div class="ar">↑ reads</div>
+<div class="box keep"><b>Context</b> definitions, keys, rules, permissions <span class="tag g">KEEP</span></div><div class="ar">↓</div>
+<div class="box"><b>Answer</b> → person or agent · <b>cache</b> what gets reused</div>
+</div>
+</div>
+<figcaption>Currency is the clearest example. The rule (which rate, which date, which source) stays as written context. The
+silver job that pre-converts every transaction, every night, goes.</figcaption>
+</figure>
+
+<h2>What you keep</h2>
+<ul>
+<li><strong>The raw record.</strong> Immutable and time-stamped. AI can work out meaning on demand, but it can't recover
+data you never kept, so bronze stays and probably grows.</li>
+<li><strong>Keys and identity.</strong> Which customer, account or product is which across systems. That's facts, not
+inference, and it's worth getting right once.</li>
+<li><strong>Context as code.</strong> Metric definitions, exchange-rate rules, fiscal calendars, hierarchies and
+glossaries, versioned like software. This is the new knowledge layer's source of truth.</li>
+<li><strong>Controls.</strong> Who can see what, privacy rules, lineage and retention. An AI that can read everything must
+not show everyone everything.</li>
+<li><strong>The books.</strong> Financial, regulatory and customer-facing numbers stay built and reconciled. A regulator
+wants the same answer twice, not a fresh inference.</li>
+<li><strong>Test questions.</strong> Questions with known answers that every AI agent must get right before anyone trusts
+it.</li>
+</ul>
+
+<h2>Where it breaks</h2>
+<ul>
+<li><strong>No context, no truth.</strong> An AI with no written definitions makes up its own, and five agents give five
+"revenues". The 16.7% figure is what happens without context.</li>
+<li><strong>Reuse needs a cache, not a layer.</strong> A question asked once should be answered on demand. Once three
+teams and a dashboard depend on it, store the answer and its query so it doesn't change from one run to the next. That's
+a cache with a definition behind it, not a return to silver and gold.</li>
+<li><strong>One wrong answer in five.</strong> 82% accuracy on a benchmark isn't good enough for a board paper. Use test
+questions and human review where the stakes are high.</li>
+<li><strong>Audit.</strong> Banks have been working on the Basel principles for risk data (BCBS 239) since 2013. In 2023
+only 2 of 31 global systemically important banks fully complied. Regulated numbers stay built and reconciled.</li>
+<li><strong>Cost inversion.</strong> Thousands of AI queries over raw data can cost more than one stored table. Watch the
+bill and cache the busiest questions.</li>
+</ul>
+
+<div class="tablewrap"><table class="txt">
+<thead><tr><th>Rule</th><th>When</th></tr></thead>
+<tbody>
+<tr><td>Answer on demand</td><td>The default: any question, from the raw record and written context</td></tr>
+<tr><td>Cache the answer</td><td>On the <strong>second reuse</strong> across teams, or when repeat compute costs more than storing it</td></tr>
+<tr><td>Build and reconcile</td><td>Financial, regulatory and external numbers</td></tr>
+<tr><td>Drop it</td><td>A cache nobody has read in 90 days</td></tr>
+<tr><td>Never drop</td><td>The raw record, the keys, the context, the books</td></tr>
+</tbody></table></div>
+
+<h2>When to move</h2>
+<ul>
+<li><strong>1. Freeze new silver and gold work.</strong> Every new mart is a cost that AI on demand will make obsolete.
+Ask first whether a definition plus the raw data would do.</li>
+<li><strong>2. Write the context down.</strong> Turn the logic hidden in pipelines into definitions, glossaries and rules
+an AI can read. It's the most valuable thing your data team owns.</li>
+<li><strong>3. Measure which tables are actually read.</strong> Anything unread for 90 days is a candidate to retire.</li>
+<li><strong>4. Start with the long tail.</strong> Let AI answer one-off and low-stakes questions over raw data first, with
+test questions running behind it.</li>
+<li><strong>5. Keep the books built.</strong> Retire the rest of the medallion layer by layer as accuracy is proven.</li>
+</ul>
+<p>The medallion was built for a reader that couldn't reason, so the reasoning had to be done in advance and stored. That
+reader is gone. Keep the raw record and write the meaning down once, and let AI apply it when someone asks.</p>
+<p>Part two: what this means when you buy a company, in <a href="../acquisition-data/">"Stop Remodelling the Companies You Buy"</a>.</p>
+
+<p class="note">Sources: Inmon (1992), <em>Building the Data Warehouse</em>; Kimball (1996), <em>The Data Warehouse
+Toolkit</em>; Databricks documentation, <a href="https://docs.databricks.com/aws/en/lakehouse/medallion.html">"What is the
+medallion lakehouse architecture?"</a>; BIRD text-to-SQL benchmark and leaderboard (Agentar-Scale-SQL, 81.67%, Nov 2025; human
+92.96%); Sequeda, Allemang &amp; Jacob (2023), <a href="https://arxiv.org/abs/2311.07509">"A Benchmark to Understand the Role
+of Knowledge Graphs on Large Language Model's Accuracy for Question Answering on Enterprise SQL Databases"</a>; dbt Labs,
+<a href="https://www.getdbt.com/blog/semantic-layer-as-the-data-interface-for-llms">"Semantic Layer as the Data Interface for
+LLMs"</a> and 2026 benchmark update; Seagate / IDC (2020), <a href="https://www.businesswire.com/news/home/20200715005130/en/">Rethink
+Data</a>; Anaconda, <em>State of Data Science</em> 2020–2022; Fivetran / Wakefield Research (2021),
+<a href="https://www.fivetran.com/blog/what-wasting-data-engineering-talent-really-costs-you">data engineering survey</a>
+(vendor-commissioned); Basel Committee (2023), <a href="https://www.bis.org/bcbs/publ/d559.htm">progress in adopting the
+principles for risk data aggregation</a>. The savings example is illustrative arithmetic on the survey figures, not a measured
+result.</p>
+</article>
+
+</main>
+<p class="orig">Also published on <a href="https://j4red.net/data-after-ai">j4red.net</a>. More writing at <a href="../">jrodimusprime</a>.</p>
+</body>
+</html>
